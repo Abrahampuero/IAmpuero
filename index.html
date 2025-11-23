@@ -36,15 +36,18 @@
         transition: all 0.3s ease;
     }
     .btn-primary {
-        background-color: #0d6efd; /* Azul de Bootstrap */
-        border-color: #0d6efd;
+        background-color: #1D4ED8; /* Nuevo azul corporativo */
+        border-color: #1D4ED8;
     }
     .btn-primary:hover {
-        background-color: #0b5ed7;
-        border-color: #0b5ed7;
+        background-color: #1E40AF; /* Tono de hover más oscuro */
+        border-color: #1E40AF;
     }
     .text-white .form-control, .text-white .form-select {
         border: none;
+    }
+    .text-primary {
+        color: #1D4ED8 !important; /* Asegura que los títulos de tarjetas usen el nuevo color */
     }
   </style>
 </head>
@@ -56,7 +59,7 @@
     
     <div class="d-flex align-items-center">
         <a class="navbar-brand" href="#">
-            <img src="LOGO WEB.jpg" alt="AbrahAmpuero - Tecnología que trabaja por ti">
+            <img src="LOGO WEB.png" alt="AbrahAmpuero - Tecnología que trabaja por ti">
         </a>
     </div>
 
@@ -186,7 +189,7 @@
   </div>
 </section>
 
-<section id="contacto" class="bg-primary text-white py-5">
+<section id="contacto" style="background-color: #1D4ED8;" class="text-white py-5">
   <div class="container">
     <h2 class="fw-bold text-center mb-4">🤖 Hablemos de Automatización con IA</h2>
     <p class="text-center mb-5 lead">Cuéntame sobre el proceso que deseas optimizar y te enviaré una propuesta a medida. ¡Tu respuesta de confirmación será automática!</p>
