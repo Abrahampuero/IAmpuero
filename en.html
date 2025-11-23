@@ -1,245 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AbrahAmpuero - AI Automation for Businesses</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AbrahAmpuero - AI Automations for Business</title>
 
-    <link 
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-    rel="stylesheet">
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet">
 
-    <style>
-    body {
-      font-family: system-ui, sans-serif;
-      color: #212529;
-    }
-    .hero {
-      background: linear-gradient(to bottom, #ffffff, #f1f5f9);
-      padding: 80px 0;
-    }
-    section {
-      padding: 80px 0;
-    }
-    .hero-image {
-        max-height: 500px; 
-        object-fit: cover;
-    }
-    .navbar-brand img {
-        height: 40px; 
-        width: auto;
-    }
-    .card-hover:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-    }
-    .btn-primary {
-        background-color: #1D4ED8; /* New corporate blue */
-        border-color: #1D4ED8;
-    }
-    .btn-primary:hover {
-        background-color: #1E40AF; /* Darker hover tone */
-        border-color: #1E40AF;
-    }
-    .text-white .form-control, .text-white .form-select {
-        border: none;
-    }
-    .text-primary {
-        color: #1D4ED8 !important; /* Ensures card titles use the new color */
-    }
-  </style>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            color: #212529;
+            line-height: 1.7; 
+        }
+        .hero {
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+            padding: 80px 0;
+        }
+        section {
+            padding: 80px 0;
+        }
+        .hero-image {
+            max-height: 500px; 
+            object-fit: cover;
+        }
+        .navbar-brand img {
+            height: 40px; 
+            width: auto;
+        }
+        /* Card Styles - Depth and Soft Border */
+        .card {
+            border-radius: 12px; /* Softer corners */
+            border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
+        }
+        .card-hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Soft initial shadow */
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Pronounced shadow on hover */
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-primary {
+            background-color: #1D4ED8; /* Corporate Blue */
+            border-color: #1D4ED8;
+        }
+        .btn-primary:hover {
+            background-color: #1E40AF; /* Darker hover tone */
+            border-color: #1E40AF;
+        }
+        .text-white .form-control, .text-white .form-select {
+            border: none;
+        }
+        .text-primary {
+            color: #1D4ED8 !important; 
+        }
+        /* Improved Title Typography and Structure */
+        h2.fw-bold {
+            font-size: 2.5rem;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #1D4ED8; /* Corporate underline */
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem !important;
+        }
+        .text-center h2.fw-bold { /* Center title and underline */
+            display: block;
+            width: fit-content;
+        }
+    </style>
 </head>
 
 <body class="bg-white">
 
 <nav class="navbar navbar-expand-lg bg-white py-3 border-bottom">
-  <div class="container">
-    
-    <div class="d-flex align-items-center">
-        <a class="navbar-brand" href="#">
-            <img src="LOGO WEB.png" alt="AbrahAmpuero - Technology that works for you">
-        </a>
-    </div>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-      <ul class="navbar-nav me-3 gap-3">
-        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="#how">How</a></li>
-        <li class="nav-item"><a class="nav-link" href="#cases">Cases</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                🇺🇸 English
+    <div class="container">
+        
+        <div class="d-flex align-items-center">
+            <a class="navbar-brand" href="#">
+                <img src="LOGO WEB.png" alt="AbrahAmpuero - Technology working for you">
             </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="index.html">🇪🇸 Spanish</a></li>
-                <li><a class="dropdown-item" href="en.html">🇺🇸 English</a></li>
-                <li><a class="dropdown-item" href="ar.html">🇸🇦 العربية</a></li>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+            <ul class="navbar-nav me-3 gap-3">
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#how">Process</a></li>
+                <li class="nav-item"><a class="nav-link" href="#cases">Case Studies</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        🇺🇸 English
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="index.html">🇪🇸 Español</a></li>
+                        <li><a class="dropdown-item" href="en.html">🇺🇸 English</a></li>
+                        <li><a class="dropdown-item" href="ar.html">🇸🇦 العربية</a></li>
+                    </ul>
+                </li>
             </ul>
-        </li>
-              </ul>
-      <a href="#contact" class="btn btn-primary px-4">Contact Me</a>
-    </div>
-  </div>
+            <a href="#contact" class="btn btn-primary px-4">Get Started</a>
+        </div>
+    </div>
 </nav>
 
 <section class="hero">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-md-6">
-        <h1 class="fw-bold display-5">
-          AI Automation for Businesses Ready to Scale
-        </h1>
-        <p class="mt-3 fs-5 text-muted">
-          Save time, reduce errors, and scale operations with custom solutions. I handle everything so you can enjoy the results.
-        </p>
-        <div class="mt-4 d-flex gap-3">
-          <a href="#contact" class="btn btn-primary btn-lg">Request Demo</a>
-          <a href="#cases" class="btn btn-outline-secondary btn-lg">View Cases</a>
-        </div>
-      </div>
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-md-6">
+                <h1 class="fw-bold display-5">
+                    AI Automations for businesses that want to scale
+                </h1>
+                <p class="mt-3 fs-5 text-muted">
+                    Save time, reduce errors, and scale operations with custom solutions. I handle everything so you only enjoy the results.
+                </p>
+                <div class="mt-4 d-flex gap-3">
+                    <a href="#contact" class="btn btn-primary btn-lg">Request Demo</a>
+                    <a href="#cases" class="btn btn-outline-secondary btn-lg">View Cases</a>
+                </div>
+            </div>
 
-      <div class="col-md-6 text-center">
-        <img src="WhatsApp Image 2025-11-23 at 16.58.37.jpeg" 
-             id="ceo-img" 
-             class="img-fluid hero-image rounded-3 shadow-lg" 
-             alt="AbrahAmpuero, CEO of the company">
-      </div>
-    </div>
-    </div>
+            <div class="col-md-6 text-center">
+                <img src="ceo.jpeg" 
+                     id="ceo-img" 
+                     class="img-fluid hero-image rounded-3 shadow-lg" 
+                     alt="AbrahAmpuero, company CEO">
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="services">
-  <div class="container">
-    <h2 class="fw-bold text-center mb-5">AI Automation Services</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
-          <h5 class="fw-bold text-primary">Process Automation 🛠️</h5>
-          <p class="text-muted mt-2">I simplify your repetitive tasks with automated flows fully adapted to your business, freeing up your team for strategic tasks.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
-          <h5 class="fw-bold text-primary">Artificial Intelligence Integration 🤖</h5>
-          <p class="text-muted mt-2">I implement practical AI: virtual assistants for support, smart data classification, and automated content generation.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
-          <h5 class="fw-bold text-primary">Optimization and Smart Analytics 📊</h5>
-          <p class="text-muted mt-2">Gain total control of your business with real-time data analysis and automated reports for decision-making.</p>
-        </div>
-      </div>
-    </div>
-    </div>
+    <div class="container">
+        <h2 class="fw-bold text-center">AI Automation Services</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card card-hover h-100 p-4">
+                    <h5 class="fw-bold text-primary">Process Automation 🛠️</h5>
+                    <p class="text-muted mt-2">I simplify your repetitive tasks with fully customized automated workflows, freeing your team for strategic duties.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100 p-4">
+                    <h5 class="fw-bold text-primary">Artificial Intelligence Integration 🤖</h5>
+                    <p class="text-muted mt-2">I implement practical AI: virtual support assistants, smart data classification, and automated content generation.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100 p-4">
+                    <h5 class="fw-bold text-primary">Smart Optimization and Analytics 📊</h5>
+                    <p class="text-muted mt-2">Gain full control of your business with real-time data analysis and automated reports for decision-making.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="how" class="bg-light">
-  <div class="container">
-    <h2 class="fw-bold text-center mb-5">Our Simplified Process</h2>
-    <div class="row g-4">
-      <div class="col-md-4 text-center">
-        <h4 class="fw-bold">1. Analysis and Design</h4>
-        <p class="text-muted">I identify your weak points and design the automation architecture that will give you the highest Return on Investment (ROI).</p>
-      </div>
-      <div class="col-md-4 text-center">
-        <h4 class="fw-bold">2. Development and Implementation</h4>
-        <p class="text-muted">I develop and integrate the AI tools and workflows. Everything is ready to use, without you having to touch a line of code.</p>
-      </div>
-      <div class="col-md-4 text-center">
-        <h4 class="fw-bold">3. Optimization and Support</h4>
-        <p class="text-muted">I continuously monitor and adjust the automations to ensure perfect performance and provide constant support.</p>
-      </div>
-    </div>
-    </div>
+    <div class="container">
+        <h2 class="fw-bold text-center">Our Simplified Process</h2>
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="card card-hover h-100 p-4">
+                    <h4 class="fw-bold text-primary">1. Analysis and Design</h4>
+                    <p class="text-muted">We identify your pain points and design the automation architecture that will yield the highest Return on Investment (ROI).</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100 p-4">
+                    <h4 class="fw-bold text-primary">2. Development and Implementation</h4>
+                    <p class="text-muted">We develop and integrate the AI tools and workflows. Everything is ready to use, without you having to touch a line of code.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100 p-4">
+                    <h4 class="fw-bold text-primary">3. Optimization and Support</h4>
+                    <p class="text-muted">We continuously monitor and adjust the automations to ensure perfect performance and provide ongoing support.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="cases">
-  <div class="container">
-    <h2 class="fw-bold text-center mb-5">Success Cases and Results</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
-          <h5 class="fw-bold">Company A - Productivity</h5>
-          <p class="text-muted">40% increase in productivity with internal automation for document management and invoicing.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
-          <h5 class="fw-bold">Company B - Customer Service</h5>
-          <p class="text-muted">60% reduction in manual queries thanks to an AI Chatbot trained with the company's knowledge base.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
-          <h5 class="fw-bold">Company C - Decision Making</h5>
-          <p class="text-muted">Data optimization allowing management to make strategic decisions 3 times faster.</p>
-        </div>
-      </div>
-    </div>
-    </div>
+    <div class="container">
+        <h2 class="fw-bold text-center">Success Stories and Results</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card card-hover h-100 p-4">
+                    <h5 class="fw-bold text-primary">Company A - Productivity</h5>
+                    <p class="text-muted">40% increase in productivity with internal automations for document management and invoicing.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100 p-4">
+                    <h5 class="fw-bold text-primary">Company B - Customer Service</h5>
+                    <p class="text-muted">60% reduction in manual inquiries thanks to an AI Chatbot trained with the company's knowledge base.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100 p-4">
+                    <h5 class="fw-bold text-primary">Company C - Decision Making</h5>
+                    <p class="text-muted">Data optimization that allows management to make strategic decisions 3 times faster.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="contact" style="background-color: #1D4ED8;" class="text-white py-5">
-  <div class="container">
-    <h2 class="fw-bold text-center mb-4">🤖 Let's Talk AI Automation</h2>
-    <p class="text-center mb-5 lead">Tell me about the process you want to optimize and I will send you a tailored proposal. Your confirmation response will be automatic!</p>
-    
-    <div class="row justify-content-center">
-      <div class="col-lg-7 col-md-9">
-        
-                <form action="https://formsubmit.co/Abrahampuero@outlook.com" method="POST" class="p-4 rounded shadow-lg bg-white text-dark">
-                    <input type="hidden" name="_subject" value="New Demo Request - AI Automation (EN)">
-          <input type="hidden" name="_autoresponse" value="Thank you for contacting AbrahAmpuero! We have received your AI automation request and will reply shortly with a tailored proposal.">
-          <input type="hidden" name="_template" value="table">
-          
+    <div class="container">
+        <h2 class="fw-bold text-center">🤖 Let's Talk AI Automation</h2>
+        <p class="text-center mb-5 lead">Tell me about the process you want to optimize, and I'll send you a custom proposal. Your confirmation response will be automatic!</p>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+                
+                <form action="https://formsubmit.co/Abrahampuero@outlook.com" method="POST" class="p-4 rounded shadow-lg bg-white text-dark">
+                    <input type="hidden" name="_subject" value="New Demo Request - AI Automation (EN)">
+                    <input type="hidden" name="_autoresponse" value="Thank you for contacting AbrahAmpuero! We have received your AI automation request and will reply shortly with a tailored proposal.">
+                    <input type="hidden" name="_template" value="table">
+                    
 
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label for="name" class="form-label">Your Name</label>
-              <input type="text" class="form-control" id="name" name="Name" required>
-            </div>
-            <div class="col-md-6">
-              <label for="email" class="form-label">Contact Email</label>
-              <input type="email" class="form-control" id="email" name="Email" required>
-            </div>
-          </div>
-          
-          <div class="mb-3 mt-3">
-            <label for="process" class="form-label">Area to Automate</label>
-            <select class="form-select" id="process" name="Area of Interest" required>
-              <option value="" selected disabled>Select an area of your business...</option>
-              <option value="CustomerSupport">Customer Support (Chatbots/Responses)</option>
-              <option value="DataAnalytics">Data Management and Reporting</option>
-              <option value="SalesMarketing">Sales and Marketing (Leads/CRM)</option>
-              <option value="Backoffice">Backoffice and Repetitive Tasks</option>
-              <option value="Other">Other (Specify in message)</option>
-            </select>
-          </div>
-          
-          <div class="mb-4">
-            <label for="message" class="form-label">Briefly Describe your Automation Challenge</label>
-            <textarea class="form-control" id="message" name="Message" rows="4" required placeholder="Ex: I need to automatically classify support emails and assign tickets."></textarea>
-          </div>
-          
-                    <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm">
-            Send Automation Request
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="nombre" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="nombre" name="Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Contact Email</label>
+                            <input type="email" class="form-control" id="email" name="Email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3 mt-3">
+                        <label for="proceso" class="form-label">Area to Automate</label>
+                        <select class="form-select" id="proceso" name="Area of Interest" required>
+                            <option value="" selected disabled>Select an area of your business...</option>
+                            <option value="CustomerSupport">Customer Support (Chatbots/Responses)</option>
+                            <option value="DataAnalysis">Data Management and Reporting</option>
+                            <option value="SalesMarketing">Sales and Marketing (Leads/CRM)</option>
+                            <option value="Backoffice">Backoffice and Repetitive Tasks</option>
+                            <option value="Other">Other (Specify in message)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="mensaje" class="form-label">Briefly Describe your Automation Challenge</label>
+                        <textarea class="form-control" id="mensaje" name="Message" rows="4" required placeholder="Ex: I need to automatically classify support emails and assign tickets."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm">
+                        Send Automation Request
+                    </button>
+                </form>
+            </div>
+        </div>
+        <style>#contact {background-color: #1D4ED8;}</style>
+    </div>
 </section>
 
 <footer class="py-4 text-center text-muted border-top">
-  AbrahAmpuero © 2025 — AI Automation
+    AbrahAmpuero © 2025 — AI Automations
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

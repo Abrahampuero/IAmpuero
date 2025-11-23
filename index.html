@@ -13,6 +13,7 @@
     body {
       font-family: system-ui, sans-serif;
       color: #212529;
+      line-height: 1.7; /* Mejorar legibilidad */
     }
     .hero {
       background: linear-gradient(to bottom, #ffffff, #f1f5f9);
@@ -29,11 +30,18 @@
         height: 40px; 
         width: auto;
     }
-    /* Estilo para tarjetas en la sección servicios/casos */
+    /* Estilo para tarjetas - Mayor profundidad y borde suave */
+    .card {
+        border-radius: 12px; /* Esquinas más suaves */
+        border: 1px solid rgba(0, 0, 0, 0.05); /* Borde muy sutil */
+    }
+    .card-hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra inicial suave */
+    }
     .card-hover:hover {
         transform: translateY(-5px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al pasar el mouse */
+        transition: all 0.3s ease-in-out;
     }
     .btn-primary {
         background-color: #1D4ED8; /* Nuevo azul corporativo */
@@ -48,6 +56,20 @@
     }
     .text-primary {
         color: #1D4ED8 !important; /* Asegura que los títulos de tarjetas usen el nuevo color */
+    }
+    /* Mejora en la tipografía y estructura de títulos */
+    h2.fw-bold {
+        font-size: 2.5rem;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #1D4ED8; /* Subrayado corporativo */
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2rem !important;
+    }
+    .text-center h2.fw-bold { /* Centrar el título y el subrayado */
+        display: block;
+        width: fit-content;
     }
   </style>
 </head>
@@ -107,7 +129,7 @@
       </div>
 
       <div class="col-md-6 text-center">
-                <img src="WhatsApp Image 2025-11-23 at 16.58.37.jpeg" 
+                <img src="ceo.jpeg" 
              id="ceo-img" 
              class="img-fluid hero-image rounded-3 shadow-lg" 
              alt="AbrahAmpuero, CEO de la empresa">
@@ -118,22 +140,22 @@
 
 <section id="servicios">
   <div class="container">
-    <h2 class="fw-bold text-center mb-5">Servicios de Automatización IA</h2>
+    <h2 class="fw-bold text-center">Servicios de Automatización IA</h2>
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
+        <div class="card card-hover h-100 p-4">
           <h5 class="fw-bold text-primary">Automatización de procesos 🛠️</h5>
           <p class="text-muted mt-2">Simplifico tus tareas repetitivas con flujos automatizados totalmente adaptados a tu negocio, liberando a tu equipo para tareas estratégicas.</p>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
+        <div class="card card-hover h-100 p-4">
           <h5 class="fw-bold text-primary">Integración de Inteligencia Artificial 🤖</h5>
           <p class="text-muted mt-2">Implemento IA práctica: asistentes virtuales para soporte, clasificación inteligente de datos y generación automática de contenido.</p>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
+        <div class="card card-hover h-100 p-4">
           <h5 class="fw-bold text-primary">Optimización y análisis inteligente 📊</h5>
           <p class="text-muted mt-2">Obtén control total de tu negocio con análisis de datos en tiempo real y reportes automatizados para la toma de decisiones.</p>
         </div>
@@ -144,44 +166,49 @@
 
 <section id="como" class="bg-light">
   <div class="container">
-    <h2 class="fw-bold text-center mb-5">Nuestro Proceso Simplificado</h2>
-    <div class="row g-4">
-      <div class="col-md-4 text-center">
-        <h4 class="fw-bold">1. Análisis y Diseño</h4>
-        <p class="text-muted">Identifico tus puntos débiles y diseñamos la arquitectura de automatización que te dará el mayor Retorno de Inversión (ROI).</p>
+    <h2 class="fw-bold text-center">Nuestro Proceso Simplificado</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="card card-hover h-100 p-4">
+          <h4 class="fw-bold text-primary">1. Análisis y Diseño</h4>
+          <p class="text-muted">Identifico tus puntos débiles y diseñamos la arquitectura de automatización que te dará el mayor Retorno de Inversión (ROI).</p>
+        </div>
       </div>
-      <div class="col-md-4 text-center">
-        <h4 class="fw-bold">2. Desarrollo e Implementación</h4>
-        <p class="text-muted">Desarrollo e integro las herramientas de IA y los flujos de trabajo. Todo listo para usar, sin que tengas que tocar una línea de código.</p>
+      <div class="col-md-4">
+        <div class="card card-hover h-100 p-4">
+          <h4 class="fw-bold text-primary">2. Desarrollo e Implementación</h4>
+          <p class="text-muted">Desarrollo e integro las herramientas de IA y los flujos de trabajo. Todo listo para usar, sin que tengas que tocar una línea de código.</p>
+        </div>
       </div>
-      <div class="col-md-4 text-center">
-        <h4 class="fw-bold">3. Optimización y Soporte</h4>
-        <p class="text-muted">Monitorizo y ajusto continuamente las automatizaciones para asegurar un rendimiento perfecto y te doy soporte constante.</p>
+      <div class="col-md-4">
+        <div class="card card-hover h-100 p-4">
+          <h4 class="fw-bold text-primary">3. Optimización y Soporte</h4>
+          <p class="text-muted">Monitorizo y ajusto continuamente las automatizaciones para asegurar un rendimiento perfecto y te doy soporte constante.</p>
+        </div>
       </div>
-      
     </div>
   </div>
 </section>
 
 <section id="casos">
   <div class="container">
-    <h2 class="fw-bold text-center mb-5">Casos de Éxito y Resultados</h2>
+    <h2 class="fw-bold text-center">Casos de Éxito y Resultados</h2>
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
-          <h5 class="fw-bold">Empresa A - Productividad</h5>
+        <div class="card card-hover h-100 p-4">
+          <h5 class="fw-bold text-primary">Empresa A - Productividad</h5>
           <p class="text-muted">Aumento del 40% en productividad con automatizaciones internas de gestión de documentos y facturación.</p>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
-          <h5 class="fw-bold">Empresa B - Atención al Cliente</h5>
+        <div class="card card-hover h-100 p-4">
+          <h5 class="fw-bold text-primary">Empresa B - Atención al Cliente</h5>
           <p class="text-muted">Reducción del 60% en consultas manuales gracias a un Chatbot de IA entrenado con la base de datos de la empresa.</p>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card card-hover h-100 p-3 shadow-sm border-0">
-          <h5 class="fw-bold">Empresa C - Toma de Decisiones</h5>
+        <div class="card card-hover h-100 p-4">
+          <h5 class="fw-bold text-primary">Empresa C - Toma de Decisiones</h5>
           <p class="text-muted">Optimización de datos que permite a la gerencia tomar decisiones estratégicas 3 veces más rápido.</p>
         </div>
       </div>
@@ -191,7 +218,7 @@
 
 <section id="contacto" style="background-color: #1D4ED8;" class="text-white py-5">
   <div class="container">
-    <h2 class="fw-bold text-center mb-4">🤖 Hablemos de Automatización con IA</h2>
+    <h2 class="fw-bold text-center">🤖 Hablemos de Automatización con IA</h2>
     <p class="text-center mb-5 lead">Cuéntame sobre el proceso que deseas optimizar y te enviaré una propuesta a medida. ¡Tu respuesta de confirmación será automática!</p>
     
     <div class="row justify-content-center">
@@ -237,6 +264,7 @@
         </form>
       </div>
     </div>
+        <style>#contacto {background-color: #1D4ED8;}</style>
   </div>
 </section>
 
