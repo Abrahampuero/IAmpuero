@@ -1,0 +1,39 @@
+body {
+    font-family: "Inter", sans-serif;
+}
+
+/* NAVBAR */
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+/* HERO */
+section h1 {
+    color: #111;
+}
+
+section p.lead {
+    color: #444;
+}
+
+/* BOTÓN PRINCIPAL */
+.btn-primary {
+    background-color: #111;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #333;
+}
+
+/* ESPACIADOS GENERALES */
+section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* SMOOTH SCROLL */
+html {
+    scroll-behavior: smooth;
+}
