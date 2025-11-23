@@ -1,275 +1,524 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AbrahAmpuero - Automatizaciones con IA para Negocios</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AbrahAmpuero - Automatizaciones con IA para Negocios Futuro</title>
 
-    <link 
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-    rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet">
 
-    <style>
-    body {
-      font-family: system-ui, sans-serif;
-      color: #212529;
-      line-height: 1.7; /* Mejorar legibilidad */
-    }
-    .hero {
-      background: linear-gradient(to bottom, #ffffff, #f1f5f9);
-      padding: 80px 0;
-    }
-    section {
-      padding: 80px 0;
-    }
-    .hero-image {
-        max-height: 500px; 
-        object-fit: cover;
-    }
-    .navbar-brand img {
-        height: 40px; 
-        width: auto;
-    }
-    /* Estilo para tarjetas - Mayor profundidad y borde suave */
-    .card {
-        border-radius: 12px; /* Esquinas más suaves */
-        border: 1px solid rgba(0, 0, 0, 0.05); /* Borde muy sutil */
-    }
-    .card-hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra inicial suave */
-    }
-    .card-hover:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al pasar el mouse */
-        transition: all 0.3s ease-in-out;
-    }
-    .btn-primary {
-        background-color: #1D4ED8; /* Nuevo azul corporativo */
-        border-color: #1D4ED8;
-    }
-    .btn-primary:hover {
-        background-color: #1E40AF; /* Tono de hover más oscuro */
-        border-color: #1E40AF;
-    }
-    .text-white .form-control, .text-white .form-select {
-        border: none;
-    }
-    .text-primary {
-        color: #1D4ED8 !important; /* Asegura que los títulos de tarjetas usen el nuevo color */
-    }
-    /* Mejora en la tipografía y estructura de títulos */
-    h2.fw-bold {
-        font-size: 2.5rem;
-        padding-bottom: 10px;
-        border-bottom: 3px solid #1D4ED8; /* Subrayado corporativo */
-        display: inline-block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 2rem !important;
-    }
-    .text-center h2.fw-bold { /* Centrar el título y el subrayado */
-        display: block;
-        width: fit-content;
-    }
-  </style>
+    <style>
+        :root {
+            --primary-color: #007bff; /* Azul vibrante */
+            --secondary-color: #6c757d; /* Gris para textos secundarios */
+            --bg-light: #f8f9fa; /* Fondo muy claro */
+            --bg-dark: #212529; /* Fondo oscuro */
+            --gradient-light: linear-gradient(145deg, #f0f4f8, #e0e7ee); /* Gradiente suave */
+            --gradient-dark: linear-gradient(145deg, #2d343c, #1a1e22); /* Gradiente oscuro */
+            --border-color: rgba(0, 0, 0, 0.08);
+            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            --card-hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            --transition-speed: 0.4s;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif; /* Fuente futurista */
+            color: var(--bg-dark);
+            line-height: 1.8; /* Mejor legibilidad */
+            background-color: var(--bg-light);
+            overflow-x: hidden; /* Evitar scroll horizontal */
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95); /* Semitransparente para un efecto moderno */
+            backdrop-filter: blur(5px); /* Desenfoque sutil */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand img {
+            height: 45px; 
+            width: auto;
+            transition: transform var(--transition-speed) ease;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
+        .nav-link {
+            color: var(--bg-dark) !important;
+            font-weight: 500;
+            transition: color var(--transition-speed) ease;
+        }
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Section - Estilo impactante */
+        .hero {
+            background: var(--gradient-light); /* Gradiente suave para el hero */
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before { /* Elemento decorativo */
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(0,123,255,0.05) 0%, transparent 70%);
+            animation: rotateBg 20s linear infinite;
+        }
+        @keyframes rotateBg {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            font-weight: 700;
+            color: var(--bg-dark);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+        }
+        .hero-image-container { /* Contenedor para la imagen para centrarla verticalmente */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px; /* Ajusta esto si la imagen se ve muy grande */
+        }
+        .hero-image {
+            max-height: 550px; 
+            width: auto; /* Mantiene la proporción */
+            object-fit: contain; /* Asegura que la imagen completa se vea */
+            border-radius: 20px; /* Esquinas más redondeadas */
+            box-shadow: var(--card-shadow);
+            border: 3px solid rgba(255, 255, 255, 0.7); /* Borde blanco sutil */
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+        .hero-image:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        /* Secciones Generales */
+        section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 1; /* Para asegurar que el contenido esté por encima de posibles fondos */
+        }
+        section:nth-of-type(even) { /* Fondo alternado para secciones */
+            background-color: #f0f4f8; 
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--bg-dark);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        h2::after { /* Subrayado futurista */
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+        .text-center h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Cards - Efecto de "floating" */
+        .card {
+            border-radius: 20px; /* Más redondeado */
+            border: none; /* Eliminar borde nativo */
+            background-color: white;
+            box-shadow: var(--card-shadow);
+            transition: all var(--transition-speed) ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px); /* Mayor elevación */
+            box-shadow: var(--card-hover-shadow); /* Sombra más pronunciada */
+        }
+        .card-body {
+            padding: 2.5rem; /* Más padding interno */
+        }
+        .card h5, .card h4 {
+            font-weight: 600;
+            color: var(--primary-color); /* Títulos de tarjeta en azul */
+            margin-bottom: 1rem;
+            font-size: 1.75rem; /* Títulos de tarjeta más grandes */
+        }
+        .card p {
+            color: var(--secondary-color);
+        }
+
+        /* Botones */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background-color var(--transition-speed) ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Tono más oscuro */
+            border-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .btn-outline-secondary {
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all var(--transition-speed) ease;
+        }
+        .btn-outline-secondary:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Sección de Contacto (con fondo oscuro y gradiente) */
+        #contacto {
+            background: var(--gradient-dark); /* Gradiente oscuro */
+            color: white;
+            padding: 100px 0;
+        }
+        #contacto h2 {
+            color: white;
+        }
+        #contacto h2::after {
+            background: white; /* Subrayado blanco en sección oscura */
+        }
+        #contacto .lead {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #contacto form {
+            background-color: rgba(255, 255, 255, 0.1); /* Formulario semitransparente */
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--card-shadow);
+        }
+        #contacto .form-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        #contacto .form-control, 
+        #contacto .form-select,
+        #contacto .form-control:focus, 
+        #contacto .form-select:focus {
+            background-color: rgba(255, 255, 255, 0.15); /* Campos de input semitransparentes */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+        }
+        #contacto .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        #contacto .form-control option { /* Para que las opciones del select se vean bien */
+            background-color: var(--bg-dark); 
+            color: white;
+        }
+        #contacto .btn-primary {
+            background-color: white; /* Botón de submit blanco */
+            color: var(--primary-color);
+            border-color: white;
+            margin-top: 1.5rem; /* Espacio antes del botón */
+        }
+        #contacto .btn-primary:hover {
+            background-color: #f0f0f0; /* Ligero gris al pasar el mouse */
+            border-color: #f0f0f0;
+            color: var(--primary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Animación para el texto del hero (fade in) */
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-text {
+            animation: fadeInSlide 1s ease-out;
+        }
+        /* Animación para la imagen del hero (fade in y scale up) */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .hero-image-animated {
+            animation: fadeInScale 1s ease-out 0.5s forwards; /* 0.5s de delay */
+            opacity: 0; /* Empieza invisible */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .card-body {
+                padding: 2rem;
+            }
+            .hero-image {
+                margin-top: 3rem;
+            }
+            .hero-image-container {
+                min-height: auto; /* Resetear en móvil */
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-white">
+<body class="bg-light">
 
-<nav class="navbar navbar-expand-lg bg-white py-3 border-bottom">
-  <div class="container">
-    
-    <div class="d-flex align-items-center">
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
         <a class="navbar-brand" href="#">
             <img src="LOGO WEB.png" alt="AbrahAmpuero - Tecnología que trabaja por ti">
         </a>
-    </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-      <ul class="navbar-nav me-3 gap-3">
-        <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
-        <li class="nav-item"><a class="nav-link" href="#como">Cómo</a></li>
-        <li class="nav-item"><a class="nav-link" href="#casos">Casos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-        
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                🇪🇸 Español
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="index.html">🇪🇸 Español</a></li>
-                <li><a class="dropdown-item" href="en.html">🇺🇸 English</a></li>
-                <li><a class="dropdown-item" href="ar.html">🇸🇦 العربية</a></li>
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+            <ul class="navbar-nav me-3 gap-3">
+                <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link" href="#como">Cómo</a></li>
+                <li class="nav-item"><a class="nav-link" href="#casos">Casos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        🇪🇸 Español
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="index.html">🇪🇸 Español</a></li>
+                        <li><a class="dropdown-item" href="en.html">🇺🇸 English</a></li>
+                        <li><a class="dropdown-item" href="ar.html">🇸🇦 العربية</a></li>
+                    </ul>
+                </li>
             </ul>
-        </li>
-      </ul>
-      <a href="#contacto" class="btn btn-primary px-4">Escríbeme</a>
-    </div>
-  </div>
+            <a href="#contacto" class="btn btn-primary px-4">Escríbeme</a>
+        </div>
+    </div>
 </nav>
 
 <section class="hero">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-md-6">
-        <h1 class="fw-bold display-5">
-          Automatizaciones con Inteligencia Artificial para negocios que quieren crecer
-        </h1>
-        <p class="mt-3 fs-5 text-muted">
-          Ahorra tiempo, reduce errores y escala operaciones con soluciones a medida. Yo me ocupo de todo para que tú solo disfrutes resultados.
-        </p>
-        <div class="mt-4 d-flex gap-3">
-          <a href="#contacto" class="btn btn-primary btn-lg">Pedir demo</a>
-          <a href="#casos" class="btn btn-outline-secondary btn-lg">Ver casos</a>
-        </div>
-      </div>
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-md-6 hero-text">
+                <h1 class="fw-bold">
+                    Automatizaciones con Inteligencia Artificial para el futuro de tu negocio
+                </h1>
+                <p class="mt-3">
+                    Transforma tu empresa con soluciones de IA a medida. Ahorra tiempo, elimina errores y escala tus operaciones con la tecnología más avanzada.
+                </p>
+                <div class="mt-4 d-flex gap-3">
+                    <a href="#contacto" class="btn btn-primary btn-lg">Pedir demo</a>
+                    <a href="#casos" class="btn btn-outline-secondary btn-lg">Ver casos de éxito</a>
+                </div>
+            </div>
 
-      <div class="col-md-6 text-center">
-                <img src="ceo.jpeg" 
-             id="ceo-img" 
-             class="img-fluid hero-image rounded-3 shadow-lg" 
-             alt="AbrahAmpuero, CEO de la empresa">
-      </div>
-    </div>
-  </div>
+            <div class="col-md-6 text-center hero-image-container">
+                <img src="ceo.jpeg" 
+                     id="ceo-img" 
+                     class="img-fluid hero-image rounded-3 shadow-lg hero-image-animated" 
+                     alt="Abraham Ampuero CEO">
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="servicios">
-  <div class="container">
-    <h2 class="fw-bold text-center">Servicios de Automatización IA</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-4">
-          <h5 class="fw-bold text-primary">Automatización de procesos 🛠️</h5>
-          <p class="text-muted mt-2">Simplifico tus tareas repetitivas con flujos automatizados totalmente adaptados a tu negocio, liberando a tu equipo para tareas estratégicas.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-4">
-          <h5 class="fw-bold text-primary">Integración de Inteligencia Artificial 🤖</h5>
-          <p class="text-muted mt-2">Implemento IA práctica: asistentes virtuales para soporte, clasificación inteligente de datos y generación automática de contenido.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-4">
-          <h5 class="fw-bold text-primary">Optimización y análisis inteligente 📊</h5>
-          <p class="text-muted mt-2">Obtén control total de tu negocio con análisis de datos en tiempo real y reportes automatizados para la toma de decisiones.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="container">
+        <h2 class="text-center">Servicios de Automatización IA</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Automatización de procesos 🛠️</h5>
+                        <p class="text-muted">Diseño e implemento flujos de trabajo inteligentes que eliminan tareas repetitivas, optimizando la eficiencia operativa.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Integración de Inteligencia Artificial 🤖</h5>
+                        <p class="text-muted">Implemento soluciones de IA (chatbots, análisis predictivo, contenido) que dotan a tu negocio de capacidades avanzadas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Optimización y Análisis Inteligente 📊</h5>
+                        <p class="text-muted">Transformo tus datos en decisiones estratégicas con paneles de control automatizados y análisis profundos en tiempo real.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
-<section id="como" class="bg-light">
-  <div class="container">
-    <h2 class="fw-bold text-center">Nuestro Proceso Simplificado</h2>
-    <div class="row g-4 text-center">
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-4">
-          <h4 class="fw-bold text-primary">1. Análisis y Diseño</h4>
-          <p class="text-muted">Identifico tus puntos débiles y diseñamos la arquitectura de automatización que te dará el mayor Retorno de Inversión (ROI).</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-4">
-          <h4 class="fw-bold text-primary">2. Desarrollo e Implementación</h4>
-          <p class="text-muted">Desarrollo e integro las herramientas de IA y los flujos de trabajo. Todo listo para usar, sin que tengas que tocar una línea de código.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-4">
-          <h4 class="fw-bold text-primary">3. Optimización y Soporte</h4>
-          <p class="text-muted">Monitorizo y ajusto continuamente las automatizaciones para asegurar un rendimiento perfecto y te doy soporte constante.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<section id="como">
+    <div class="container">
+        <h2 class="text-center">Nuestro Proceso Hacia el Futuro</h2>
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold">1. Descubrimiento Estratégico</h4>
+                        <p class="text-muted">Analizamos tus necesidades y oportunidades para trazar un mapa de automatización que maximice tu ROI.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold">2. Desarrollo e Implementación Ágil</h4>
+                        <p class="text-muted">Construimos e integramos tus soluciones de IA con metodologías ágiles, garantizando rapidez y adaptabilidad.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold">3. Escala y Mejora Continua</h4>
+                        <p class="text-muted">Monitorizamos el rendimiento, ajustamos y expandimos tus automatizaciones para que siempre estés a la vanguardia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="casos">
-  <div class="container">
-    <h2 class="fw-bold text-center">Casos de Éxito y Resultados</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-4">
-          <h5 class="fw-bold text-primary">Empresa A - Productividad</h5>
-          <p class="text-muted">Aumento del 40% en productividad con automatizaciones internas de gestión de documentos y facturación.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-4">
-          <h5 class="fw-bold text-primary">Empresa B - Atención al Cliente</h5>
-          <p class="text-muted">Reducción del 60% en consultas manuales gracias a un Chatbot de IA entrenado con la base de datos de la empresa.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-hover h-100 p-4">
-          <h5 class="fw-bold text-primary">Empresa C - Toma de Decisiones</h5>
-          <p class="text-muted">Optimización de datos que permite a la gerencia tomar decisiones estratégicas 3 veces más rápido.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="container">
+        <h2 class="text-center">IA en Acción: Casos de Éxito</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Empresa A - Logística Inteligente</h5>
+                        <p class="text-muted">Automatización de rutas de entrega y gestión de inventario, reduciendo costes operativos en un 30%.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Empresa B - Marketing Predictivo</h5>
+                        <p class="text-muted">Implementación de IA para predecir tendencias de mercado y personalizar campañas, aumentando la conversión un 25%.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Empresa C - Soporte al Cliente Avanzado</h5>
+                        <p class="text-muted">Chatbot de IA con procesamiento de lenguaje natural que gestiona el 70% de las consultas, mejorando la satisfacción.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
-<section id="contacto" style="background-color: #1D4ED8;" class="text-white py-5">
-  <div class="container">
-    <h2 class="fw-bold text-center">🤖 Hablemos de Automatización con IA</h2>
-    <p class="text-center mb-5 lead">Cuéntame sobre el proceso que deseas optimizar y te enviaré una propuesta a medida. ¡Tu respuesta de confirmación será automática!</p>
-    
-    <div class="row justify-content-center">
-      <div class="col-lg-7 col-md-9">
-        
-                <form action="https://formsubmit.co/Abrahampuero@outlook.com" method="POST" class="p-4 rounded shadow-lg bg-white text-dark">
-                    <input type="hidden" name="_subject" value="Nueva Solicitud de Demo - Automatización IA (ES)">
-          <input type="hidden" name="_autoresponse" value="¡Gracias por contactar a AbrahAmpuero! Hemos recibido tu solicitud de automatización con IA y te responderemos en breve con una propuesta a medida.">
-          <input type="hidden" name="_template" value="table">
-          
+<section id="contacto">
+    <div class="container">
+        <h2 class="text-center">🤖 Construyamos el Futuro de tu Negocio con IA</h2>
+        <p class="text-center mb-5 lead">
+            Cuéntame tu visión. Juntos, la haremos realidad con la inteligencia artificial.
+        </p>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+                <form action="https://formsubmit.co/Abrahampuero@outlook.com" method="POST" class="p-5 rounded-4 shadow-lg">
+                    <input type="hidden" name="_subject" value="Nueva Solicitud de Demo - Automatización IA (ES) FUTURISTA">
+                    <input type="hidden" name="_autoresponse" value="¡Gracias por contactar a AbrahAmpuero! Hemos recibido tu solicitud de automatización con IA y te responderemos en breve con una propuesta a medida.">
+                    <input type="hidden" name="_template" value="table">
+                    
 
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label for="nombre" class="form-label">Tu Nombre</label>
-              <input type="text" class="form-control" id="nombre" name="Nombre" required>
-            </div>
-            <div class="col-md-6">
-              <label for="email" class="form-label">Email de Contacto</label>
-              <input type="email" class="form-control" id="email" name="Email" required>
-            </div>
-          </div>
-          
-          <div class="mb-3 mt-3">
-            <label for="proceso" class="form-label">Área a Automatizar</label>
-            <select class="form-select" id="proceso" name="Area de Interes" required>
-              <option value="" selected disabled>Selecciona un área de tu negocio...</option>
-              <option value="AtencionCliente">Atención al Cliente (Chatbots/Respuestas)</option>
-              <option value="DatosAnalisis">Gestión de Datos y Reportes</option>
-              <option value="VentasMarketing">Ventas y Marketing (Leads/CRM)</option>
-              <option value="Backoffice">Backoffice y Tareas Repetitivas</option>
-              <option value="Otro">Otro (Especificar en el mensaje)</option>
-            </select>
-          </div>
-          
-          <div class="mb-4">
-            <label for="mensaje" class="form-label">Describe Brevemente tu Desafío de Automatización</label>
-            <textarea class="form-control" id="mensaje" name="Mensaje" rows="4" required placeholder="Ej: Necesito clasificar automáticamente los emails de soporte y asignar tickets."></textarea>
-          </div>
-          
-                    <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm">
-            Enviar Solicitud de Automatización
-          </button>
-        </form>
-      </div>
-    </div>
-        <style>#contacto {background-color: #1D4ED8;}</style>
-  </div>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label for="nombre" class="form-label">Tu Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="Nombre" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email de Contacto</label>
+                            <input type="email" class="form-control" id="email" name="Email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4 mt-4">
+                        <label for="proceso" class="form-label">Área a Transformar con IA</label>
+                        <select class="form-select" id="proceso" name="Area de Interes" required>
+                            <option value="" selected disabled>Selecciona un área clave...</option>
+                            <option value="AtencionCliente">Atención al Cliente (Chatbots/Respuestas inteligentes)</option>
+                            <option value="DatosAnalisis">Análisis de Datos y Business Intelligence</option>
+                            <option value="VentasMarketing">Optimización de Ventas y Marketing</option>
+                            <option value="Backoffice">Automatización de Backoffice y Gestión</option>
+                            <option value="Otro">Otro (Especifícalo en tu mensaje)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <label for="mensaje" class="form-label">Describe tu Visión o Desafío de IA</label>
+                        <textarea class="form-control" id="mensaje" name="Mensaje" rows="5" required placeholder="Ej: Necesito un sistema de IA que prediga la demanda y optimice mi cadena de suministro."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm">
+                        Enviar Solicitud de Automatización
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 
-<footer class="py-4 text-center text-muted border-top">
-  AbrahAmpuero © 2025 — Automatizaciones con IA
+<footer class="text-center">
+    AbrahAmpuero © 2025 — El Futuro de tu Negocio con IA
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

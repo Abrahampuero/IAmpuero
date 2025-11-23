@@ -3,98 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ابراهيم امبيرو - أتمتة الذكاء الاصطناعي للأعمال</title>
+    <title>ابراهيم امبيرو - أتمتة الذكاء الاصطناعي للأعمال المستقبلية</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Cairo:wght@300;500;700;800&display=swap" rel="stylesheet">
     <link 
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
         rel="stylesheet">
 
     <style>
+        :root {
+            --primary-color: #007bff; /* Vibrant Blue */
+            --secondary-color: #6c757d; /* Gray for secondary texts */
+            --bg-light: #f8f9fa; /* Very light background */
+            --bg-dark: #212529; /* Dark background */
+            --gradient-light: linear-gradient(145deg, #f0f4f8, #e0e7ee); /* Soft gradient */
+            --gradient-dark: linear-gradient(145deg, #2d343c, #1a1e22); /* Dark gradient */
+            --border-color: rgba(0, 0, 0, 0.08);
+            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            --card-hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            --transition-speed: 0.4s;
+        }
+
         body {
-            font-family: system-ui, sans-serif;
-            color: #212529;
-            line-height: 1.7; 
-            text-align: right; /* Default text alignment for RTL */
+            font-family: 'Cairo', 'Space Grotesk', sans-serif; /* Arabic font first, then fallback */
+            color: var(--bg-dark);
+            line-height: 1.8;
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+            text-align: right; /* RTL Default */
         }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand img {
+            height: 45px; 
+            width: auto;
+            transition: transform var(--transition-speed) ease;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
+        .nav-link {
+            color: var(--bg-dark) !important;
+            font-weight: 500;
+            transition: color var(--transition-speed) ease;
+        }
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Section - Impactful Style */
         .hero {
-            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
-            padding: 80px 0;
+            background: var(--gradient-light);
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
         }
-        section {
-            padding: 80px 0;
+        .hero::before { 
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%; /* Adjusted for RTL */
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(0,123,255,0.05) 0%, transparent 70%);
+            animation: rotateBg 20s linear infinite;
+        }
+        @keyframes rotateBg {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            font-weight: 800; /* Arabic bolding */
+            color: var(--bg-dark);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+        }
+        .hero-image-container { 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
         }
         .hero-image {
-            max-height: 500px; 
-            object-fit: cover;
+            max-height: 550px; 
+            width: auto; 
+            object-fit: contain; 
+            border-radius: 20px; 
+            box-shadow: var(--card-shadow);
+            border: 3px solid rgba(255, 255, 255, 0.7); 
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
         }
-        .navbar-brand img {
-            height: 40px; 
-            width: auto;
+        .hero-image:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: var(--card-hover-shadow);
         }
-        /* Card Styles - Depth and Soft Border */
+
+        /* General Sections */
+        section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 1;
+        }
+        section:nth-of-type(even) { 
+            background-color: #f0f4f8; 
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 800; /* Arabic bolding */
+            color: var(--bg-dark);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        h2::after { 
+            content: '';
+            position: absolute;
+            right: 50%; /* Adjusted for RTL */
+            bottom: 0;
+            transform: translateX(50%); /* Adjusted for RTL */
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+        .text-center h2::after {
+            right: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Cards - Floating Effect */
         .card {
-            border-radius: 12px; /* Softer corners */
-            border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
+            border-radius: 20px; 
+            border: none; 
+            background-color: white;
+            box-shadow: var(--card-shadow);
+            transition: all var(--transition-speed) ease;
             text-align: right;
-        }
-        .card-hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Soft initial shadow */
         }
         .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Pronounced shadow on hover */
-            transition: all 0.3s ease-in-out;
+            transform: translateY(-10px); 
+            box-shadow: var(--card-hover-shadow); 
         }
+        .card-body {
+            padding: 2.5rem; 
+        }
+        .card h5, .card h4 {
+            font-weight: 700;
+            color: var(--primary-color); 
+            margin-bottom: 1rem;
+            font-size: 1.75rem; 
+        }
+        .card p {
+            color: var(--secondary-color);
+        }
+
+        /* Buttons */
         .btn-primary {
-            background-color: #1D4ED8; /* Corporate Blue */
-            border-color: #1D4ED8;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background-color var(--transition-speed) ease, transform 0.2s ease;
         }
         .btn-primary:hover {
-            background-color: #1E40AF; /* Darker hover tone */
-            border-color: #1E40AF;
+            background-color: #0056b3;
+            border-color: #0056b3;
+            transform: translateY(-2px);
         }
-        .text-white .form-control, .text-white .form-select {
-            border: none;
+        .btn-outline-secondary {
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all var(--transition-speed) ease;
         }
-        .text-primary {
-            color: #1D4ED8 !important; 
+        .btn-outline-secondary:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
         }
-        /* Improved Title Typography and Structure */
-        h2.fw-bold {
-            font-size: 2.5rem;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #1D4ED8; /* Corporate underline */
-            display: inline-block;
+
+        /* Contact Section (dark background and gradient) */
+        #contacto {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 100px 0;
+        }
+        #contacto h2 {
+            color: white;
+        }
+        #contacto h2::after {
+            background: white; 
+        }
+        #contacto .lead {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            margin-bottom: 2rem !important;
         }
-        .text-center h2.fw-bold { /* Center title and underline */
-            display: block;
-            width: fit-content;
+        #contacto form {
+            background-color: rgba(255, 255, 255, 0.1); 
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--card-shadow);
         }
-        /* Custom RTL Fixes */
-        .dropdown-menu {
-            text-align: right;
+        #contacto .form-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
         }
-        .text-center {
-            text-align: center !important;
+        #contacto .form-control, 
+        #contacto .form-select,
+        #contacto .form-control:focus, 
+        #contacto .form-select:focus {
+            background-color: rgba(255, 255, 255, 0.15); 
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+        }
+        #contacto .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        #contacto .form-control option { 
+            background-color: var(--bg-dark); 
+            color: white;
+        }
+        #contacto .btn-primary {
+            background-color: white; 
+            color: var(--primary-color);
+            border-color: white;
+            margin-top: 1.5rem; 
+        }
+        #contacto .btn-primary:hover {
+            background-color: #f0f0f0; 
+            border-color: #f0f0f0;
+            color: var(--primary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Animation */
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-text {
+            animation: fadeInSlide 1s ease-out;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .hero-image-animated {
+            animation: fadeInScale 1s ease-out 0.5s forwards; 
+            opacity: 0; 
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .card-body {
+                padding: 2rem;
+            }
+            .hero-image {
+                margin-top: 3rem;
+            }
+            .hero-image-container {
+                min-height: auto;
+            }
         }
     </style>
 </head>
 
-<body class="bg-white">
+<body class="bg-light">
 
-<nav class="navbar navbar-expand-lg bg-white py-3 border-bottom">
+<nav class="navbar navbar-expand-lg">
     <div class="container">
-        
-        <div class="d-flex align-items-center">
-            <a class="navbar-brand" href="#">
-                <img src="LOGO WEB.png" alt="ابراهيم امبيرو - التكنولوجيا التي تعمل من أجلك">
-            </a>
-        </div>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <a class="navbar-brand" href="#">
+            <img src="LOGO WEB.png" alt="ابراهيم امبيرو - التكنولوجيا التي تعمل من أجلك">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -116,7 +340,7 @@
                     </ul>
                 </li>
             </ul>
-            <a href="#contact" class="btn btn-primary px-4">ابدأ الآن</a>
+            <a href="#contact" class="btn btn-primary px-4">اكتب لي</a>
         </div>
     </div>
 </nav>
@@ -124,24 +348,24 @@
 <section class="hero">
     <div class="container">
         <div class="row align-items-center g-5">
-            <div class="col-md-6">
-                <h1 class="fw-bold display-5">
-                    أتمتة الذكاء الاصطناعي للأعمال التي تسعى إلى النمو
+            <div class="col-md-6 hero-text">
+                <h1 class="fw-bold">
+                    أتمتة الذكاء الاصطناعي لمستقبل عملك
                 </h1>
-                <p class="mt-3 fs-5 text-muted">
-                    وفر الوقت، قلل الأخطاء، ووسع نطاق العمليات بحلول مخصصة. سأتولى كل شيء لتستمتع بالنتائج فقط.
+                <p class="mt-3">
+                    حول شركتك بحلول ذكاء اصطناعي مصممة خصيصاً. وفر الوقت، وتخلص من الأخطاء، ووسع نطاق عملياتك بأحدث التقنيات.
                 </p>
                 <div class="mt-4 d-flex gap-3">
                     <a href="#contact" class="btn btn-primary btn-lg">طلب عرض تجريبي</a>
-                    <a href="#cases" class="btn btn-outline-secondary btn-lg">شاهد دراسات الحالة</a>
+                    <a href="#cases" class="btn btn-outline-secondary btn-lg">شاهد قصص النجاح</a>
                 </div>
             </div>
 
-            <div class="col-md-6 text-center">
+            <div class="col-md-6 text-center hero-image-container">
                 <img src="ceo.jpeg" 
                      id="ceo-img" 
-                     class="img-fluid hero-image rounded-3 shadow-lg" 
-                     alt="ابراهيم امبيرو، الرئيس التنفيذي للشركة">
+                     class="img-fluid hero-image rounded-3 shadow-lg hero-image-animated" 
+                     alt="ابراهيم امبيرو المدير التنفيذي">
             </div>
         </div>
     </div>
@@ -149,50 +373,62 @@
 
 <section id="services">
     <div class="container">
-        <h2 class="fw-bold text-center">خدمات أتمتة الذكاء الاصطناعي</h2>
+        <h2 class="text-center">خدمات أتمتة الذكاء الاصطناعي</h2>
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card card-hover h-100 p-4">
-                    <h5 class="fw-bold text-primary">أتمتة العمليات 🛠️</h5>
-                    <p class="text-muted mt-2">أقوم بتبسيط مهامك المتكررة بسير عمل مؤتمت بالكامل ومناسب لعملك، مما يحرر فريقك للمهام الاستراتيجية.</p>
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">أتمتة العمليات 🛠️</h5>
+                        <p class="text-muted">أقوم بتصميم وتطبيق سير عمل ذكي يزيل المهام المتكررة، مما يحسن الكفاءة التشغيلية.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card card-hover h-100 p-4">
-                    <h5 class="fw-bold text-primary">تكامل الذكاء الاصطناعي 🤖</h5>
-                    <p class="text-muted mt-2">أقوم بتنفيذ الذكاء الاصطناعي العملي: مساعدون افتراضيون للدعم، وتصنيف ذكي للبيانات، وتوليد محتوى تلقائي.</p>
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">تكامل الذكاء الاصطناعي 🤖</h5>
+                        <p class="text-muted">أطبق حلول الذكاء الاصطناعي (روبوتات الدردشة، التحليل التنبؤي، المحتوى) التي تمنح عملك قدرات متقدمة.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card card-hover h-100 p-4">
-                    <h5 class="fw-bold text-primary">التحسين والتحليل الذكي 📊</h5>
-                    <p class="text-muted mt-2">احصل على تحكم كامل في عملك من خلال تحليل البيانات في الوقت الفعلي وتقارير مؤتمتة لاتخاذ القرارات.</p>
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">التحسين والتحليل الذكي 📊</h5>
+                        <p class="text-muted">أحول بياناتك إلى قرارات استراتيجية باستخدام لوحات تحكم مؤتمتة وتحليلات عميقة في الوقت الفعلي.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="how" class="bg-light">
+<section id="how">
     <div class="container">
-        <h2 class="fw-bold text-center">عمليتنا المبسطة</h2>
+        <h2 class="text-center">عمليتنا نحو المستقبل</h2>
         <div class="row g-4 text-center">
             <div class="col-md-4">
-                <div class="card card-hover h-100 p-4">
-                    <h4 class="fw-bold text-primary">1. التحليل والتصميم</h4>
-                    <p class="text-muted">نحدد نقاط الضعف لديك ونصمم هندسة الأتمتة التي ستمنحك أعلى عائد على الاستثمار (ROI).</p>
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold">1. الاكتشاف الاستراتيجي</h4>
+                        <p class="text-muted">نحلل احتياجاتك وفرصك لرسم خريطة أتمتة تحقق أقصى عائد على الاستثمار.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card card-hover h-100 p-4">
-                    <h4 class="fw-bold text-primary">2. التطوير والتنفيذ</h4>
-                    <p class="text-muted">نقوم بتطوير ودمج أدوات الذكاء الاصطناعي وسير العمل. كل شيء جاهز للاستخدام، دون الحاجة للمساس بأي سطر برمجي.</p>
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold">2. التطوير والتنفيذ السريع</h4>
+                        <p class="text-muted">نقوم ببناء ودمج حلول الذكاء الاصطناعي الخاصة بك بمنهجيات سريعة، مما يضمن السرعة والمرونة.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card card-hover h-100 p-4">
-                    <h4 class="fw-bold text-primary">3. التحسين والدعم</h4>
-                    <p class="text-muted">نحن نراقب ونعدل الأتمتة باستمرار لضمان الأداء المثالي ونقدم دعمًا مستمرًا.</p>
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold">3. التوسع والتحسين المستمر</h4>
+                        <p class="text-muted">نراقب الأداء ونعدل ونوسع نطاق الأتمتة الخاصة بك لتبقى دائماً في المقدمة.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -201,45 +437,52 @@
 
 <section id="cases">
     <div class="container">
-        <h2 class="fw-bold text-center">قصص نجاح ونتائج</h2>
+        <h2 class="text-center">الذكاء الاصطناعي في العمل: قصص نجاح</h2>
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card card-hover h-100 p-4">
-                    <h5 class="fw-bold text-primary">الشركة أ - الإنتاجية</h5>
-                    <p class="text-muted">زيادة 40% في الإنتاجية مع الأتمتة الداخلية لإدارة المستندات وإعداد الفواتير.</p>
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">الشركة أ - لوجستيات ذكية</h5>
+                        <p class="text-muted">أتمتة مسارات التسليم وإدارة المخزون، مما قلل التكاليف التشغيلية بنسبة 30%.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card card-hover h-100 p-4">
-                    <h5 class="fw-bold text-primary">الشركة ب - خدمة العملاء</h5>
-                    <p class="text-muted">انخفاض 60% في الاستفسارات اليدوية بفضل روبوت محادثة يعمل بالذكاء الاصطناعي مدرب على قاعدة بيانات الشركة.</p>
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">الشركة ب - تسويق تنبؤي</h5>
+                        <p class="text-muted">تطبيق الذكاء الاصطناعي للتنبؤ باتجاهات السوق وتخصيص الحملات، مما زاد التحويل بنسبة 25%.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card card-hover h-100 p-4">
-                    <h5 class="fw-bold text-primary">الشركة ج - اتخاذ القرار</h5>
-                    <p class="text-muted">تحسين البيانات الذي يسمح للإدارة باتخاذ القرارات الاستراتيجية أسرع بثلاث مرات.</p>
+                <div class="card card-hover h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold">الشركة ج - دعم متقدم للعملاء</h5>
+                        <p class="text-muted">روبوت محادثة يعمل بالذكاء الاصطناعي ومعالجة اللغة الطبيعية يدير 70% من الاستفسارات، مما يحسن الرضا.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="contact" style="background-color: #1D4ED8;" class="text-white py-5">
+<section id="contact">
     <div class="container">
-        <h2 class="fw-bold text-center">🤖 لنتحدث عن أتمتة الذكاء الاصطناعي</h2>
-        <p class="text-center mb-5 lead">أخبرني عن العملية التي تريد تحسينها، وسأرسل لك عرضًا مخصصًا. ستكون رسالة التأكيد الخاصة بك تلقائية!</p>
+        <h2 class="text-center">🤖 لنبني مستقبل عملك باستخدام الذكاء الاصطناعي</h2>
+        <p class="text-center mb-5 lead">
+            أخبرني عن رؤيتك. معاً، سنجعلها حقيقة بواسطة الذكاء الاصطناعي.
+        </p>
         
         <div class="row justify-content-center">
             <div class="col-lg-7 col-md-9">
-                
-                <form action="https://formsubmit.co/Abrahampuero@outlook.com" method="POST" class="p-4 rounded shadow-lg bg-white text-dark" dir="rtl">
-                    <input type="hidden" name="_subject" value="New Demo Request - AI Automation (AR)">
+                <form action="https://formsubmit.co/Abrahampuero@outlook.com" method="POST" class="p-5 rounded-4 shadow-lg" dir="rtl">
+                    <input type="hidden" name="_subject" value="طلب عرض تجريبي جديد - أتمتة الذكاء الاصطناعي (AR) FUTURISTA">
                     <input type="hidden" name="_autoresponse" value="شكراً لتواصلك مع ابراهيم امبيرو! لقد تلقينا طلب الأتمتة بالذكاء الاصطناعي وسنرد عليك قريباً بعرض مخصص.">
                     <input type="hidden" name="_template" value="table">
                     
 
-                    <div class="row g-3">
+                    <div class="row g-4">
                         <div class="col-md-6">
                             <label for="nombre" class="form-label">اسمك</label>
                             <input type="text" class="form-control" id="nombre" name="Name" required>
@@ -250,21 +493,21 @@
                         </div>
                     </div>
                     
-                    <div class="mb-3 mt-3">
-                        <label for="proceso" class="form-label">المجال المراد أتمتته</label>
+                    <div class="mb-4 mt-4">
+                        <label for="proceso" class="form-label">المجال المراد تحويله بالذكاء الاصطناعي</label>
                         <select class="form-select" id="proceso" name="Area of Interest" required>
-                            <option value="" selected disabled>اختر مجالاً في عملك...</option>
-                            <option value="CustomerSupport">دعم العملاء (روبوتات المحادثة/الردود)</option>
-                            <option value="DataAnalysis">إدارة البيانات وإعداد التقارير</option>
-                            <option value="SalesMarketing">المبيعات والتسويق (العملاء المحتملون/CRM)</option>
-                            <option value="Backoffice">الأعمال المكتبية والمهام المتكررة</option>
-                            <option value="Other">أخرى (حدد في الرسالة)</option>
+                            <option value="" selected disabled>اختر مجالاً رئيسياً...</option>
+                            <option value="AtencionCliente">دعم العملاء (روبوتات المحادثة/الردود الذكية)</option>
+                            <option value="DatosAnalisis">تحليل البيانات وذكاء الأعمال</option>
+                            <option value="VentasMarketing">تحسين المبيعات والتسويق</option>
+                            <option value="Backoffice">أتمتة الأعمال المكتبية والإدارة</option>
+                            <option value="Otro">أخرى (حدد في رسالتك)</option>
                         </select>
                     </div>
                     
-                    <div class="mb-4">
-                        <label for="mensaje" class="form-label">صف باختصار تحدي الأتمتة الخاص بك</label>
-                        <textarea class="form-control" id="mensaje" name="Message" rows="4" required placeholder="مثال: أحتاج إلى تصنيف رسائل البريد الإلكتروني للدعم تلقائيًا وتعيين التذاكر."></textarea>
+                    <div class="mb-5">
+                        <label for="mensaje" class="form-label">صف رؤيتك أو تحدي الذكاء الاصطناعي</label>
+                        <textarea class="form-control" id="mensaje" name="Message" rows="5" required placeholder="مثال: أحتاج إلى نظام ذكاء اصطناعي يتنبأ بالطلب ويحسن سلسلة التوريد الخاصة بي."></textarea>
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm">
@@ -273,12 +516,11 @@
                 </form>
             </div>
         </div>
-        <style>#contact {background-color: #1D4ED8;}</style>
     </div>
 </section>
 
-<footer class="py-4 text-center text-muted border-top">
-    ابراهيم امبيرو © 2025 — أتمتة الذكاء الاصطناعي
+<footer class="text-center">
+    ابراهيم امبيرو © 2025 — مستقبل عملك مع الذكاء الاصطناعي
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
