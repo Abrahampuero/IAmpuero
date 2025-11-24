@@ -1,525 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AbrahAmpuero - AI Automations for Future Business</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IAmpuero - Advanced AI-Powered Automation Engineering</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* GLOBAL */
+body { margin:0; font-family:'Poppins',sans-serif; background:#0a0a0a; color:white; overflow-x:hidden; line-height:1.6; }
+h1,h2,h3 { font-family:'Orbitron',sans-serif; color:#7c3aed; }
+a { text-decoration:none; color:#4f46e5; transition:0.3s; }
+a:hover { color:#9333ea; }
+section { padding:100px 50px; position:relative; z-index:1; }
+button { cursor:pointer; }
+img { max-width:100%; }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-        rel="stylesheet">
+/* HEADER */
+header { background:rgba(10,10,10,0.95); padding:20px 50px; position:sticky; top:0; z-index:1000; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #1a1a1a; }
+header img { width:100px; }
+nav a { margin-left:30px; font-weight:600; color:white; }
 
-    <style>
-        :root {
-            --primary-color: #007bff; /* Vibrant Blue */
-            --secondary-color: #6c757d; /* Gray for secondary texts */
-            --bg-light: #f8f9fa; /* Very light background */
-            --bg-dark: #212529; /* Dark background */
-            --gradient-light: linear-gradient(145deg, #f0f4f8, #e0e7ee); /* Soft gradient */
-            --gradient-dark: linear-gradient(145deg, #2d343c, #1a1e22); /* Dark gradient */
-            --border-color: rgba(0, 0, 0, 0.08);
-            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            --card-hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            --transition-speed: 0.4s;
-        }
+/* HERO */
+.hero { display:flex; justify-content:space-around; align-items:center; height:90vh; background:radial-gradient(circle at center, #0a0a0a 30%, #000000 100%); overflow:hidden; flex-wrap:wrap; text-align:center; }
+.hero-content { max-width:650px; z-index:1; }
+.hero h1 { font-size:3.5rem; margin-bottom:10px; line-height:1.1; }
+.hero h2 { font-size:1.5rem; margin-top:0; font-weight:300; color:#ccc; }
+.hero img.ceo { width:300px; border-radius:50%; border:5px solid #4f46e5; animation:float 4s ease-in-out infinite; z-index:1; }
 
-        body {
-            font-family: 'Space Grotesk', sans-serif; /* Futuristic font */
-            color: var(--bg-dark);
-            line-height: 1.8; 
-            background-color: var(--bg-light);
-            overflow-x: hidden;
-        }
-        
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+@keyframes float { 0%,100% { transform:translateY(0px) rotate(0deg); } 50% { transform:translateY(-20px) rotate(3deg); } }
 
-        .navbar-brand img {
-            height: 45px; 
-            width: auto;
-            transition: transform var(--transition-speed) ease;
-        }
-        .navbar-brand img:hover {
-            transform: scale(1.05);
-        }
-        .nav-link {
-            color: var(--bg-dark) !important;
-            font-weight: 500;
-            transition: color var(--transition-speed) ease;
-        }
-        .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
+.buttons { margin-top:40px; }
+.buttons button { padding:15px 35px; margin:10px; font-weight:bold; border:none; border-radius:10px; text-transform:uppercase; letter-spacing:1px; transition:0.3s; }
+button.primary { background:#4f46e5; color:white; box-shadow:0 0 20px #4f46e5; }
+button.secondary { background:#9333ea; color:white; box-shadow:0 0 20px #9333ea; }
+button:hover { transform:scale(1.05); box-shadow:0 0 35px #4f46e5, 0 0 50px #9333ea inset; }
 
-        /* Hero Section - Impactful Style */
-        .hero {
-            background: var(--gradient-light); 
-            padding: 120px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before { 
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(0,123,255,0.05) 0%, transparent 70%);
-            animation: rotateBg 20s linear infinite;
-        }
-        @keyframes rotateBg {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+/* PARTICULAS HERO */
+#particles-js { position:absolute; width:100%; height:100%; top:0; left:0; z-index:0; }
 
-        .hero h1 {
-            font-size: 3.8rem;
-            line-height: 1.1;
-            font-weight: 700;
-            color: var(--bg-dark);
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
-        }
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--secondary-color);
-            margin-top: 1.5rem;
-        }
-        .hero-image-container { 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 400px;
-        }
-        .hero-image {
-            max-height: 550px; 
-            width: auto; 
-            object-fit: contain; 
-            border-radius: 20px; 
-            box-shadow: var(--card-shadow);
-            border: 3px solid rgba(255, 255, 255, 0.7); 
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-        }
-        .hero-image:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: var(--card-hover-shadow);
-        }
+/* ABOUT ME */
+.about { background:#0a0a0a; display:flex; gap:50px; align-items:flex-start; flex-wrap:wrap; padding-top:100px; }
+.about-content { max-width:700px; }
+.about h2 { font-size:2.5rem; margin-bottom:20px; }
+.about p { color:#ccc; font-size:1.1rem; margin-bottom:20px; }
+.skill-badge { display:inline-block; background:#1a1a1a; color:#4f46e5; padding:8px 15px; border-radius:5px; margin:0 10px 10px 0; font-weight:600; border:1px solid #1f1f1f; }
+.quote-box {
+    flex-shrink: 0;
+    max-width: 300px;
+    font-style: italic;
+    color: #7c3aed;
+    border-left: 3px solid #4f46e5;
+    padding-left: 15px;
+    line-height: 1.5;
+}
 
-        /* General Sections */
-        section {
-            padding: 100px 0;
-            position: relative;
-            z-index: 1;
-        }
-        section:nth-of-type(even) { 
-            background-color: #f0f4f8; 
-        }
+/* SERVICES */
+.services { background:#0f0f0f; text-align:center; }
+.services h2 { margin-bottom:50px; font-size:2.5rem; }
+.card-container { display:flex; justify-content:center; flex-wrap:wrap; gap:30px; }
+.card { background:#111; padding:35px; border-radius:15px; flex:1 1 300px; max-width:350px; text-align:left; border-left:5px solid #4f46e5; transition:0.3s; position:relative; overflow:hidden; opacity:0; transform:translateY(50px); }
+.card.visible { opacity:1; transform:translateY(0); transition:1s ease-out; }
+.card::before { content:""; position:absolute; width:100%; height:100%; top:0; left:-100%; background:linear-gradient(120deg, rgba(79,70,229,0.2), rgba(147,51,234,0.2)); transform:skewX(-25deg); transition:0.5s; }
+.card:hover::before { left:200%; }
+.card h3 { color:white; margin-top:0; font-size:1.4rem; }
+.card p { color:#bbb; }
 
-        h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--bg-dark);
-            margin-bottom: 3rem;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-        }
-        h2::after { 
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 5px;
-        }
-        .text-center h2::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
+/* PORTFOLIO */
+.portfolio { text-align:center; background:#0a0a0a; }
+.portfolio h2 { margin-bottom:50px; font-size:2.5rem; }
+.project-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; }
+.project-card { background:#111; padding:25px; border-radius:15px; text-align:left; border:1px solid #1a1a1a; transition:0.3s; opacity:0; transform:translateY(50px); }
+.project-card.visible { opacity:1; transform:translateY(0); transition:1s ease-out; }
+.project-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(79,70,229,0.3); }
+.project-card h4 { color:white; margin-bottom:5px; }
+.project-card span { color:#7c3aed; font-size:0.9em; font-weight:600; }
 
-        /* Cards - Floating Effect */
-        .card {
-            border-radius: 20px; 
-            border: none; 
-            background-color: white;
-            box-shadow: var(--card-shadow);
-            transition: all var(--transition-speed) ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-10px); 
-            box-shadow: var(--card-hover-shadow); 
-        }
-        .card-body {
-            padding: 2.5rem; 
-        }
-        .card h5, .card h4 {
-            font-weight: 600;
-            color: var(--primary-color); 
-            margin-bottom: 1rem;
-            font-size: 1.75rem; 
-        }
-        .card p {
-            color: var(--secondary-color);
-        }
+/* CONTACT */
+#contact { background:#0f0f0f; border-top:1px solid #1a1a1a; padding:100px 50px; text-align:center; }
 
-        /* Buttons */
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            padding: 14px 30px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: background-color var(--transition-speed) ease, transform 0.2s ease;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-            transform: translateY(-2px);
-        }
-        .btn-outline-secondary {
-            border-color: var(--secondary-color);
-            color: var(--secondary-color);
-            padding: 14px 30px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all var(--transition-speed) ease;
-        }
-        .btn-outline-secondary:hover {
-            background-color: var(--secondary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
+/* FOOTER */
+footer { padding:50px; text-align:center; background:#0f0f0f; border-top:1px solid #1a1a1a; }
+footer img { width:120px; margin-bottom:20px; }
+footer a { color:#ccc; margin:0 15px; transition:0.3s; }
+footer a:hover { color:#4f46e5; }
 
-        /* Contact Section (dark background and gradient) */
-        #contact {
-            background: var(--gradient-dark);
-            color: white;
-            padding: 100px 0;
-        }
-        #contact h2 {
-            color: white;
-        }
-        #contact h2::after {
-            background: white;
-        }
-        #contact .lead {
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #contact form {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: var(--card-shadow);
-        }
-        #contact .form-label {
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 500;
-        }
-        #contact .form-control, 
-        #contact .form-select,
-        #contact .form-control:focus, 
-        #contact .form-select:focus {
-            background-color: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            border-radius: 10px;
-            padding: 0.85rem 1rem;
-        }
-        #contact .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        #contact .form-control option {
-            background-color: var(--bg-dark);
-            color: white;
-        }
-        #contact .btn-primary {
-            background-color: white;
-            color: var(--primary-color);
-            border-color: white;
-            margin-top: 1.5rem;
-        }
-        #contact .btn-primary:hover {
-            background-color: #f0f0f0;
-            border-color: #f0f0f0;
-            color: var(--primary-color);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--bg-dark);
-            color: rgba(255, 255, 255, 0.7);
-            padding: 40px 0;
-            font-size: 0.9rem;
-        }
-
-        /* Animation */
-        @keyframes fadeInSlide {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-text {
-            animation: fadeInSlide 1s ease-out;
-        }
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .hero-image-animated {
-            animation: fadeInScale 1s ease-out 0.5s forwards;
-            opacity: 0;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            .hero p {
-                font-size: 1.1rem;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            .card-body {
-                padding: 2rem;
-            }
-            .hero-image {
-                margin-top: 3rem;
-            }
-            .hero-image-container {
-                min-height: auto;
-            }
-        }
-    </style>
+/* RESPONSIVE */
+@media(max-width:900px){ 
+    .hero { flex-direction:column; height:auto; padding-top:150px; text-align:center; } 
+    .hero img.ceo { margin-top:50px; } 
+    .about { flex-direction:column; text-align:center; }
+    .quote-box { max-width: 100%; margin: 30px auto 0 auto; } 
+}
+</style>
 </head>
+<body>
 
-<body class="bg-light">
+<header>
+ <a href="#hero"><img src="logo.png" alt="IAmpuero Logo"></a>
+ <nav>
+    <a href="#about">About Me</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+        <a href="index.html" title="Spanish Version">🇪🇸 ES</a> | 
+    <a href="en.html" title="English Version">🇺🇸 EN</a> | 
+    <a href="ar.html" title="Arabic Version">🇸🇦 AR</a>
+ </nav>
+</header>
 
-<nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="LOGO WEB.png" alt="AbrahAmpuero - Technology that works for you">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-            <ul class="navbar-nav me-3 gap-3">
-                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#how">How We Work</a></li>
-                <li class="nav-item"><a class="nav-link" href="#cases">Case Studies</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        🇺🇸 English
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index.html">🇪🇸 Español</a></li>
-                        <li><a class="dropdown-item" href="en.html">🇺🇸 English</a></li>
-                        <li><a class="dropdown-item" href="ar.html">🇸🇦 العربية</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <a href="#contact" class="btn btn-primary px-4">Contact Me</a>
-        </div>
-    </div>
-</nav>
-
-<section class="hero">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-md-6 hero-text">
-                <h1 class="fw-bold">
-                    AI Automations for the Future of Your Business
-                </h1>
-                <p class="mt-3">
-                    Transform your company with tailored AI solutions. Save time, eliminate errors, and scale your operations with the most advanced technology.
-                </p>
-                <div class="mt-4 d-flex gap-3">
-                    <a href="#contact" class="btn btn-primary btn-lg">Request a Demo</a>
-                    <a href="#cases" class="btn btn-outline-secondary btn-lg">See Case Studies</a>
-                </div>
-            </div>
-
-            <div class="col-md-6 text-center hero-image-container">
-                <img src="ceo.jpeg" 
-                     id="ceo-img" 
-                     class="img-fluid hero-image rounded-3 shadow-lg hero-image-animated" 
-                     alt="Abraham Ampuero CEO">
-            </div>
-        </div>
-    </div>
+<section class="hero" id="hero">
+ <div id="particles-js"></div>
+ <div class="hero-content">
+   <h1>Your Business, Empowered by AI that Thinks, Learns, and Acts for You</h1>
+   <h2>Scalable solutions: using ML and RPA to transform critical industrial processes.</h2>
+   <div class="buttons">
+     <a href="#contact"><button class="primary">Schedule Your AI Audit</button></a>
+     <a href="#portfolio"><button class="secondary">View Projects</button></a>
+   </div>
+ </div>
+ <img src="ceo.png" alt="CEO" class="ceo">
 </section>
 
-<section id="services">
-    <div class="container">
-        <h2 class="text-center">AI Automation Services</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Process Automation 🛠️</h5>
-                        <p class="text-muted">I design and implement intelligent workflows that eliminate repetitive tasks, optimizing operational efficiency.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Artificial Intelligence Integration 🤖</h5>
-                        <p class="text-muted">I implement AI solutions (chatbots, predictive analytics, content) that empower your business with advanced capabilities.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Intelligent Optimization and Analysis 📊</h5>
-                        <p class="text-muted">I transform your data into strategic decisions with automated dashboards and deep real-time analysis.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="about" id="about">
+ <div class="about-content">
+   <h2>My Focus: Transformation and Determination 🧠</h2>
+   <p>I am a **highly motivated Engineer** and recently qualified specialist with a deep passion for the convergence of **Industrial Automation and Artificial Intelligence**.</p>
+   <p>My main goal is simple: to apply my advanced knowledge and strong self-learning skills to develop **RPA, Computer Vision, and Predictive** solutions that generate a measurable and fast ROI in business environments.</p>
+   <h3>My Core Tech Stack</h3>
+   <div class="tech-stack">
+     <span class="skill-badge">Python (TensorFlow/PyTorch)</span>
+     <span class="skill-badge">RPA (UiPath/Automation Anywhere)</span>
+     <span class="skill-badge">Computer Vision (OpenCV)</span>
+     <span class="skill-badge">Deployment (Docker/Kubernetes)</span>
+     <span class="skill-badge">Cloud (AWS/Azure)</span>
+   </div>
+ </div>
+ <div class="quote-box">
+    "My knowledge is fresh, and my determination is absolute. I am committed to ensuring the success of every project, treating each challenge as an opportunity to prove my value."
+  </div>
 </section>
 
-<section id="how">
-    <div class="container">
-        <h2 class="text-center">Our Process Towards the Future</h2>
-        <div class="row g-4 text-center">
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h4 class="fw-bold">1. Strategic Discovery</h4>
-                        <p class="text-muted">We analyze your needs and opportunities to map out an automation plan that maximizes your ROI.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h4 class="fw-bold">2. Agile Development and Implementation</h4>
-                        <p class="text-muted">We build and integrate your AI solutions using agile methodologies, ensuring speed and adaptability.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h4 class="fw-bold">3. Scaling and Continuous Improvement</h4>
-                        <p class="text-muted">We monitor performance, adjust, and expand your automations so you are always at the forefront.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="services" id="services">
+ <h2>Engineering Specialties</h2>
+ <div class="card-container">
+   <div class="card">
+     <h3>RPA & Intelligent Automation</h3>
+     <p>Implementation of autonomous workflows (RPA) with ML-assisted decision-making to streamline critical operations in finance, logistics, and administration.</p>
+   </div>
+   <div class="card">
+     <h3>Computer Vision Systems (CV)</h3>
+     <p>Deep Learning for quality inspection, pattern recognition, and real-time video analysis.</p>
+   </div>
+   <div class="card">
+     <h3>Predictive Analytics and Optimization</h3>
+     <p>Predictive models that anticipate failures, optimize inventory, and enhance real-time decision-making.</p>
+   </div>
+ </div>
 </section>
 
-<section id="cases">
-    <div class="container">
-        <h2 class="text-center">AI in Action: Success Stories</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Company A - Intelligent Logistics</h5>
-                        <p class="text-muted">Automation of delivery routes and inventory management, reducing operating costs by 30%.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Company B - Predictive Marketing</h5>
-                        <p class="text-muted">Implementation of AI to predict market trends and personalize campaigns, increasing conversion by 25%.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold text-primary">Company C - Advanced Customer Support</h5>
-                        <p class="text-muted">AI chatbot with natural language processing that handles 70% of inquiries, improving satisfaction.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="portfolio" id="portfolio">
+ <h2>Real Impact Projects</h2>
+ <div class="project-grid">
+   <div class="project-card">
+     <h4>Automated Assembly Verification with Computer Vision</h4>
+     <span>Technology: Python, OpenCV, TensorFlow</span>
+     <p>Deep Learning model that performs automated inspection of electronic components, achieving detection of **missing** and **misaligned** parts with over 98% accuracy.</p>
+     <a href="verificacion-cv.pdf" style="font-weight:bold; font-size:0.9em; color:#7c3aed;">View Code / Methodology ></a>
+   </div>
+   <div class="project-card">
+     <h4>Automated Document Classification</h4>
+     <span>Industry: Financial Services</span>
+     <p>RPA with intelligent OCR to process 10,000 daily documents, freeing human resources for critical tasks.</p>
+   </div>
+   <div class="project-card">
+     <h4>Predictive Maintenance 4.0</h4>
+     <span>Industry: Heavy Manufacturing</span>
+     <p>25% reduction in machinery downtime using ML anomaly detection.</p>
+   </div>
+ </div>
 </section>
 
 <section id="contact">
-    <div class="container">
-        <h2 class="text-center">🤖 Let's Build the Future of Your Business with AI</h2>
-        <p class="text-center mb-5 lead">
-            Tell me your vision. Together, we will make it a reality with artificial intelligence.
-        </p>
-        
-        <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-9">
-                <form action="https://formsubmit.co/Abrahampuero@outlook.com" method="POST" class="p-5 rounded-4 shadow-lg">
-                    <input type="hidden" name="_subject" value="New Demo Request - AI Automation (EN) FUTURIST">
-                    <input type="hidden" name="_autoresponse" value="Thank you for contacting AbrahAmpuero! We have received your AI automation request and will reply shortly with a tailored proposal.">
-                    <input type="hidden" name="_template" value="table">
-                    
-
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <label for="nombre" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="nombre" name="Name" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="email" class="form-label">Contact Email</label>
-                            <input type="email" class="form-control" id="email" name="Email" required>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4 mt-4">
-                        <label for="proceso" class="form-label">Area to Transform with AI</label>
-                        <select class="form-select" id="proceso" name="Area of Interest" required>
-                            <option value="" selected disabled>Select a key area...</option>
-                            <option value="CustomerSupport">Customer Support (Chatbots/Smart Replies)</option>
-                            <option value="DataAnalysis">Data Analysis and Business Intelligence</option>
-                            <option value="SalesMarketing">Sales and Marketing Optimization</option>
-                            <option value="Backoffice">Backoffice and Management Automation</option>
-                            <option value="Other">Other (Specify in your message)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="mb-5">
-                        <label for="mensaje" class="form-label">Describe your AI Vision or Challenge</label>
-                        <textarea class="form-control" id="mensaje" name="Message" rows="5" required placeholder="Ex: I need an AI system that predicts demand and optimizes my supply chain."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm">
-                        Send Automation Request
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
+  <h2>Ready for Intelligent Transformation?</h2>
+  <p>Contact us today to discover how advanced automation can deliver immediate ROI.</p>
+  <a href="mailto:tuemail@dominio.com"><button class="primary" style="padding:20px 50px; font-size:1.2rem;">Get Started Now</button></a>
 </section>
 
-<footer class="text-center">
-    AbrahAmpuero © 2025 — The Future of Your Business with AI
+<footer>
+  <img src="logo.png" alt="IAmpuero Logo">
+  <p>© 2025 IAmpuero - AI Automation Engineering</p>
+  <div>
+    <a href="#">LinkedIn</a> |
+    <a href="#">Instagram</a> |
+    <a href="#">Twitter</a> |
+    <a href="#">Privacy Policy</a>
+  </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+// 1. Particle Initialization
+particlesJS("particles-js", {
+  "particles": {
+    "number": {"value": 80},
+    "color": {"value":"#7c3aed"},
+    "shape":{"type":"circle"},
+    "opacity":{"value":0.3},
+    "size":{"value":3},
+    "line_linked":{"enable":true,"distance":150,"color":"#7c3aed","opacity":0.2,"width":1},
+    "move":{"enable":true,"speed":2}
+  }
+});
+
+// 2. Scroll Animation (Intersection Observer)
+const elementsToAnimate = document.querySelectorAll('.card, .project-card');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target); 
+    }
+  });
+},{ threshold:0.2 }); 
+
+elementsToAnimate.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>

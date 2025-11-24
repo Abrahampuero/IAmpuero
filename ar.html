@@ -1,528 +1,255 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ابراهيم امبيرو - أتمتة الذكاء الاصطناعي للأعمال المستقبلية</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IAmpuero - الهندسة الآلية المتقدمة بالذكاء الاصطناعي</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#0a0a0a;
+  color:white;
+  overflow-x:hidden;
+  line-height:1.6;
+}
+h1,h2,h3 { font-family:'Orbitron',sans-serif; color:#7c3aed; }
+a { text-decoration:none; color:#4f46e5; transition:0.3s; }
+a:hover { color:#9333ea; }
+section { padding:100px 50px; position:relative; z-index:1; }
+button { cursor:pointer; }
+img { max-width:100%; }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Cairo:wght@300;500;700;800&display=swap" rel="stylesheet">
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-        rel="stylesheet">
+/* HEADER */
+header {
+  background:rgba(10,10,10,0.95);
+  padding:20px 50px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  border-bottom:1px solid #1a1a1a;
+}
+nav a { margin-right:30px; font-weight:600; color:white; }
 
-    <style>
-        :root {
-            --primary-color: #007bff; /* Vibrant Blue */
-            --secondary-color: #6c757d; /* Gray for secondary texts */
-            --bg-light: #f8f9fa; /* Very light background */
-            --bg-dark: #212529; /* Dark background */
-            --gradient-light: linear-gradient(145deg, #f0f4f8, #e0e7ee); /* Soft gradient */
-            --gradient-dark: linear-gradient(145deg, #2d343c, #1a1e22); /* Dark gradient */
-            --border-color: rgba(0, 0, 0, 0.08);
-            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            --card-hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            --transition-speed: 0.4s;
-        }
+/* HERO */
+.hero {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  height:90vh;
+  position:relative;
+  background:radial-gradient(circle at center,#0a0a0a 30%,#000000 100%);
+  overflow:hidden;
+  flex-wrap:wrap;
+  text-align:center;
+}
+#particles-js { position:absolute; width:100%; height:100%; top:0; left:0; z-index:0; }
+.hero-content { max-width:650px; position:relative; z-index:1; }
+.hero h1 { font-size:3.5rem; margin-bottom:10px; line-height:1.1; }
+.hero h2 { font-size:1.5rem; margin-top:0; font-weight:300; color:#ccc; }
+.buttons { margin-top:40px; }
+.buttons a.button {
+  display:inline-block;
+  padding:15px 35px;
+  margin:10px;
+  font-weight:bold;
+  border:none;
+  border-radius:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  background:#4f46e5;
+  color:white;
+  box-shadow:0 0 20px #4f46e5;
+  transition:0.3s;
+}
+.buttons a.button.secondary { background:#9333ea; box-shadow:0 0 20px #9333ea; }
+.buttons a.button:hover { box-shadow:0 0 35px #4f46e5,0 0 50px #9333ea inset; transform:scale(1.05); }
+.hero img.ceo { width:300px; border-radius:50%; border:5px solid #4f46e5; animation:float 4s ease-in-out infinite; position:relative; z-index:1; }
+@keyframes float { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-20px) rotate(3deg);} }
 
-        body {
-            font-family: 'Cairo', 'Space Grotesk', sans-serif; /* Arabic font first, then fallback */
-            color: var(--bg-dark);
-            line-height: 1.8;
-            background-color: var(--bg-light);
-            overflow-x: hidden;
-            text-align: right; /* RTL Default */
-        }
-        
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+/* ABOUT */
+.about { background:#0a0a0a; display:flex; gap:50px; align-items:flex-start; flex-wrap:wrap; padding-top:100px; }
+.about h2 { font-size:2.5rem; margin-bottom:20px; }
+.about-content { max-width:700px; }
+.about-content p { color:#ccc; font-size:1.1rem; margin-bottom:25px; }
+.tech-stack { margin-top:10px; }
+.skill-badge { display:inline-block; background:#1a1a1a; color:#4f46e5; padding:8px 15px; border-radius:5px; margin-right:10px; margin-bottom:10px; font-weight:600; border:1px solid #1f1f1f; margin-left:0; }
+.quote-box { flex-shrink:0; max-width:300px; font-style:italic; color:#7c3aed; border-right:3px solid #4f46e5; padding-right:15px; line-height:1.5; }
 
-        .navbar-brand img {
-            height: 45px; 
-            width: auto;
-            transition: transform var(--transition-speed) ease;
-        }
-        .navbar-brand img:hover {
-            transform: scale(1.05);
-        }
-        .nav-link {
-            color: var(--bg-dark) !important;
-            font-weight: 500;
-            transition: color var(--transition-speed) ease;
-        }
-        .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
+/* SERVICES */
+.services { background:#0f0f0f; text-align:center; }
+.services > h2 { margin-bottom:50px; font-size:2.5rem; }
+.card-container { display:flex; justify-content:center; flex-wrap:wrap; gap:30px; }
+.card { background:#111; padding:35px; border-radius:15px; flex:1 1 300px; max-width:350px; text-align:right; border-right:5px solid #4f46e5; transition:0.3s; position:relative; overflow:hidden; opacity:0; transform:translateY(50px); border-left:none; }
+.card.visible { opacity:1; transform:translateY(0); transition:1s ease-out; }
+.card::before { content:""; position:absolute; width:100%; height:100%; top:0; right:-100%; background:linear-gradient(120deg, rgba(79,70,229,0.2), rgba(147,51,234,0.2)); transform:skewX(-25deg); transition:0.5s; }
+.card:hover::before { right:200%; }
+.card h3 { color:white; margin-top:0; font-size:1.4rem; }
+.card p { color:#bbb; }
 
-        /* Hero Section - Impactful Style */
-        .hero {
-            background: var(--gradient-light);
-            padding: 120px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before { 
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%; /* Adjusted for RTL */
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(0,123,255,0.05) 0%, transparent 70%);
-            animation: rotateBg 20s linear infinite;
-        }
-        @keyframes rotateBg {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+/* PORTFOLIO */
+.portfolio { text-align:center; background:#0a0a0a; }
+.portfolio > h2 { margin-bottom:50px; font-size:2.5rem; }
+.project-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; }
+.project-card { background:#111; padding:25px; border-radius:15px; text-align:right; border:1px solid #1a1a1a; transition:0.3s; opacity:0; transform:translateY(50px); }
+.project-card.visible { opacity:1; transform:translateY(0); transition:1s ease-out; }
+.project-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(79,70,229,0.3); }
+.project-card h4 { color:white; margin-bottom:5px; }
+.project-card span { color:#7c3aed; font-size:0.9em; font-weight:600; }
 
-        .hero h1 {
-            font-size: 3.8rem;
-            line-height: 1.1;
-            font-weight: 800; /* Arabic bolding */
-            color: var(--bg-dark);
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
-        }
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--secondary-color);
-            margin-top: 1.5rem;
-        }
-        .hero-image-container { 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 400px;
-        }
-        .hero-image {
-            max-height: 550px; 
-            width: auto; 
-            object-fit: contain; 
-            border-radius: 20px; 
-            box-shadow: var(--card-shadow);
-            border: 3px solid rgba(255, 255, 255, 0.7); 
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-        }
-        .hero-image:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: var(--card-hover-shadow);
-        }
+/* CONTACT */
+#contact { background:#0f0f0f; border-top:1px solid #1a1a1a; padding:100px 50px; text-align:center; }
 
-        /* General Sections */
-        section {
-            padding: 100px 0;
-            position: relative;
-            z-index: 1;
-        }
-        section:nth-of-type(even) { 
-            background-color: #f0f4f8; 
-        }
+/* FOOTER */
+footer { padding:50px; text-align:center; background:#0f0f0f; border-top:1px solid #1a1a1a; }
+footer img { width:120px; margin-bottom:20px; }
+footer a { color:#ccc; margin:0 15px; transition:0.3s; }
+footer a:hover { color:#4f46e5; }
 
-        h2 {
-            font-size: 3rem;
-            font-weight: 800; /* Arabic bolding */
-            color: var(--bg-dark);
-            margin-bottom: 3rem;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-        }
-        h2::after { 
-            content: '';
-            position: absolute;
-            right: 50%; /* Adjusted for RTL */
-            bottom: 0;
-            transform: translateX(50%); /* Adjusted for RTL */
-            width: 80px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 5px;
-        }
-        .text-center h2::after {
-            right: 50%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Cards - Floating Effect */
-        .card {
-            border-radius: 20px; 
-            border: none; 
-            background-color: white;
-            box-shadow: var(--card-shadow);
-            transition: all var(--transition-speed) ease;
-            text-align: right;
-        }
-        .card-hover:hover {
-            transform: translateY(-10px); 
-            box-shadow: var(--card-hover-shadow); 
-        }
-        .card-body {
-            padding: 2.5rem; 
-        }
-        .card h5, .card h4 {
-            font-weight: 700;
-            color: var(--primary-color); 
-            margin-bottom: 1rem;
-            font-size: 1.75rem; 
-        }
-        .card p {
-            color: var(--secondary-color);
-        }
-
-        /* Buttons */
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            padding: 14px 30px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: background-color var(--transition-speed) ease, transform 0.2s ease;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-            transform: translateY(-2px);
-        }
-        .btn-outline-secondary {
-            border-color: var(--secondary-color);
-            color: var(--secondary-color);
-            padding: 14px 30px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all var(--transition-speed) ease;
-        }
-        .btn-outline-secondary:hover {
-            background-color: var(--secondary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Contact Section (dark background and gradient) */
-        #contacto {
-            background: var(--gradient-dark);
-            color: white;
-            padding: 100px 0;
-        }
-        #contacto h2 {
-            color: white;
-        }
-        #contacto h2::after {
-            background: white; 
-        }
-        #contacto .lead {
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #contacto form {
-            background-color: rgba(255, 255, 255, 0.1); 
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: var(--card-shadow);
-        }
-        #contacto .form-label {
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 500;
-        }
-        #contacto .form-control, 
-        #contacto .form-select,
-        #contacto .form-control:focus, 
-        #contacto .form-select:focus {
-            background-color: rgba(255, 255, 255, 0.15); 
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            border-radius: 10px;
-            padding: 0.85rem 1rem;
-        }
-        #contacto .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        #contacto .form-control option { 
-            background-color: var(--bg-dark); 
-            color: white;
-        }
-        #contacto .btn-primary {
-            background-color: white; 
-            color: var(--primary-color);
-            border-color: white;
-            margin-top: 1.5rem; 
-        }
-        #contacto .btn-primary:hover {
-            background-color: #f0f0f0; 
-            border-color: #f0f0f0;
-            color: var(--primary-color);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--bg-dark);
-            color: rgba(255, 255, 255, 0.7);
-            padding: 40px 0;
-            font-size: 0.9rem;
-        }
-
-        /* Animation */
-        @keyframes fadeInSlide {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-text {
-            animation: fadeInSlide 1s ease-out;
-        }
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .hero-image-animated {
-            animation: fadeInScale 1s ease-out 0.5s forwards; 
-            opacity: 0; 
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            .hero p {
-                font-size: 1.1rem;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            .card-body {
-                padding: 2rem;
-            }
-            .hero-image {
-                margin-top: 3rem;
-            }
-            .hero-image-container {
-                min-height: auto;
-            }
-        }
-    </style>
+/* RESPONSIVE */
+@media(max-width:900px) {
+  .hero { flex-direction:column; height:auto; padding-top:150px; padding-bottom:100px; text-align:center; }
+  .hero img.ceo { margin-top:50px; }
+  .hero-content { max-width:100%; }
+  .hero h1 { font-size:2.5rem; }
+  .buttons a.button { margin:10px; display:block; width:80%; margin-left:auto; margin-right:auto; }
+  .about { flex-direction:column; text-align:center; }
+  .quote-box { margin:20px auto 0 auto; border-left:none; border-right:3px solid #4f46e5; }
+}
+</style>
 </head>
+<body>
 
-<body class="bg-light">
+<header>
+  <a href="#hero"><img src="logo.png" alt="شعار IAmpuero"></a>
+  <nav>
+    <a href="#about">عنّي</a>
+    <a href="#services">الخدمات</a>
+    <a href="#portfolio">المشاريع</a>
+    <a href="#contact">تواصل</a>
+    <a href="index.html" title="Spanish Version">🇪🇸 ES</a> |
+    <a href="en.html" title="English Version">🇺🇸 EN</a> |
+    <a href="ar.html" title="النسخة العربية">🇸🇦 AR</a>
+  </nav>
+</header>
 
-<nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="LOGO WEB.png" alt="ابراهيم امبيرو - التكنولوجيا التي تعمل من أجلك">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-            <ul class="navbar-nav me-3 gap-3">
-                <li class="nav-item"><a class="nav-link" href="#services">الخدمات</a></li>
-                <li class="nav-item"><a class="nav-link" href="#how">كيفية العمل</a></li>
-                <li class="nav-item"><a class="nav-link" href="#cases">دراسات الحالة</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
-                
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        🇸🇦 العربية
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index.html">🇪🇸 Español</a></li>
-                        <li><a class="dropdown-item" href="en.html">🇺🇸 English</a></li>
-                        <li><a class="dropdown-item" href="ar.html">🇸🇦 العربية</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <a href="#contact" class="btn btn-primary px-4">اكتب لي</a>
-        </div>
+<section class="hero" id="hero">
+  <div id="particles-js"></div>
+  <div class="hero-content">
+    <h1>عملك، مدعوم بالذكاء الاصطناعي الذي يفكر ويتعلم ويتصرف نيابة عنك</h1>
+    <h2>حلول قابلة للتوسع: استخدام التعلم الآلي وRPA لتحويل العمليات الصناعية الحيوية.</h2>
+    <div class="buttons">
+      <a href="#contact" class="button primary">حدد موعد تقييم الذكاء الاصطناعي</a>
+      <a href="#portfolio" class="button secondary">عرض المشاريع</a>
     </div>
-</nav>
-
-<section class="hero">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-md-6 hero-text">
-                <h1 class="fw-bold">
-                    أتمتة الذكاء الاصطناعي لمستقبل عملك
-                </h1>
-                <p class="mt-3">
-                    حول شركتك بحلول ذكاء اصطناعي مصممة خصيصاً. وفر الوقت، وتخلص من الأخطاء، ووسع نطاق عملياتك بأحدث التقنيات.
-                </p>
-                <div class="mt-4 d-flex gap-3">
-                    <a href="#contact" class="btn btn-primary btn-lg">طلب عرض تجريبي</a>
-                    <a href="#cases" class="btn btn-outline-secondary btn-lg">شاهد قصص النجاح</a>
-                </div>
-            </div>
-
-            <div class="col-md-6 text-center hero-image-container">
-                <img src="ceo.jpeg" 
-                     id="ceo-img" 
-                     class="img-fluid hero-image rounded-3 shadow-lg hero-image-animated" 
-                     alt="ابراهيم امبيرو المدير التنفيذي">
-            </div>
-        </div>
-    </div>
+  </div>
+  <img src="ceo.png" alt="المدير التنفيذي" class="ceo">
 </section>
 
-<section id="services">
-    <div class="container">
-        <h2 class="text-center">خدمات أتمتة الذكاء الاصطناعي</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold">أتمتة العمليات 🛠️</h5>
-                        <p class="text-muted">أقوم بتصميم وتطبيق سير عمل ذكي يزيل المهام المتكررة، مما يحسن الكفاءة التشغيلية.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold">تكامل الذكاء الاصطناعي 🤖</h5>
-                        <p class="text-muted">أطبق حلول الذكاء الاصطناعي (روبوتات الدردشة، التحليل التنبؤي، المحتوى) التي تمنح عملك قدرات متقدمة.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold">التحسين والتحليل الذكي 📊</h5>
-                        <p class="text-muted">أحول بياناتك إلى قرارات استراتيجية باستخدام لوحات تحكم مؤتمتة وتحليلات عميقة في الوقت الفعلي.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="about" id="about">
+  <div class="about-content">
+    <h2>تركيزي: التحوّل والعزيمة 🧠</h2>
+    <p>أنا <strong>مهندس متحمس للغاية</strong> ومتخصص حديث التخرج بشغف عميق لتقاطع <strong>الأتمتة الصناعية والذكاء الاصطناعي</strong>.</p>
+    <p>هدفي الرئيسي بسيط: تطبيق معرفتي المتقدمة وقدرتي العالية على التعلم الذاتي لتطوير حلول <strong>RPA، الرؤية الحاسوبية، والتحليلات التنبؤية</strong> التي تحقق عائد استثمار سريع وقابل للقياس في بيئات العمل.</p>
+    <h3>التقنيات الأساسية</h3>
+    <div class="tech-stack">
+      <span class="skill-badge">بايثون (TensorFlow/PyTorch)</span>
+      <span class="skill-badge">RPA (UiPath/Automation Anywhere)</span>
+      <span class="skill-badge">الرؤية الحاسوبية (OpenCV)</span>
+      <span class="skill-badge">النشر (Docker/Kubernetes)</span>
+      <span class="skill-badge">الحوسبة السحابية (AWS/Azure)</span>
     </div>
+  </div>
+  <div class="quote-box">
+    "معرفتي حديثة وعزيمتي مطلقة. أنا ملتزم بضمان نجاح كل مشروع، وأتعامل مع كل تحدي كفرصة لإثبات قيمتي."
+  </div>
 </section>
 
-<section id="how">
-    <div class="container">
-        <h2 class="text-center">عمليتنا نحو المستقبل</h2>
-        <div class="row g-4 text-center">
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h4 class="fw-bold">1. الاكتشاف الاستراتيجي</h4>
-                        <p class="text-muted">نحلل احتياجاتك وفرصك لرسم خريطة أتمتة تحقق أقصى عائد على الاستثمار.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h4 class="fw-bold">2. التطوير والتنفيذ السريع</h4>
-                        <p class="text-muted">نقوم ببناء ودمج حلول الذكاء الاصطناعي الخاصة بك بمنهجيات سريعة، مما يضمن السرعة والمرونة.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h4 class="fw-bold">3. التوسع والتحسين المستمر</h4>
-                        <p class="text-muted">نراقب الأداء ونعدل ونوسع نطاق الأتمتة الخاصة بك لتبقى دائماً في المقدمة.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="services" id="services">
+  <h2>تخصصات الهندسة</h2>
+  <div class="card-container">
+    <div class="card">
+      <h3>RPA والأتمتة الذكية</h3>
+      <p>تنفيذ سير العمل المستقل (RPA) مع اتخاذ القرار بمساعدة التعلم الآلي لتبسيط العمليات الحيوية في المالية واللوجستيات والإدارة.</p>
     </div>
+    <div class="card">
+      <h3>أنظمة الرؤية الحاسوبية</h3>
+      <p>التعلم العميق لفحص الجودة، والتعرف على الأنماط، وتحليل الفيديو في الوقت الحقيقي.</p>
+    </div>
+    <div class="card">
+      <h3>التحليلات التنبؤية والتحسين</h3>
+      <p>نماذج تنبؤية تتوقع الأعطال، وتحسن إدارة المخزون، وتعزز اتخاذ القرار في الوقت الحقيقي.</p>
+    </div>
+  </div>
 </section>
 
-<section id="cases">
-    <div class="container">
-        <h2 class="text-center">الذكاء الاصطناعي في العمل: قصص نجاح</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold">الشركة أ - لوجستيات ذكية</h5>
-                        <p class="text-muted">أتمتة مسارات التسليم وإدارة المخزون، مما قلل التكاليف التشغيلية بنسبة 30%.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold">الشركة ب - تسويق تنبؤي</h5>
-                        <p class="text-muted">تطبيق الذكاء الاصطناعي للتنبؤ باتجاهات السوق وتخصيص الحملات، مما زاد التحويل بنسبة 25%.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-hover h-100">
-                    <div class="card-body">
-                        <h5 class="fw-bold">الشركة ج - دعم متقدم للعملاء</h5>
-                        <p class="text-muted">روبوت محادثة يعمل بالذكاء الاصطناعي ومعالجة اللغة الطبيعية يدير 70% من الاستفسارات، مما يحسن الرضا.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="portfolio" id="portfolio">
+  <h2>مشاريع ذات تأثير حقيقي</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <h4>التحقق التلقائي من التجميع باستخدام الرؤية الحاسوبية</h4>
+      <span>التكنولوجيا: بايثون، OpenCV، TensorFlow</span>
+      <p>نموذج التعلم العميق يقوم بفحص المكونات الإلكترونية تلقائيًا، ويحقق دقة أكثر من 98% في اكتشاف الأجزاء المفقودة أو غير المحاذية.</p>
+      <a href="verificacion-cv.pdf" style="font-weight:bold; font-size:0.9em; color:#7c3aed;">عرض الشفرة / المنهجية ></a>
     </div>
+    <div class="project-card">
+      <h4>تصنيف المستندات التلقائي</h4>
+      <span>الصناعة: الخدمات المالية</span>
+      <p>RPA مع OCR ذكي لمعالجة 10,000 مستند يوميًا، مما يحرر الموارد البشرية للمهام الحيوية.</p>
+    </div>
+    <div class="project-card">
+      <h4>الصيانة التنبؤية 4.0</h4>
+      <span>الصناعة: التصنيع الثقيل</span>
+      <p>خفض وقت تعطل الآلات بنسبة 25% باستخدام اكتشاف الشذوذ بالتعلم الآلي.</p>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
-    <div class="container">
-        <h2 class="text-center">🤖 لنبني مستقبل عملك باستخدام الذكاء الاصطناعي</h2>
-        <p class="text-center mb-5 lead">
-            أخبرني عن رؤيتك. معاً، سنجعلها حقيقة بواسطة الذكاء الاصطناعي.
-        </p>
-        
-        <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-9">
-                <form action="https://formsubmit.co/Abrahampuero@outlook.com" method="POST" class="p-5 rounded-4 shadow-lg" dir="rtl">
-                    <input type="hidden" name="_subject" value="طلب عرض تجريبي جديد - أتمتة الذكاء الاصطناعي (AR) FUTURISTA">
-                    <input type="hidden" name="_autoresponse" value="شكراً لتواصلك مع ابراهيم امبيرو! لقد تلقينا طلب الأتمتة بالذكاء الاصطناعي وسنرد عليك قريباً بعرض مخصص.">
-                    <input type="hidden" name="_template" value="table">
-                    
-
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <label for="nombre" class="form-label">اسمك</label>
-                            <input type="text" class="form-control" id="nombre" name="Name" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="email" class="form-label">البريد الإلكتروني للتواصل</label>
-                            <input type="email" class="form-control" id="email" name="Email" required>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4 mt-4">
-                        <label for="proceso" class="form-label">المجال المراد تحويله بالذكاء الاصطناعي</label>
-                        <select class="form-select" id="proceso" name="Area of Interest" required>
-                            <option value="" selected disabled>اختر مجالاً رئيسياً...</option>
-                            <option value="AtencionCliente">دعم العملاء (روبوتات المحادثة/الردود الذكية)</option>
-                            <option value="DatosAnalisis">تحليل البيانات وذكاء الأعمال</option>
-                            <option value="VentasMarketing">تحسين المبيعات والتسويق</option>
-                            <option value="Backoffice">أتمتة الأعمال المكتبية والإدارة</option>
-                            <option value="Otro">أخرى (حدد في رسالتك)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="mb-5">
-                        <label for="mensaje" class="form-label">صف رؤيتك أو تحدي الذكاء الاصطناعي</label>
-                        <textarea class="form-control" id="mensaje" name="Message" rows="5" required placeholder="مثال: أحتاج إلى نظام ذكاء اصطناعي يتنبأ بالطلب ويحسن سلسلة التوريد الخاصة بي."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm">
-                        إرسال طلب الأتمتة
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
+  <h2>جاهز للتحوّل الذكي؟</h2>
+  <p>تواصل معنا اليوم لتقييم كيفية تحقيق الأتمتة المتقدمة لعائد استثمار فوري.</p>
+  <a href="mailto:tuemail@dominio.com" class="button primary" style="padding:20px 50px; font-size:1.2rem;">ابدأ الآن</a>
 </section>
 
-<footer class="text-center">
-    ابراهيم امبيرو © 2025 — مستقبل عملك مع الذكاء الاصطناعي
+<footer>
+  <img src="logo.png" alt="شعار IAmpuero">
+  <p>© 2025 IAmpuero - الهندسة الآلية بالذكاء الاصطناعي</p>
+  <div>
+    <a href="#">LinkedIn</a> |
+    <a href="#">Instagram</a> |
+    <a href="#">Twitter</a> |
+    <a href="#">سياسة الخصوصية</a>
+  </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+particlesJS("particles-js", {
+  "particles": {
+    "number": {"value":80},
+    "color":{"value":"#7c3aed"},
+    "shape":{"type":"circle"},
+    "opacity":{"value":0.3},
+    "size":{"value":3},
+    "line_linked":{"enable":true,"distance":150,"color":"#7c3aed","opacity":0.2,"width":1},
+    "move":{"enable":true,"speed":2}
+  }
+});
+
+const elementsToAnimate = document.querySelectorAll('.card, .project-card');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.2});
+elementsToAnimate.forEach(el=>observer.observe(el));
+</script>
 </body>
 </html>
