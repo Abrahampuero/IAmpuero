@@ -3,101 +3,313 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IAmpuero - Automatización (ES)</title>
+<title>IAmpuero - Tecnología que trabaja por ti</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-/* --- ESTILOS COMUNES --- */
-:root { --primary: #0ea5e9; --secondary: #0f172a; --bg: #f8fafc; }
-body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: #334155; line-height: 1.6; }
-a { text-decoration: none; color: var(--primary); transition: 0.3s; }
-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
-button { cursor: pointer; border: none; border-radius: 50px; font-weight: 600; padding: 15px 30px; transition: 0.3s; }
-.btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 14px rgba(14,165,233,0.4); }
-.btn-primary:hover { background: #0284c7; transform: translateY(-2px); }
-.btn-secondary { background: white; color: var(--primary); border: 1px solid #e2e8f0; }
-.btn-secondary:hover { background: #f0f9ff; transform: translateY(-2px); }
+/* -------------------------- */
+/* VARIABLES Y BASE */
+/* -------------------------- */
+:root {
+  --primary: #0ea5e9;
+  --secondary: #0f172a;
+  --text: #334155;
+  --bg: #f8fafc;
+}
 
+body {
+  margin:0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* -------------------------- */
 /* HEADER */
-header { background: rgba(255,255,255,0.95); padding: 15px 5%; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; }
-header img { height: 40px; width: auto; }
-.nav-container { display: flex; align-items: center; gap: 30px; }
-.nav-links { display: flex; gap: 20px; }
-.nav-links a { color: var(--secondary); font-weight: 500; }
-.lang-switcher { display: flex; gap: 10px; padding-left: 20px; border-left: 1px solid #e2e8f0; }
-.lang-switcher a { font-size: 1.5rem; filter: grayscale(100%); opacity: 0.6; }
-.lang-switcher a:hover, .lang-switcher a.active { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+/* -------------------------- */
+header {
+  background: rgba(255,255,255,0.95);
+  padding: 15px 5%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #e2e8f0;
+}
 
+header img { height:40px; }
+
+/* NAV */
+.nav-container { display:flex; align-items:center; gap:35px; }
+.nav-links { display:flex; gap:25px; }
+.nav-links a { color:var(--secondary); font-weight:600; }
+
+/* Multi idioma */
+.lang-switcher { display:flex; gap:10px; }
+.lang-switcher a { opacity:0.5; font-size:1.4rem; transition:0.3s; }
+.lang-switcher a.active,
+.lang-switcher a:hover { opacity:1; transform:scale(1.15); }
+
+/* -------------------------- */
 /* HERO */
-.hero { display: flex; align-items: center; justify-content: space-between; min-height: 85vh; gap: 50px; }
-.hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; color: var(--secondary); }
-.hero-image img { width: 450px; max-width: 100%; border-radius: 20px; animation: float 6s infinite ease-in-out; }
+/* -------------------------- */
+.hero {
+  min-height:85vh;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  padding: 80px 20px;
+  max-width:1200px;
+  margin:auto;
+  gap:50px;
+}
 
-/* SERVICES GRID */
-.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.card { background: white; padding: 40px 30px; border-radius: 16px; border: 1px solid #f1f5f9; transition: 0.3s; }
-.card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+.hero-text h1 {
+  font-size:3.7rem;
+  color:var(--secondary);
+  line-height:1.1;
+  margin-bottom:20px;
+}
 
-/* MOBILE */
-.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-@media (max-width: 900px) {
-    .menu-toggle { display: block; }
-    .nav-container { position: fixed; top: 70px; right: -100%; background: white; flex-direction: column; width: 100%; padding: 40px 0; transition: 0.4s; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
-    .nav-container.active { right: 0; }
-    .lang-switcher { border-left: none; border-top: 1px solid #e2e8f0; padding-top: 15px; width: 100%; justify-content: center; }
-    .hero { flex-direction: column-reverse; text-align: center; }
-    .hero h1 { font-size: 2.5rem; }
+.hero-text p { font-size:1.2rem; max-width:500px; }
+
+.btn-primary {
+  background:var(--primary);
+  color:white;
+  padding:15px 35px;
+  border-radius:50px;
+  border:none;
+  font-size:1.1rem;
+  font-weight:600;
+  transition:0.3s;
+  cursor:pointer;
+}
+.btn-primary:hover {
+  background:#0284c7;
+  transform:translateY(-3px);
+}
+
+.btn-secondary {
+  background:white;
+  color:var(--primary);
+  padding:15px 35px;
+  border-radius:50px;
+  border:1px solid #cbd5e1;
+  font-size:1.1rem;
+  font-weight:600;
+  transition:0.3s;
+  cursor:pointer;
+}
+.btn-secondary:hover {
+  background:#e0f2fe;
+  transform:translateY(-3px);
+}
+
+/* Foto CEO */
+.hero-img img {
+  width:430px;
+  max-width:100%;
+  border-radius:15px;
+  animation:float 6s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* -------------------------- */
+/* SERVICIOS */
+/* -------------------------- */
+section { padding: 90px 20px; max-width:1200px; margin:auto; }
+
+h2.section-title {
+  font-size:2.6rem;
+  color:var(--secondary);
+  text-align:center;
+  margin-bottom:50px;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  gap:35px;
+}
+
+.card {
+  background:white;
+  border:1px solid #e2e8f0;
+  padding:40px 30px;
+  border-radius:18px;
+  transition:0.3s;
+}
+.card:hover {
+  transform:translateY(-8px);
+  box-shadow:0 20px 30px rgba(0,0,0,0.07);
+}
+
+.card h3 { color:var(--secondary); font-size:1.5rem; margin-bottom:15px; }
+
+/* -------------------------- */
+/* FORMULARIO EMBUDO */
+/* -------------------------- */
+.form-wrapper {
+  background:white;
+  padding:50px;
+  border-radius:25px;
+  border:1px solid #e2e8f0;
+  max-width:700px;
+  margin:auto;
+}
+
+input, textarea, select {
+  width:100%;
+  padding:15px;
+  margin-bottom:20px;
+  border-radius:10px;
+  border:1px solid #cbd5e1;
+  font-size:1rem;
+}
+
+textarea { resize:none; height:150px; }
+
+/* -------------------------- */
+/* CALENDLY */
+/* -------------------------- */
+.calendly-section {
+  background:var(--secondary);
+  color:white;
+  padding:80px 35px;
+  text-align:center;
+  border-radius:30px;
+}
+
+/* -------------------------- */
+/* FOOTER */
+/* -------------------------- */
+footer {
+  background:#0f172a;
+  color:white;
+  padding:35px 5%;
+  text-align:center;
+  margin-top:80px;
 }
 </style>
 </head>
+
 <body>
 
+<!-- HEADER -->
 <header>
-  <a href="#"><img src="logo.jpg" alt="Logo"></a>
-  <div class="menu-toggle" onclick="document.querySelector('.nav-container').classList.toggle('active')">☰</div>
-  
+  <a href="#"><img src="logo.png" alt="IAmpuero Logo"></a>
+
   <div class="nav-container">
-      <nav class="nav-links">
-        <a href="#sobremi">Sobre Mí</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#portafolio">Portafolio</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-      <div class="lang-switcher">
-          <a href="index.html" class="active">🇪🇸</a>
-          <a href="index_en.html">🇬🇧</a>
-          <a href="index_ar.html">🇸🇦</a>
-      </div>
+    <nav class="nav-links">
+      <a href="#hero">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#embudo">Formulario</a>
+      <a href="#calendly">Agenda</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="lang-switcher">
+      <a href="index.html" class="active">🇪🇸</a>
+      <a href="index_en.html">🇬🇧</a>
+      <a href="index_ar.html">🇸🇦</a>
+    </div>
   </div>
 </header>
 
-<section class="hero">
-  <div>
-    <h1>Tu negocio en <span style="color:#0ea5e9">piloto automático</span></h1>
-    <p>Olvídate de las tareas repetitivas. Automatizo reservas y gestión de clientes para que ganes tiempo.</p>
-    <div style="margin-top:30px;">
-      <a href="#contacto"><button class="btn-primary">Agenda auditoría</button></a>
-      <a href="#portafolio"><button class="btn-secondary">Ver proyectos</button></a>
-    </div>
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-text">
+      <h1>Automatizo las tareas que te quitan tiempo</h1>
+      <p>Convierte tu negocio en un sistema que funciona sólo: reservas, clientes, recordatorios, inventarios y más. Tú solo enfócate en crecer.</p>
+
+      <div style="margin-top:30px; display:flex; gap:20px;">
+          <a href="#calendly"><button class="btn-primary">Agenda una cita</button></a>
+          <a href="#servicios"><button class="btn-secondary">Ver Servicios</button></a>
+      </div>
   </div>
-  <div class="hero-image"><img src="ceo.png" alt="Abraham"></div>
+
+  <div class="hero-img">
+      <img src="abraham.png" alt="Abraham Ampuero CEO">
+  </div>
 </section>
 
+<!-- SERVICIOS -->
 <section id="servicios">
-  <h2 style="text-align:center; font-size:2.5rem; color:#0f172a;">Servicios</h2>
-  <div class="grid-container">
-    <div class="card"><h3>📅 Reservas</h3><p>Gestión automática de agenda y citas.</p></div>
-    <div class="card"><h3>📦 Pedidos</h3><p>Control de pedidos sin hojas de cálculo.</p></div>
-    <div class="card"><h3>⚡ Sin Errores</h3><p>Validación de datos automática.</p></div>
+  <h2 class="section-title">¿Qué puedo automatizar por ti?</h2>
+
+  <div class="grid">
+      <div class="card">
+        <h3>📅 Reservas Inteligentes</h3>
+        <p>Sistemas automáticos para peluquerías, clínicas, gimnasios, alquileres, restaurantes y más.</p>
+      </div>
+
+      <div class="card">
+        <h3>📦 Gestión de Pedidos</h3>
+        <p>Control de inventario, pedidos y entregas sin errores ni hojas de cálculo.</p>
+      </div>
+
+      <div class="card">
+        <h3>🤖 Atención al Cliente</h3>
+        <p>Bots que responden, captan clientes y envían recordatorios 24/7.</p>
+      </div>
   </div>
 </section>
 
-<section id="contacto" style="text-align:center;">
-    <div style="background:#0f172a; color:white; padding:60px; border-radius:30px;">
-        <h2>¿Listo para empezar?</h2>
-        <a href="https://calendly.com"><button class="btn-primary" style="background:white; color:#0ea5e9;">Agendar Cita Gratis</button></a>
-    </div>
+<!-- EMBUDO FORMULARIO -->
+<section id="embudo">
+  <h2 class="section-title">Cuéntame sobre tu negocio</h2>
+
+  <div class="form-wrapper">
+    <form action="gracias.html" method="POST">
+
+      <input type="text" name="nombre" placeholder="Nombre completo" required>
+      <input type="email" name="email" placeholder="Correo" required>
+
+      <select name="sector" required>
+        <option value="">Selecciona tu sector</option>
+        <option>Peluquería</option>
+        <option>Tienda de comida</option>
+        <option>Inmobiliaria</option>
+        <option>Limpieza</option>
+        <option>Otro</option>
+      </select>
+
+      <textarea name="mensaje" placeholder="¿Qué problema quieres resolver?"></textarea>
+
+      <button class="btn-primary" type="submit">Enviar y continuar</button>
+    </form>
+  </div>
 </section>
+
+<!-- CALENDLY -->
+<section id="calendly">
+  <div class="calendly-section">
+      <h2 style="font-size:2.4rem;">Reserva tu sesión gratuita</h2>
+      <p>Consulta inicial de 30 minutos vía videollamada.</p>
+
+      <!-- TU CALENDLY REAL -->
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/abrahampuero/30min"
+           style="min-width:320px;height:650px;">
+      </div>
+
+      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  </div>
+</section>
+
+<!-- CONTACTO / FOOTER -->
+<footer id="contacto">
+  <p>© 2025 IAmpuero. Todos los derechos reservados.</p>
+  <p>Contacto directo: abrahampuero@outlook.com</p>
+</footer>
 
 </body>
 </html>
