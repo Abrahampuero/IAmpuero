@@ -1,315 +1,574 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IAmpuero - Tecnología que trabaja por ti</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>IAmpuero — Automatización e IA para tu negocio</title>
+<meta name="description" content="IAmpuero: automatización inteligente para reservas, pedidos y validación de datos. Tecnología que trabaja por ti." />
+<link rel="icon" href="favicon.ico" />
+<!-- Open Graph -->
+<meta property="og:title" content="IAmpuero — Automatización e IA para tu negocio" />
+<meta property="og:description" content="Automatizamos reservas, pedidos y gestión de clientes para que ganes tiempo y escala." />
+<meta property="og:image" content="og-image.jpg" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- Structured data (LocalBusiness minimal) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"IAmpuero",
+  "url":"https://iampuero.com",
+  "logo":"https://iampuero.com/logo.jpg",
+  "description":"Automatización e inteligencia artificial aplicadas a procesos empresariales.",
+  "telephone":"+34 600 000 000",
+  "address":{"@type":"PostalAddress","addressLocality":"Bilbao","addressCountry":"ES"}
+}
+</script>
 
+<!-- Styles (inlined for performance) -->
 <style>
-/* -------------------------- */
-/* VARIABLES Y BASE */
-/* -------------------------- */
-:root {
-  --primary: #0ea5e9;
-  --secondary: #0f172a;
-  --text: #334155;
-  --bg: #f8fafc;
+:root{
+  --primary:#0ea5e9; --accent:#0369a1; --dark:#0f172a; --muted:#94a3b8; --bg:#f8fafc;
+  --card:#ffffff; --radius:14px; --pad:18px;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:#0f172a}
+a{color:var(--primary);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.header{backdrop-filter:blur(6px);background:rgba(255,255,255,.85);position:sticky;top:0;z-index:40;border-bottom:1px solid #eef2f7}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{display:flex;gap:12px;align-items:center}
+.logo img{height:42px;width:auto;border-radius:6px}
+.nav{display:flex;gap:18px;align-items:center}
+.nav a{font-weight:600;color:var(--dark)}
+.cta-small{padding:10px 16px;border-radius:999px;font-weight:700;background:var(--primary);color:#fff;box-shadow:0 6px 20px rgba(14,165,233,.18)}
 
-body {
-  margin:0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
-}
+.hero{display:flex;gap:40px;align-items:center;padding:60px 0}
+.hero-left{flex:1}
+.hero h1{font-size:2.6rem;margin:0;line-height:1.02}
+.hero p{color:var(--muted);margin:18px 0;font-size:1.05rem}
+.hero-actions{display:flex;gap:12px;margin-top:22px}
+.hero-image{flex:0 0 420px;border-radius:20px;overflow:hidden;align-self:center}
+.hero-image img{width:100%;height:auto;display:block}
 
-/* -------------------------- */
-/* HEADER */
-/* -------------------------- */
-header {
-  background: rgba(255,255,255,0.95);
-  padding: 15px 5%;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #e2e8f0;
-}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin:40px 0}
+.card{background:var(--card);padding:24px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(2,6,23,.04);border:1px solid #f1f5f9}
+.card h3{margin:0 0 8px 0}
+.section-title{font-size:1.6rem;margin:30px 0 12px 0;color:var(--dark)}
 
-header img { height:40px; }
+#contacto{padding:50px 0}
+.form-box{max-width:720px;margin:0 auto;background:linear-gradient(180deg, rgba(2,6,23,0.95), rgba(2,6,23,0.92));padding:32px;border-radius:18px;color:#fff}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-row.single{grid-template-columns:1fr}
+.form-row label{display:block;font-size:.9rem;margin-bottom:6px;color:#e6eef7}
+.input, .select {width:100%;padding:12px;border-radius:10px;border:none;font-size:1rem}
+.input {background:#fff;color:#0f172a}
+.checkbox-row{display:flex;gap:10px;align-items:center;margin-top:8px;font-size:.9rem;color:#cfe6ff}
 
-/* NAV */
-.nav-container { display:flex; align-items:center; gap:35px; }
-.nav-links { display:flex; gap:25px; }
-.nav-links a { color:var(--secondary); font-weight:600; }
+.footer{background:#fff;padding:28px 0;margin-top:40px;text-align:center;border-top:1px solid #eef2f7}
+.footer p{color:var(--muted);margin:6px 0}
 
-/* Multi idioma */
-.lang-switcher { display:flex; gap:10px; }
-.lang-switcher a { opacity:0.5; font-size:1.4rem; transition:0.3s; }
-.lang-switcher a.active,
-.lang-switcher a:hover { opacity:1; transform:scale(1.15); }
+.small{font-size:.9rem;color:var(--muted)}
 
-/* -------------------------- */
-/* HERO */
-/* -------------------------- */
-.hero {
-  min-height:85vh;
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  padding: 80px 20px;
-  max-width:1200px;
-  margin:auto;
-  gap:50px;
-}
+/* IAutoCalendar */
+#iautoCalendar{background:#fff;padding:16px;border-radius:12px;color:var(--dark)}
+.iauto-row{display:flex;gap:12px;align-items:center;justify-content:space-between}
+.iauto-months{display:flex;gap:16px;margin-top:12px;overflow:auto;padding-bottom:8px}
+.iauto-month{min-width:260px;background:#fbfdff;border-radius:12px;padding:12px;border:1px solid #eef3f8}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:8px}
+.day{padding:10px;border-radius:8px;text-align:center;font-weight:600;cursor:pointer;background:#f8fafc;color:var(--muted)}
+.day.disabled{opacity:.35;cursor:not-allowed}
+.day.selected{background:var(--primary);color:#fff}
+.times{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.time{padding:8px 12px;border-radius:10px;background:#eef6fb;cursor:pointer;font-weight:700}
+.time.selected{background:var(--accent);color:#fff}
 
-.hero-text h1 {
-  font-size:3.7rem;
-  color:var(--secondary);
-  line-height:1.1;
-  margin-bottom:20px;
-}
-
-.hero-text p { font-size:1.2rem; max-width:500px; }
-
-.btn-primary {
-  background:var(--primary);
-  color:white;
-  padding:15px 35px;
-  border-radius:50px;
-  border:none;
-  font-size:1.1rem;
-  font-weight:600;
-  transition:0.3s;
-  cursor:pointer;
-}
-.btn-primary:hover {
-  background:#0284c7;
-  transform:translateY(-3px);
-}
-
-.btn-secondary {
-  background:white;
-  color:var(--primary);
-  padding:15px 35px;
-  border-radius:50px;
-  border:1px solid #cbd5e1;
-  font-size:1.1rem;
-  font-weight:600;
-  transition:0.3s;
-  cursor:pointer;
-}
-.btn-secondary:hover {
-  background:#e0f2fe;
-  transform:translateY(-3px);
-}
-
-/* Foto CEO */
-.hero-img img {
-  width:430px;
-  max-width:100%;
-  border-radius:15px;
-  animation:float 6s infinite ease-in-out;
-}
-
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-/* -------------------------- */
-/* SERVICIOS */
-/* -------------------------- */
-section { padding: 90px 20px; max-width:1200px; margin:auto; }
-
-h2.section-title {
-  font-size:2.6rem;
-  color:var(--secondary);
-  text-align:center;
-  margin-bottom:50px;
-}
-
-.grid {
-  display:grid;
-  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-  gap:35px;
-}
-
-.card {
-  background:white;
-  border:1px solid #e2e8f0;
-  padding:40px 30px;
-  border-radius:18px;
-  transition:0.3s;
-}
-.card:hover {
-  transform:translateY(-8px);
-  box-shadow:0 20px 30px rgba(0,0,0,0.07);
-}
-
-.card h3 { color:var(--secondary); font-size:1.5rem; margin-bottom:15px; }
-
-/* -------------------------- */
-/* FORMULARIO EMBUDO */
-/* -------------------------- */
-.form-wrapper {
-  background:white;
-  padding:50px;
-  border-radius:25px;
-  border:1px solid #e2e8f0;
-  max-width:700px;
-  margin:auto;
-}
-
-input, textarea, select {
-  width:100%;
-  padding:15px;
-  margin-bottom:20px;
-  border-radius:10px;
-  border:1px solid #cbd5e1;
-  font-size:1rem;
-}
-
-textarea { resize:none; height:150px; }
-
-/* -------------------------- */
-/* CALENDLY */
-/* -------------------------- */
-.calendly-section {
-  background:var(--secondary);
-  color:white;
-  padding:80px 35px;
-  text-align:center;
-  border-radius:30px;
-}
-
-/* -------------------------- */
-/* FOOTER */
-/* -------------------------- */
-footer {
-  background:#0f172a;
-  color:white;
-  padding:35px 5%;
-  text-align:center;
-  margin-top:80px;
+/* responsive */
+@media(max-width:900px){
+  .hero{flex-direction:column-reverse;padding:34px 0}
+  .hero-image{width:100%}
+  .form-row{grid-template-columns:1fr}
 }
 </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
-<header>
-  <a href="#"><img src="logo.png" alt="IAmpuero Logo"></a>
-
-  <div class="nav-container">
-    <nav class="nav-links">
-      <a href="#hero">Inicio</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#embudo">Formulario</a>
-      <a href="#calendly">Agenda</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-
-    <div class="lang-switcher">
-      <a href="index.html" class="active">🇪🇸</a>
-      <a href="index_en.html">🇬🇧</a>
-      <a href="index_ar.html">🇸🇦</a>
+<header class="header" role="banner">
+  <div class="container header-inner">
+    <div class="logo">
+      <img src="logo.jpg" alt="Logo IAmpuero" />
+      <div>
+        <div style="font-weight:800">IAmpuero</div>
+        <div class="small">Tecnología que trabaja por ti</div>
+      </div>
     </div>
+    <nav class="nav" role="navigation" aria-label="Menú principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#contacto">Reservar</a>
+      <a class="cta-small" href="#contacto">Agenda auditoría</a>
+    </nav>
   </div>
 </header>
 
-<!-- HERO -->
-<section id="hero" class="hero">
-  <div class="hero-text">
-      <h1>Automatizo las tareas que te quitan tiempo</h1>
-      <p>Convierte tu negocio en un sistema que funciona sólo: reservas, clientes, recordatorios, inventarios y más. Tú solo enfócate en crecer.</p>
-
-      <div style="margin-top:30px; display:flex; gap:20px;">
-          <a href="#calendly"><button class="btn-primary">Agenda una cita</button></a>
-          <a href="#servicios"><button class="btn-secondary">Ver Servicios</button></a>
+<main>
+  <section class="container hero" aria-labelledby="hero-title">
+    <div class="hero-left">
+      <h1 id="hero-title">Tu negocio en <span style="color:var(--primary)">piloto automático</span></h1>
+      <p>Automatizo reservas, pedidos y validación de datos para que ganes clientes, tiempo y tranquilidad. Implementación rápida, integración con tus herramientas y soporte técnico.</p>
+      <div class="hero-actions">
+        <a class="cta-small" href="#contacto">Reservar ahora</a>
+        <a class="small" href="#portafolio" style="align-self:center;padding:10px 14px;border-radius:10px;background:#fff;border:1px solid #eef2f7">Ver proyectos</a>
       </div>
+      <div style="margin-top:18px" class="small">¿Prefieres hablar por WhatsApp? <a href="https://wa.me/34600000000" target="_blank" rel="noopener">Enviar mensaje</a></div>
+    </div>
+
+    <div class="hero-image" aria-hidden="true">
+      <!-- Usa srcset y lazy-loading -->
+      <img src="ceo-small.jpg"
+           srcset="ceo-small.jpg 600w, ceo-medium.jpg 900w, ceo.jpg 1400w"
+           sizes="(max-width:900px) 100vw, 420px"
+           alt="Abraham Puero - Ingeniería de Automatización"
+           loading="lazy">
+    </div>
+  </section>
+
+  <section class="container" id="servicios" aria-labelledby="servicios-title">
+    <h2 class="section-title" id="servicios-title">Servicios Premium</h2>
+    <div class="grid" role="list">
+      <article class="card" role="listitem">
+        <h3>📅 Reservas y Citas</h3>
+        <p class="small">Reserva 24/7 con disponibilidad en tiempo real, recordatorios automáticos y calendario .ics para tus clientes.</p>
+      </article>
+      <article class="card" role="listitem">
+        <h3>📦 Pedidos y Ventas</h3>
+        <p class="small">Automatización de flujo de pedidos, control de stock y notificaciones de envío integradas.</p>
+      </article>
+      <article class="card" role="listitem">
+        <h3>⚡ Validación de Datos</h3>
+        <p class="small">Verificación de email, teléfono y duplicados antes de que los datos entren en tu CRM.</p>
+      </article>
+      <article class="card" role="listitem">
+        <h3>📊 Analytics & Optimización</h3>
+        <p class="small">Informes accionables para mejorar conversiones y reducir tiempos operativos.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="container" id="portafolio" aria-labelledby="portfolio-title">
+    <h2 class="section-title" id="portfolio-title">Casos de éxito</h2>
+    <div class="grid">
+      <div class="card"><strong>Restaurante X</strong><div class="small">Reducción del 70% en llamadas y +30% reservas online.</div></div>
+      <div class="card"><strong>Taller Y</strong><div class="small">Automatización de citas y facturación.</div></div>
+      <div class="card"><strong>Tienda Z</strong><div class="small">Integración pedidos -> logística -> clientes.</div></div>
+    </div>
+  </section>
+
+  <!-- CONTACTO / IAAUTOCALENDAR -->
+  <section id="contacto" aria-labelledby="contacto-title">
+    <div class="container">
+      <h2 class="section-title" id="contacto-title">IAutoAgenda — Reserva tu cita gratis</h2>
+
+      <form id="iautoagenda-form" class="form-box" novalidate>
+        <div class="form-row single">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" class="input" type="text" required placeholder="Tu nombre completo" />
+        </div>
+
+        <div class="form-row">
+          <div>
+            <label for="correo">Correo</label>
+            <input id="correo" name="correo" class="input" type="email" required placeholder="tu@correo.com" />
+          </div>
+          <div>
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" name="telefono" class="input" type="tel" placeholder="+34 6xx xxx xxx" />
+          </div>
+        </div>
+
+        <div class="form-row single" style="margin-top:8px">
+          <label for="empresa">Empresa (opcional)</label>
+          <input id="empresa" name="empresa" class="input" type="text" placeholder="Nombre de empresa" />
+        </div>
+
+        <div style="margin-top:14px">
+          <label style="display:block;margin-bottom:8px">Selecciona fecha y hora</label>
+          <!-- Contenedor IAutoCalendar -->
+          <div id="iautoCalendar" aria-live="polite" role="region" aria-label="Seleccionar fecha y hora"></div>
+        </div>
+
+        <input type="hidden" id="horario" name="horario" required />
+
+        <!-- GDPR / Privacy -->
+        <div class="checkbox-row" style="margin-top:14px">
+          <input id="accept" type="checkbox" required />
+          <label for="accept">Acepto la <a href="/politica-privacidad.html" target="_blank">política de privacidad</a> y recibir confirmaciones por correo.</label>
+        </div>
+
+        <div style="display:flex;gap:12px;margin-top:18px;align-items:center">
+          <button type="submit" class="cta-small" aria-live="polite">Reservar cita</button>
+          <div class="small">También recibirás un archivo .ics y un correo de confirmación</div>
+        </div>
+
+        <div id="form-message" class="small" style="margin-top:12px;color:#aee6ff;display:none"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <img src="logo.jpg" alt="Logo IAmpuero" style="height:38px"/>
+    <p>© <span id="year"></span> IAmpuero — Tecnología que trabaja por ti</p>
+    <p class="small">Correo: <a href="mailto:Abrahampuero@outlook.com">Abrahampuero@outlook.com</a> · WhatsApp: <a href="https://wa.me/34600000000">Enviar mensaje</a></p>
   </div>
-
-  <div class="hero-img">
-      <img src="abraham.peng" alt="Abraham Ampuero CEO">
-  </div>
-</section>
-
-<!-- SERVICIOS -->
-<section id="servicios">
-  <h2 class="section-title">¿Qué puedo automatizar por ti?</h2>
-
-  <div class="grid">
-      <div class="card">
-        <h3>📅 Reservas Inteligentes</h3>
-        <p>Sistemas automáticos para peluquerías, clínicas, gimnasios, alquileres, restaurantes y más.</p>
-      </div>
-
-      <div class="card">
-        <h3>📦 Gestión de Pedidos</h3>
-        <p>Control de inventario, pedidos y entregas sin errores ni hojas de cálculo.</p>
-      </div>
-
-      <div class="card">
-        <h3>🤖 Atención al Cliente</h3>
-        <p>Bots que responden, captan clientes y envían recordatorios 24/7.</p>
-      </div>
-  </div>
-</section>
-
-<!-- EMBUDO FORMULARIO -->
-<section id="embudo">
-  <h2 class="section-title">Cuéntame sobre tu negocio</h2>
-
-  <div class="form-wrapper">
-    <form action="gracias.html" method="POST">
-
-      <input type="text" name="nombre" placeholder="Nombre completo" required>
-      <input type="email" name="email" placeholder="Correo" required>
-
-      <select name="sector" required>
-        <option value="">Selecciona tu sector</option>
-        <option>Peluquería</option>
-        <option>Tienda de comida</option>
-        <option>Inmobiliaria</option>
-        <option>Limpieza</option>
-        <option>Otro</option>
-      </select>
-
-      <textarea name="mensaje" placeholder="¿Qué problema quieres resolver?"></textarea>
-
-      <button class="btn-primary" type="submit">Enviar y continuar</button>
-    </form>
-  </div>
-</section>
-
-<!-- CALENDLY -->
-<section id="calendly">
-  <div class="calendly-section">
-      <h2 style="font-size:2.4rem;">Reserva tu sesión gratuita</h2>
-      <p>Consulta inicial de 30 minutos vía videollamada.</p>
-
-      <!-- TU CALENDLY REAL -->
-      <div class="calendly-inline-widget"
-           data-url="https://calendly.com/abrahampuero/30min"
-           style="min-width:320px;height:650px;">
-      </div>
-
-      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-  </div>
-</section>
-
-<!-- CONTACTO / FOOTER -->
-<footer id="contacto">
-  <p>© 2025 IAmpuero. Todos los derechos reservados.</p>
-  <p>Contacto directo: abrahampuero@outlook.com</p>
 </footer>
 
+<!-- Scripts: IAutoCalendar avanzado + formulario -->
+<script>
+/* ===========================
+   I A U T O C A L E N D A R
+   - Muestra 3 meses
+   - Bloquea fechas pasadas
+   - Opción: bloquear fines de semana (configurable)
+   - Horarios dinámicos por día
+   - Genera .ics y prepara mailto
+   =========================== */
+
+(function(){
+  // CONFIG
+  const monthsToShow = 3;            // muestra 3 meses
+  const startHour = 9;               // hora inicial
+  const endHour = 18;                // hora final
+  const slotMinutes = 30;            // intervalo
+  const disableWeekends = false;     // true para bloquear sáb/dom
+  const minDaysAhead = 0;            // 0=permitir hoy (si quedan huecos)
+
+  // availability map: fecha (YYYY-MM-DD) => array of unavailable times (HH:MM)
+  // En producción esto debe venir del servidor. Aquí ejemplo vacío (todo disponible).
+  const remoteUnavailable = {}; // { "2025-12-25": ["09:00","09:30"] }
+
+  const container = document.getElementById('iautoCalendar');
+  const hiddenInput = document.getElementById('horario');
+  const formMessage = document.getElementById('form-message');
+
+  // Utils
+  function pad(n){ return n<10 ? '0'+n : ''+n; }
+  function dateToYMD(d){ return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
+  function nowDate(){ const d=new Date(); d.setHours(0,0,0,0); return d; }
+  function addDays(d, n){ const x=new Date(d); x.setDate(x.getDate()+n); return x; }
+
+  // build slots for a day
+  function buildSlotsForDay(date){
+    const slots = [];
+    const d = new Date(date);
+    for(let h=startHour; h<endHour; h++){
+      for(let m=0; m<60; m+=slotMinutes){
+        const hh=pad(h), mm=pad(m);
+        slots.push(`${hh}:${mm}`);
+      }
+    }
+    // remove unavailable (remoteUnavailable)
+    const ymd = dateToYMD(d);
+    const unavailable = remoteUnavailable[ymd] || [];
+    return slots.filter(s => !unavailable.includes(s));
+  }
+
+  // render months
+  function render(){
+    container.innerHTML = '';
+    const wrapper = document.createElement('div');
+    wrapper.className = 'iauto-months';
+
+    const today = nowDate();
+
+    for(let i=0;i<monthsToShow;i++){
+      const ref = addDays(today, i*30); // approx next months
+      const year = ref.getFullYear();
+      const month = ref.getMonth();
+      const first = new Date(year, month, 1);
+      const daysInMonth = new Date(year, month+1, 0).getDate();
+      const monthBox = document.createElement('div');
+      monthBox.className = 'iauto-month';
+      monthBox.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center">
+                               <strong>${first.toLocaleString('es-ES',{month:'long',year:'numeric'})}</strong>
+                             </div>`;
+
+      // weekday headers
+      const weekHead = document.createElement('div');
+      weekHead.style.display='grid';
+      weekHead.style.gridTemplateColumns='repeat(7,1fr)';
+      weekHead.style.gap='8px';
+      weekHead.style.marginTop='8px';
+      const daysNames = ['L','M','X','J','V','S','D'];
+      for(const dn of daysNames){
+        const el = document.createElement('div');
+        el.style.textAlign='center';
+        el.style.fontSize='12px';
+        el.style.color='#7b8794';
+        el.textContent = dn;
+        weekHead.appendChild(el);
+      }
+      monthBox.appendChild(weekHead);
+
+      // days grid
+      const week = document.createElement('div');
+      week.className = 'week';
+
+      // find first day index (Mon=0)
+      const firstWeekday = (first.getDay() + 6) % 7; // convert Sun=0 -> 6, Mon=0
+      for(let s=0;s<firstWeekday;s++){
+        const empty = document.createElement('div');
+        week.appendChild(empty);
+      }
+      for(let d=1; d<=daysInMonth; d++){
+        const dayDate = new Date(year, month, d);
+        const dayEl = document.createElement('button');
+        dayEl.type='button';
+        dayEl.className='day';
+        dayEl.textContent = d;
+        dayEl.dataset.ymd = `${year}-${pad(month+1)}-${pad(d)}`;
+
+        // disable logic
+        const isPast = dayDate < addDays(nowDate(), minDaysAhead);
+        const isWeekend = [0,6].includes(dayDate.getDay());
+        if(isPast || (disableWeekends && isWeekend)){
+          dayEl.classList.add('disabled');
+          dayEl.setAttribute('aria-disabled','true');
+        } else {
+          dayEl.addEventListener('click', ()=>selectDay(dayEl));
+        }
+
+        week.appendChild(dayEl);
+      }
+      monthBox.appendChild(week);
+      // times placeholder
+      const timesWrap = document.createElement('div');
+      timesWrap.className = 'times';
+      monthBox.appendChild(timesWrap);
+
+      wrapper.appendChild(monthBox);
+    }
+
+    container.appendChild(wrapper);
+  }
+
+  // selection state
+  let selectedDayButton = null, selectedTimeButton = null;
+  function clearSelectedDay(){
+    if(selectedDayButton) selectedDayButton.classList.remove('selected');
+    selectedDayButton = null;
+  }
+  function clearSelectedTime(){
+    if(selectedTimeButton) selectedTimeButton.classList.remove('selected');
+    selectedTimeButton = null;
+  }
+
+  function selectDay(btn){
+    // clear previous selections
+    if(selectedDayButton === btn) return; // same click
+    clearSelectedDay();
+    clearSelectedTime();
+    btn.classList.add('selected');
+    selectedDayButton = btn;
+
+    // render times for the month box this button belongs to
+    const monthBox = btn.closest('.iauto-month');
+    const timesWrap = monthBox.querySelector('.times');
+    timesWrap.innerHTML = ''; // reset
+
+    const ymd = btn.dataset.ymd;
+    const [yy,mm,dd] = ymd.split('-').map(Number);
+    const dateObj = new Date(yy, mm-1, dd);
+
+    const slots = buildSlotsForDay(dateObj);
+
+    if(slots.length === 0){
+      timesWrap.innerHTML = '<div class="small" style="color:#7b8794">No hay huecos disponibles ese día.</div>';
+      hiddenInput.value = '';
+      return;
+    }
+
+    slots.forEach(t => {
+      const tbtn = document.createElement('button');
+      tbtn.type='button';
+      tbtn.className='time';
+      tbtn.textContent = t;
+      tbtn.dataset.time = t;
+      tbtn.addEventListener('click', ()=>selectTime(tbtn, ymd));
+      timesWrap.appendChild(tbtn);
+    });
+
+    // scroll into view for mobile
+    btn.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  function selectTime(tbtn, ymd){
+    // clear prev time selection
+    const monthBox = tbtn.closest('.iauto-month');
+    monthBox.querySelectorAll('.time').forEach(t => t.classList.remove('selected'));
+    tbtn.classList.add('selected');
+    selectedTimeButton = tbtn;
+
+    // set hidden input
+    const datetime = `${ymd} ${tbtn.dataset.time}`;
+    hiddenInput.value = datetime;
+
+    // show small confirmation message
+    formMessage.style.display='block';
+    formMessage.textContent = `Seleccionado: ${datetime}. Completa tus datos y pulsa Reservar.`;
+  }
+
+  // initialise render
+  render();
+
+  // Expose for external use if needed
+  window.IAutoCalendar = {
+    getSelected(){ return hiddenInput.value; },
+    render,
+    config: { monthsToShow, startHour, endHour, slotMinutes }
+  };
+})();
+
+/* ===========================
+   FORM HANDLING:
+   - Validación simple
+   - Genera .ics y prepara mailto con confirmación
+   - ENVÍA via fetch a tu endpoint (placeholder). Reemplaza URL por tu backend.
+   =========================== */
+
+(function(){
+  const form = document.getElementById('iautoagenda-form');
+  const message = document.getElementById('form-message');
+
+  // create ICS file content
+  function makeICS({summary, description, dtStartISO, durationMinutes=30, uid}) {
+    // dtStartISO: "YYYY-MM-DD HH:MM"
+    const [datePart, timePart] = dtStartISO.split(' ');
+    const [Y, M, D] = datePart.split('-');
+    const [hh, mm] = timePart.split(':');
+    // Convert to UTC format for ICS (basic). This is a simple local -> naive ICS.
+    const dtStart = `${Y}${M}${D}T${hh}${mm}00`;
+    const dtEndDate = new Date(Y, parseInt(M)-1, D, parseInt(hh), parseInt(mm) + durationMinutes);
+    const Y2 = dtEndDate.getFullYear(), M2 = String(dtEndDate.getMonth()+1).padStart(2,'0'), D2 = String(dtEndDate.getDate()).padStart(2,'0'),
+          hh2 = String(dtEndDate.getHours()).padStart(2,'0'), mm2 = String(dtEndDate.getMinutes()).padStart(2,'0');
+    const dtEnd = `${Y2}${M2}${D2}T${hh2}${mm2}00`;
+
+    return [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//IAmpuero//IAutoCalendar//ES',
+      'BEGIN:VEVENT',
+      `UID:${uid}`,
+      `DTSTAMP:${dtStart}Z`,
+      `DTSTART:${dtStart}`,
+      `DTEND:${dtEnd}`,
+      `SUMMARY:${summary}`,
+      `DESCRIPTION:${description}`,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+  }
+
+  function downloadICS(filename, content){
+    const blob = new Blob([content], {type:'text/calendar;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  async function submitForm(ev){
+    ev.preventDefault();
+    message.style.display='none';
+    const formData = new FormData(form);
+    const nombre = (formData.get('nombre') || '').trim();
+    const correo = (formData.get('correo') || '').trim();
+    const telefono = (formData.get('telefono') || '').trim();
+    const empresa = (formData.get('empresa') || '').trim();
+    const horario = (formData.get('horario') || '').trim();
+
+    if(!nombre || !correo || !horario){
+      message.style.display='block';
+      message.textContent = 'Completa tu nombre, correo y selecciona fecha y hora.';
+      return;
+    }
+
+    // prepare payload
+    const payload = {
+      nombre, correo, telefono, empresa, horario, source: 'Web IAmpuero'
+    };
+
+    // 1) enviar al servidor (reemplaza URL por tu API)
+    try{
+      // REEMPLAZA por tu endpoint real:
+      const endpoint = '/api/reservas'; // TODO: reemplazar en producción
+      // Si tu backend no existe, este fetch fallará; captura el error y seguirás con ICS + mailto
+      const res = await fetch(endpoint, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+      if(!res.ok){
+        console.warn('Endpoint devolvió error:',res.status);
+      }
+    }catch(err){
+      console.warn('No se pudo enviar al endpoint. Continuando localmente.',err);
+    }
+
+    // 2) generar ICS y forzar descarga para el usuario
+    const uid = `iauto-${Date.now()}`;
+    const ics = makeICS({
+      summary: `Cita IAmpuero - ${nombre}`,
+      description: `Cita reservada con IAmpuero.\nNombre: ${nombre}\nTel: ${telefono}\nEmpresa: ${empresa}`,
+      dtStartISO: horario,
+      durationMinutes: 30,
+      uid
+    });
+    downloadICS(`IAmpuero-${horario.replace(/[: ]/g,'_')}.ics`, ics);
+
+    // 3) preparar mailto con confirmación (abre cliente del usuario)
+    const subject = encodeURIComponent('Confirmación de cita IAmpuero');
+    const bodyLines = [
+      `Hola ${nombre},`,
+      ``,
+      `Tu cita ha sido registrada para: ${horario}`,
+      `Si necesitas cambiarla, responde a este correo o contáctanos por WhatsApp.`,
+      ``,
+      `Detalles:`,
+      `- Correo: ${correo}`,
+      `- Teléfono: ${telefono}`,
+      `- Empresa: ${empresa}`,
+      ``,
+      `Gracias,`,
+      `IAmpuero — Tecnología que trabaja por ti`
+    ];
+    const mailto = `mailto:${encodeURIComponent(correo)}?subject=${subject}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+
+    // show success message
+    message.style.display='block';
+    message.textContent = `¡Listo! Confirmación descargada y correo preparado. Revisa tu bandeja (${correo}).`;
+
+    // open mail client in a tiny delay so user sees message
+    setTimeout(()=>{ window.location.href = mailto; }, 700);
+
+    // reset form (optionally keep some fields)
+    form.reset();
+    document.getElementById('horario').value = '';
+  }
+
+  form.addEventListener('submit', submitForm);
+
+})();
+
+/* small util */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
