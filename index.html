@@ -6,6 +6,7 @@
   <title>IAmpuero — Automatización e IA para tu negocio</title>
   <meta name="description" content="IAmpuero: automatización inteligente para reservas, pedidos y validación de datos. Tecnología que trabaja por ti." />
   <link rel="icon" href="favicon.ico" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <style>
     :root{--primary:#0ea5e9;--accent:#0369a1;--dark:#0f172a;--muted:#64748b;--bg:#f8fafc;--card:#fff;--radius:14px}
     *{box-sizing:border-box}
@@ -34,6 +35,13 @@
     .card h3{margin:0 0 8px 0}
     .section-title{font-size:1.5rem;margin:30px 0 12px 0;color:var(--dark)}
 
+    /* ROI ESTIMATOR SECTION */
+    #roi-estimator {padding: 60px 0;}
+    .roi-form-box {max-width: 800px;margin: 0 auto;background: var(--dark);padding: 30px;border-radius: 12px;color: #fff;box-shadow: 0 15px 40px rgba(0,0,0,0.2);}
+    .roi-form-box label {display: block;margin-bottom: 5px;font-weight: 600;}
+    .roi-form-box .form-row {margin-bottom: 20px;}
+    .error {color: #f97316; font-size: 0.9rem; margin-top: 5px;}
+
     /* contacto y calendario */
     #contacto{padding:40px 0}
     .form-box{max-width:720px;margin:0 auto;background:linear-gradient(180deg, rgba(2,6,23,0.95), rgba(2,6,23,0.92));padding:28px;border-radius:12px;color:#fff}
@@ -42,11 +50,9 @@
     .input{width:100%;padding:12px;border-radius:10px;border:none;font-size:1rem}
     .input{background:#fff;color:var(--dark)}
 
-    .footer{background:#fff;padding:28px 0;margin-top:40px;text-align:center;border-top:1px solid #eef2f7}
-
-    /* IAutoCalendar: 1 mes */
+    /* IAutoCalendar: múltiples meses */
     #iautoCalendar{background:#fff;padding:12px;border-radius:12px;color:var(--dark);margin-top:12px}
-    .iauto-months{display:flex;gap:16px}
+    .iauto-months{display:flex;gap:16px;flex-wrap:wrap}
     .iauto-month{min-width:320px;background:#fbfdff;border-radius:12px;padding:12px;border:1px solid #eef3f8}
     .week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:8px}
     .day{padding:10px;border-radius:8px;text-align:center;font-weight:700;cursor:pointer;background:#f8fafc;color:var(--muted)}
@@ -55,20 +61,35 @@
     .times{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
     .time{padding:8px 12px;border-radius:10px;background:#eef6fb;cursor:pointer;font-weight:700}
     .time.selected{background:var(--accent);color:#fff}
+    .loading {display: none; text-align: center; color: var(--muted);}
 
     /* service detail panel */
     .detail{display:none;background:#fff;padding:20px;border-radius:12px;margin-top:18px;border:1px solid #e6eef7}
     .detail.active{display:block}
 
+    /* Formulario de reseñas */
+    #review-form {max-width: 600px; margin: 0 auto; background: var(--card); padding: 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 20px;}
+    #review-form label {display: block; margin-bottom: 5px; font-weight: 600;}
+    #review-form textarea {width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e6eef7; font-size: 1rem; resize: vertical;}
+    #review-form .error {color: #f97316; font-size: 0.9rem; margin-top: 5px;}
+
+    /* Chat con Abraham */
+    #chat-container{max-width:600px;margin:20px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.1);}
+    #messages{min-height:200px;overflow-y:auto;max-height:400px;}
+    #typing-indicator{color:var(--muted);margin-top:8px;font-style:italic;}
+
+    /* Back to top */
+    #back-to-top {position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: #fff; border: none; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; display: none; z-index: 50;}
+
     @media(max-width:900px){.hero{flex-direction:column-reverse;padding:34px 0}.hero-image{width:100%}.form-row{grid-template-columns:1fr}}
+    @supports not (backdrop-filter: blur(6px)) {.header{background:#fff}}
   </style>
 </head>
 <body>
-
 <header class="header" role="banner">
   <div class="container header-inner">
     <div class="logo">
-      <img src="ceo-small.jpg" alt="Logo IAmpuero" />
+      <img src="https://via.placeholder.com/42x42?text=Logo" alt="Logo IAmpuero" />
       <div>
         <div style="font-weight:800">IAmpuero</div>
         <div style="font-size:.9rem;color:var(--muted)">Tecnología que trabaja por ti</div>
@@ -76,6 +97,7 @@
     </div>
     <nav class="nav" role="navigation" aria-label="Menú principal">
       <a href="#servicios">Servicios</a>
+      <a href="#roi-estimator">ROI</a>
       <a href="#sobremi">Sobre mí</a>
       <a href="#resenas">Reseñas</a>
       <a class="cta-small" href="#contacto">Reservar</a>
@@ -84,6 +106,7 @@
 </header>
 
 <main>
+  <!-- Hero -->
   <section class="container hero" aria-labelledby="hero-title">
     <div class="hero-left">
       <h1 id="hero-title">Tu negocio en <span style="color:var(--primary)">piloto automático</span></h1>
@@ -94,39 +117,32 @@
       </div>
       <div style="margin-top:16px;color:var(--muted);font-size:.95rem">Hablamos tu idioma en cada paso.</div>
     </div>
-
     <div class="hero-image" aria-hidden="true">
-      <img src="ceo.jpg" srcset="ceo-small.jpg 480w, ceo.jpg 1200w" sizes="(max-width:900px) 100vw, 420px" alt="Abraham Puero - IAmpuero" loading="lazy">
+      <img src="https://via.placeholder.com/420x300?text=Abraham+Puero+-+IAmpuero" alt="Abraham Puero - IAmpuero" loading="lazy">
     </div>
   </section>
 
+  <!-- Servicios -->
   <section class="container" id="servicios" aria-labelledby="servicios-title">
     <h2 class="section-title" id="servicios-title">Qué puedo hacer por ti</h2>
-
-    <!-- 4 bloques principales -->
     <div class="grid">
       <div class="card" data-service="reservas" tabindex="0" role="button">
         <h3>Reservas y Citas</h3>
         <p style="color:var(--muted)">Sistema de reservas 24/7, recordatorios automáticos y sincronización con calendarios.</p>
       </div>
-
       <div class="card" data-service="pedidos" tabindex="0" role="button">
         <h3>Pedidos y Logística</h3>
         <p style="color:var(--muted)">Automatización de pedidos, control de stock y notificaciones de entrega.</p>
       </div>
-
       <div class="card" data-service="datos" tabindex="0" role="button">
         <h3>Validación y Calidad de Datos</h3>
         <p style="color:var(--muted)">Verificación automática de emails, teléfonos y prevención de duplicados.</p>
       </div>
-
       <div class="card" data-service="analytics" tabindex="0" role="button">
         <h3>Informes y Optimización</h3>
         <p style="color:var(--muted)">Dashboards y recomendaciones para mejorar conversiones y reducir costes.</p>
       </div>
     </div>
-
-    <!-- Detalles: cuando se pincha un bloque, se mostrará su contenido -->
     <div id="service-details">
       <article id="detail-reservas" class="detail">
         <h3>Reservas y Citas — Qué, Cómo y Por qué</h3>
@@ -134,21 +150,18 @@
         <p><strong>Cómo:</strong> Integro el calendario (IAutoCalendar), envío recordatorios automáticos, sincronizo con Google Calendar / Outlook y genero confirmaciones .ics.</p>
         <p><strong>Por qué:</strong> Menos llamadas, menos errores, más clientes y mejor experiencia.</p>
       </article>
-
       <article id="detail-pedidos" class="detail">
         <h3>Pedidos y Logística — Qué, Cómo y Por qué</h3>
         <p><strong>Qué:</strong> Flujos automáticos desde la compra hasta la entrega, con control de stock y avisos.</p>
         <p><strong>Cómo:</strong> Integraciones con tus plataformas de venta, workflows automáticos y gestión de inventario.</p>
         <p><strong>Por qué:</strong> Reduces tiempos operativos, errores manuales y costes logísticos.</p>
       </article>
-
       <article id="detail-datos" class="detail">
         <h3>Validación de Datos — Qué, Cómo y Por qué</h3>
         <p><strong>Qué:</strong> Validación en tiempo real de emails, teléfonos, NIF y detección de duplicados.</p>
         <p><strong>Cómo:</strong> Integración de APIs de validación y reglas customizadas antes de insertar en tu CRM.</p>
         <p><strong>Por qué:</strong> Datos limpios significan mejores campañas, menos rechazos y decisiones más acertadas.</p>
       </article>
-
       <article id="detail-analytics" class="detail">
         <h3>Informes y Optimización — Qué, Cómo y Por qué</h3>
         <p><strong>Qué:</strong> Dashboards con KPIs, funnel de conversión y recomendaciones accionables.</p>
@@ -156,13 +169,43 @@
         <p><strong>Por qué:</strong> Te permite decidir rápido y escalar sin perder control.</p>
       </article>
     </div>
-
   </section>
 
+  <!-- ROI -->
+  <section class="container" id="roi-estimator" aria-labelledby="roi-title">
+    <h2 class="section-title" id="roi-title">Calcula tu Ahorro con Automatización 💰</h2>
+    <div class="roi-form-box">
+      <form id="roi-form" novalidate>
+        <div class="form-row single">
+          <label for="roi-time">1. Tiempo de la tarea (en minutos)</label>
+          <input id="roi-time" name="time" class="input" type="number" required placeholder="Ej: 45" min="1" />
+          <div class="error" id="roi-time-error"></div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="roi-freq">2. Frecuencia (veces por semana)</label>
+            <input id="roi-freq" name="frequency" class="input" type="number" required placeholder="Ej: 5" min="1" />
+            <div class="error" id="roi-freq-error"></div>
+          </div>
+          <div>
+            <label for="roi-cost">3. Costo laboral por hora (€)</label>
+            <input id="roi-cost" name="hourly-cost" class="input" type="number" required placeholder="Ej: 25" min="5" step="0.01" />
+            <div class="error" id="roi-cost-error"></div>
+          </div>
+        </div>
+        <div style="margin-top:20px; text-align:center;">
+          <button type="submit" class="cta-small" style="background:#4ade80; color:var(--dark); box-shadow:none;">Calcular Ahorro Anual</button>
+        </div>
+      </form>
+      <div id="roi-result" style="margin-top:20px;"></div>
+    </div>
+  </section>
+
+  <!-- Sobre mí -->
   <section class="container" id="sobremi" aria-labelledby="sobremi-title">
     <h2 class="section-title" id="sobremi-title">Sobre mí</h2>
     <div class="card" style="display:flex;gap:18px;align-items:center">
-      <img src="ceo-small.jpg" alt="Abraham Puero" style="width:120px;height:120px;border-radius:12px;object-fit:cover">
+      <img src="https://via.placeholder.com/120x120?text=Abraham+Puero" alt="Abraham Puero" style="width:120px;height:120px;border-radius:12px;object-fit:cover">
       <div>
         <h3>Abraham Puero — Ingeniero en Automatización</h3>
         <p style="color:var(--muted)">Diseño soluciones que reducen trabajo manual usando herramientas que ya conoces. Trabajo con pymes y proyectos que necesitan crecer sin aumentar plantilla.</p>
@@ -171,100 +214,114 @@
     </div>
   </section>
 
-  <section class="container" id="resenas" aria-labelledby="resenas-title">
-    <h2 class="section-title" id="resenas-title">Reseñas</h2>
-    <div class="grid">
-      <div class="card"><strong>Restaurante X</strong><p style="color:var(--muted)">"Reducimos un 70% las llamadas y aumentamos reservas online"</p></div>
-      <div class="card"><strong>Tienda Y</strong><p style="color:var(--muted)">"Automatizar pedidos evitó errores y ahorró costes"</p></div>
-      <div class="card"><strong>Taller Z</strong><p style="color:var(--muted)">"Implementación rápida y sin sorpresas"</p></div>
+  <!-- Chat con Abraham -->
+  <section class="container" id="chat" aria-labelledby="chat-title" style="padding:40px 0;">
+    <h2 class="section-title" id="chat-title">Chat con Abraham 🤖</h2>
+    <div id="chat-container">
+      <div id="messages"></div>
+      <div id="typing-indicator"></div>
+      <form id="chat-form" style="display:flex;gap:8px;margin-top:12px;">
+        <input type="text" id="user-input" placeholder="Escribe tu mensaje..." style="flex:1;padding:10px;border-radius:8px;border:1px solid #ccc" required/>
+        <button type="submit" style="padding:10px 16px;border-radius:8px;background:var(--primary);color:#fff;">Enviar</button>
+      </form>
     </div>
   </section>
-
-  <section id="contacto" class="container" aria-labelledby="contacto-title">
-    <h2 class="section-title" id="contacto-title">Reservar — IAutoAgenda</h2>
-    <form id="iautoagenda-form" class="form-box" novalidate>
-      <div class="form-row single">
-        <label for="nombre">Nombre</label>
-        <input id="nombre" name="nombre" class="input" type="text" required placeholder="Tu nombre completo" />
-      </div>
-
-      <div class="form-row">
-        <div>
-          <label for="correo">Correo</label>
-          <input id="correo" name="correo" class="input" type="email" required placeholder="tu@correo.com" />
-        </div>
-        <div>
-          <label for="telefono">Teléfono</label>
-          <input id="telefono" name="telefono" class="input" type="tel" placeholder="Opcional" />
-        </div>
-      </div>
-
-      <div style="margin-top:12px">
-        <label style="display:block;margin-bottom:8px">Selecciona fecha y hora</label>
-        <div id="iautoCalendar" aria-live="polite" role="region" aria-label="Seleccionar fecha y hora"></div>
-      </div>
-
-      <input type="hidden" id="horario" name="horario" required />
-
-      <div style="margin-top:12px;display:flex;gap:12px;align-items:center">
-        <button type="submit" class="cta-small">Reservar cita</button>
-        <div style="color:var(--muted);font-size:.95rem">Recibirás .ics y confirmación en pantalla.</div>
-      </div>
-
-      <div id="form-message" style="margin-top:12px;display:none;color:var(--accent)"></div>
-
-    </form>
-  </section>
-
 </main>
 
-<footer class="footer" role="contentinfo">
-  <div class="container">
-    <img src="logo.jpg" alt="Logo IAmpuero" style="height:38px;margin-bottom:8px"/>
-    <p style="color:var(--muted)">© <span id="year">2025</span> IAmpuero — Tecnología que trabaja por ti</p>
-  </div>
-</footer>
+<button id="back-to-top" aria-label="Volver arriba">↑</button>
 
 <script>
-/* ========== IAutoCalendar (1 mes) ========== */
-(function(){
-  const container = document.getElementById('iautoCalendar');
-  const hiddenInput = document.getElementById('horario');
-  const startHour = 9, endHour = 18, slotMinutes = 30; const minDaysAhead = 0;
-  function pad(n){return n<10? '0'+n:''+n}
-  function dateToYMD(d){return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`}
-  function nowDate(){const d=new Date();d.setHours(0,0,0,0);return d}
-  function addDays(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x}
+  emailjs.init('TU_USER_ID');
 
-  function buildSlotsForDay(date){const slots=[];for(let h=startHour;h<endHour;h++){for(let m=0;m<60;m+=slotMinutes){slots.push(`${pad(h)}:${pad(m)}`)}}return slots}
+  // Chat con Abraham
+  const chatForm = document.getElementById('chat-form');
+  const userInput = document.getElementById('user-input');
+  const messages = document.getElementById('messages');
+  const typingIndicator = document.getElementById('typing-indicator');
 
-  function render(){container.innerHTML='';const monthBox=document.createElement('div');monthBox.className='iauto-month';const today=nowDate();const year=today.getFullYear();const month=today.getMonth();const first=new Date(year,month,1);const daysInMonth=new Date(year,month+1,0).getDate();monthBox.innerHTML=`<strong style="text-transform:capitalize">${first.toLocaleString('es-ES',{month:'long',year:'numeric'})}</strong>`;
-    const weekHead=document.createElement('div');weekHead.style.display='grid';weekHead.style.gridTemplateColumns='repeat(7,1fr)';weekHead.style.gap='8px';weekHead.style.marginTop='8px';const daysNames=['L','M','X','J','V','S','D'];for(const dn of daysNames){const el=document.createElement('div');el.style.textAlign='center';el.style.fontSize='12px';el.style.color='#7b8794';el.textContent=dn;weekHead.appendChild(el)}monthBox.appendChild(weekHead);
-    const week=document.createElement('div');week.className='week';const firstWeekday=(first.getDay()+6)%7;for(let s=0;s<firstWeekday;s++){week.appendChild(document.createElement('div'))}
-    for(let d=1;d<=daysInMonth;d++){const dayDate=new Date(year,month,d);const dayEl=document.createElement('button');dayEl.type='button';dayEl.className='day';dayEl.textContent=d;dayEl.dataset.ymd=`${year}-${pad(month+1)}-${pad(d)}`;const isPast=dayDate<addDays(nowDate(),minDaysAhead);if(isPast){dayEl.classList.add('disabled');dayEl.setAttribute('aria-disabled','true')}else{dayEl.addEventListener('click',()=>selectDay(dayEl))}week.appendChild(dayEl)}monthBox.appendChild(week);const timesWrap=document.createElement('div');timesWrap.className='times';monthBox.appendChild(timesWrap);container.appendChild(monthBox)}
+  async function sendMessageToOpenAI(message) {
+    typingIndicator.textContent = "Abraham está escribiendo…";
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer TU_OPENAI_KEY'
+        },
+        body: JSON.stringify({
+          model: "gpt-4",
+          messages: [{role: "user", content: message}],
+          max_tokens: 500
+        })
+      });
 
-  let selectedDayButton=null, selectedTimeButton=null;
-  function clearSelectedDay(){if(selectedDayButton)selectedDayButton.classList.remove('selected');selectedDayButton=null}
-  function clearSelectedTime(){if(selectedTimeButton)selectedTimeButton.classList.remove('selected');selectedTimeButton=null}
-  function selectDay(btn){if(selectedDayButton===btn)return;clearSelectedDay();clearSelectedTime();btn.classList.add('selected');selectedDayButton=btn;const monthBox=btn.closest('.iauto-month');const timesWrap=monthBox.querySelector('.times');timesWrap.innerHTML='';const ymd=btn.dataset.ymd;const [yy,mm,dd]=ymd.split('-').map(Number);const dateObj=new Date(yy,mm-1,dd);const slots=buildSlotsForDay(dateObj);if(slots.length===0){timesWrap.innerHTML='<div style="color:#7b8794">No hay huecos disponibles ese día.</div>';hiddenInput.value='';return}slots.forEach(t=>{const tbtn=document.createElement('button');tbtn.type='button';tbtn.className='time';tbtn.textContent=t;tbtn.dataset.time=t;tbtn.addEventListener('click',()=>selectTime(tbtn,ymd));timesWrap.appendChild(tbtn)})}
-  function selectTime(tbtn,ymd){const monthBox=tbtn.closest('.iauto-month');monthBox.querySelectorAll('.time').forEach(t=>t.classList.remove('selected'));tbtn.classList.add('selected');selectedTimeButton=tbtn;const datetime=`${ymd} ${tbtn.dataset.time}`;hiddenInput.value=datetime;const msgEl=document.getElementById('form-message');if(msgEl){msgEl.style.display='block';msgEl.textContent=`Seleccionado: ${datetime}. Completa tus datos y pulsa Reservar.`}}
+      const data = await response.json();
+      const reply = data.choices[0].message.content;
 
-  render();window.IAutoCalendar={getSelected(){return hiddenInput.value},render}
-})();
+      const replyElem = document.createElement('div');
+      replyElem.textContent = reply;
+      replyElem.style.margin = "10px 0";
+      replyElem.style.padding = "10px";
+      replyElem.style.background = "#f0f4f8";
+      replyElem.style.borderRadius = "8px";
+      messages.appendChild(replyElem);
 
-/* Service detail interactions */
-(function(){const cards=document.querySelectorAll('.card[data-service]');cards.forEach(c=>{c.addEventListener('click',()=>openDetail(c.dataset.service));c.addEventListener('keypress',e=>{if(e.key==='Enter')openDetail(c.dataset.service)})});function openDetail(name){document.querySelectorAll('.detail').forEach(d=>d.classList.remove('active'));const el=document.getElementById('detail-'+name);if(el){el.classList.add('active');el.scrollIntoView({behavior:'smooth',block:'center'})}})();
+      messages.scrollTop = messages.scrollHeight;
+    } catch (err) {
+      console.error(err);
+      const errorElem = document.createElement('div');
+      errorElem.textContent = "Error al obtener respuesta.";
+      errorElem.style.color = "#f97316";
+      messages.appendChild(errorElem);
+    } finally {
+      typingIndicator.textContent = "";
+    }
+  }
 
-/* Form handling: simple local flow + ICS + mailto (no backend) */
-(function(){const form=document.getElementById('iautoagenda-form');const msg=document.getElementById('form-message');function pad(n){return n<10?'0'+n:''+n}
-  function makeICS({summary,description,dtStartISO,durationMinutes=30,uid}){const [datePart,timePart]=dtStartISO.split(' ');const [Y,M,D]=datePart.split('-');const [hh,mm]=timePart.split(':');const dtStart=`${Y}${M}${D}T${hh}${mm}00`;const dtEndDate=new Date(Y,parseInt(M)-1,D,parseInt(hh),parseInt(mm)+durationMinutes);const Y2=dtEndDate.getFullYear(),M2=String(dtEndDate.getMonth()+1).padStart(2,'0'),D2=String(dtEndDate.getDate()).padStart(2,'0'),hh2=String(dtEndDate.getHours()).padStart(2,'0'),mm2=String(dtEndDate.getMinutes()).padStart(2,'0');const dtEnd=`${Y2}${M2}${D2}T${hh2}${mm2}00`;return['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//IAmpuero//IAutoCalendar//ES','BEGIN:VEVENT',`UID:${uid}`,`DTSTAMP:${dtStart}Z`,`DTSTART:${dtStart}`,`DTEND:${dtEnd}`,`SUMMARY:${summary}`,`DESCRIPTION:${description}`,'END:VEVENT','END:VCALENDAR'].join('
-')}
-  function downloadICS(filename,content){const blob=new Blob([content],{type:'text/calendar;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
-  form.addEventListener('submit',function(e){e.preventDefault();msg.style.display='none';const fd=new FormData(form);const nombre=(fd.get('nombre')||'').trim();const correo=(fd.get('correo')||'').trim();const telefono=(fd.get('telefono')||'').trim();const horario=(fd.get('horario')||'').trim();if(!nombre||!correo||!horario){msg.style.display='block';msg.textContent='Completa tu nombre, correo y selecciona fecha y hora.';return}const payload={nombre,correo,telefono,horario};try{ /* opcional: enviar a /api/reservas */ }catch(e){console.warn('no backend')}const uid='iauto-'+Date.now();const ics=makeICS({summary:`Cita IAmpuero - ${nombre}`,description:`Cita con ${nombre} (${telefono})`,dtStartISO:horario,durationMinutes:30,uid});downloadICS(`IAmpuero-${horario.replace(/[: ]/g,'_')}.ics`,ics);const subject=encodeURIComponent('Confirmación de cita IAmpuero');const bodyLines=[`Hola ${nombre},`,`Tu cita ha sido registrada para: ${horario}`,`Detalles:`,`- Correo: ${correo}`,`- Teléfono: ${telefono}`,`Gracias,`,`IAmpuero — Tecnología que trabaja por ti`];const mailto=`mailto:${encodeURIComponent(correo)}?subject=${subject}&body=${encodeURIComponent(bodyLines.join('
-'))}`;msg.style.display='block';msg.textContent=`¡Listo! Descarga .ics realizada. Se abrirá tu cliente de correo.`;setTimeout(()=>{window.location.href=mailto},700);form.reset();document.getElementById('horario').value=''});
-})();
+  chatForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const userMsg = userInput.value.trim();
+    if(!userMsg) return;
 
-/* year */document.getElementById('year').textContent=new Date().getFullYear();
+    const userElem = document.createElement('div');
+    userElem.textContent = userMsg;
+    userElem.style.margin = "10px 0";
+    userElem.style.padding = "10px";
+    userElem.style.background = "#e0f2fe";
+    userElem.style.borderRadius = "8px";
+    messages.appendChild(userElem);
+
+    userInput.value = "";
+    sendMessageToOpenAI(userMsg);
+  });
+
+  // Scroll smooth y botón volver arriba
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+  backToTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+  // Detalles servicios
+  const cards = document.querySelectorAll('.card[data-service]');
+  const details = document.querySelectorAll('.detail');
+  cards.forEach(card=>{
+    card.addEventListener('click',()=>{
+      details.forEach(d=>d.classList.remove('active'));
+      document.getElementById('detail-'+card.dataset.service).classList.add('active');
+    });
+  });
+
+  // ROI Estimator
+  document.getElementById('roi-form').addEventListener('submit', e=>{
+    e.preventDefault();
+    const time = parseFloat(document.getElementById('roi-time').value);
+    const freq = parseFloat(document.getElementById('roi-freq').value);
+    const cost = parseFloat(document.getElementById('roi-cost').value);
+    if(isNaN(time)||isNaN(freq)||isNaN(cost)) return;
+    const ahorro = time/60*freq*52*cost;
+    document.getElementById('roi-result').textContent = `Ahorro anual estimado: €${ahorro.toFixed(2)}`;
+  });
 </script>
 </body>
 </html>
