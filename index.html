@@ -1,327 +1,716 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IAmpuero — Automatización e IA para tu negocio</title>
-  <meta name="description" content="IAmpuero: automatización inteligente para reservas, pedidos y validación de datos. Tecnología que trabaja por ti." />
-  <link rel="icon" href="favicon.ico" />
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <meta name="description" content="IAmpuero: automatización e inteligencia artificial para negocios. Tecnología que trabaja por ti." />
+  <!-- Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
   <style>
-    :root{--primary:#0ea5e9;--accent:#0369a1;--dark:#0f172a;--muted:#64748b;--bg:#f8fafc;--card:#fff;--radius:14px}
+    :root{
+      --primary:#0ea5e9; --accent:#0369a1; --dark:#0f172a; --muted:#64748b;
+      --bg:#ffffff; --card:#fff; --border:#e6eef7; --radius:14px;
+      --shadow: 0 8px 30px rgba(2,6,23,0.06);
+      --glass: rgba(14,165,233,0.06);
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased}
+    body{font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--dark);margin:0;-webkit-font-smoothing:antialiased}
     a{color:var(--primary);text-decoration:none}
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
-    .header{backdrop-filter:blur(6px);background:rgba(255,255,255,.9);position:sticky;top:0;z-index:40;border-bottom:1px solid #eef2f7}
-    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .logo{display:flex;gap:12px;align-items:center}
-    .logo img{height:42px;width:auto;border-radius:6px}
-    .nav{display:flex;gap:18px;align-items:center}
-    .nav a{font-weight:600;color:var(--dark)}
-    .cta-small{padding:10px 16px;border-radius:999px;font-weight:700;background:var(--primary);color:#fff;box-shadow:0 6px 20px rgba(14,165,233,.18)}
+    img{display:block;max-width:100%}
+    .container{max-width:1150px;margin:0 auto;padding:0 18px}
 
-    .hero{display:flex;gap:40px;align-items:center;padding:60px 0}
-    .hero-left{flex:1}
-    .hero h1{font-size:2.4rem;margin:0;line-height:1.02}
-    .hero p{color:var(--muted);margin:18px 0;font-size:1.05rem}
-    .hero-actions{display:flex;gap:12px;margin-top:22px}
-    .hero-image{flex:0 0 420px;border-radius:20px;overflow:hidden;align-self:center}
-    .hero-image img{width:100%;height:auto;display:block}
+    /* header */
+    header{position:sticky;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);z-index:60}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;gap:12px;align-items:center;font-weight:800;font-size:1.1rem}
+    .brand img{height:44px;width:44px;border-radius:10px;object-fit:cover}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{font-weight:600;color:var(--dark)}
+    .cta{padding:10px 16px;border-radius:999px;background:var(--primary);color:#fff;font-weight:700;border:none;cursor:pointer;box-shadow:0 10px 30px rgba(14,165,233,0.15)}
 
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin:40px 0}
-    .card{background:var(--card);padding:24px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(2,6,23,.04);border:1px solid #f1f5f9;cursor:pointer;transition:transform .18s}
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center;padding:84px 0}
+    .hero h1{font-size:2.6rem;margin:0;line-height:1.03}
+    .hero p{color:var(--muted);margin:16px 0;font-size:1.03rem;max-width:44ch}
+    .hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+
+    .hero-art{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+    .hero-art img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* overview quick */
+    .quick{display:flex;gap:14px;margin-top:18px}
+    .quick .pill{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:700;color:var(--primary);font-size:.95rem}
+
+    /* grid / cards */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:28px}
+    .card{background:var(--card);border-radius:12px;padding:18px;border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .18s}
     .card:hover{transform:translateY(-6px)}
-    .card h3{margin:0 0 8px 0}
-    .section-title{font-size:1.5rem;margin:30px 0 12px 0;color:var(--dark)}
+    .card h3{margin:0 0 8px 0;font-size:1.05rem}
+    .card p{color:var(--muted);margin:0}
 
-    /* ROI ESTIMATOR SECTION */
-    #roi-estimator {padding: 60px 0;}
-    .roi-form-box {max-width: 800px;margin: 0 auto;background: var(--dark);padding: 30px;border-radius: 12px;color: #fff;box-shadow: 0 15px 40px rgba(0,0,0,0.2);}
-    .roi-form-box label {display: block;margin-bottom: 5px;font-weight: 600;}
-    .roi-form-box .form-row {margin-bottom: 20px;}
-    .error {color: #f97316; font-size: 0.9rem; margin-top: 5px;}
+    /* about / avatar */
+    .about{display:grid;grid-template-columns:360px 1fr;gap:28px;align-items:center;margin-top:30px}
+    .avatar-wrap{position:relative;width:100%;max-width:360px}
+    /* avatar container: masks corners and ensures a circular / rounded display */
+    .main-avatar{
+      width:100%;height:360px;border-radius:18px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;
+      box-shadow:0 20px 50px rgba(14,165,233,0.12);
+    }
+    .main-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    /* circle overlay to hide square artifacts and create consistent background */
+    .avatar-circle{
+      position:absolute;right:18px;bottom:18px;width:110px;height:110px;border-radius:50%;overflow:hidden;border:4px solid rgba(255,255,255,0.85);box-shadow:0 8px 30px rgba(2,6,23,0.12);
+      display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));
+    }
+    .avatar-circle img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* contacto y calendario */
-    #contacto{padding:40px 0}
-    .form-box{max-width:720px;margin:0 auto;background:linear-gradient(180deg, rgba(2,6,23,0.95), rgba(2,6,23,0.92));padding:28px;border-radius:12px;color:#fff}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .form-row.single{grid-template-columns:1fr}
-    .input{width:100%;padding:12px;border-radius:10px;border:none;font-size:1rem}
-    .input{background:#fff;color:var(--dark)}
+    /* wink-gif fallback: hidden by default, shown by JS if file exists */
+    .avatar-gif{position:absolute;inset:auto;right:18px;bottom:18px;width:110px;height:110px;border-radius:50%;overflow:hidden;border:4px solid rgba(255,255,255,0.9);display:none;z-index:20}
 
-    /* IAutoCalendar: múltiples meses */
-    #iautoCalendar{background:#fff;padding:12px;border-radius:12px;color:var(--dark);margin-top:12px}
-    .iauto-months{display:flex;gap:16px;flex-wrap:wrap}
-    .iauto-month{min-width:320px;background:#fbfdff;border-radius:12px;padding:12px;border:1px solid #eef3f8}
-    .week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:8px}
-    .day{padding:10px;border-radius:8px;text-align:center;font-weight:700;cursor:pointer;background:#f8fafc;color:var(--muted)}
-    .day.disabled{opacity:.35;cursor:not-allowed}
-    .day.selected{background:var(--primary);color:#fff}
-    .times{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .time{padding:8px 12px;border-radius:10px;background:#eef6fb;cursor:pointer;font-weight:700}
-    .time.selected{background:var(--accent);color:#fff}
-    .loading {display: none; text-align: center; color: var(--muted);}
+    /* CSS 'wink' overlay if gif not available */
+    .wink-emoji{position:absolute;right:18px;bottom:18px;width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.3rem;background:linear-gradient(135deg,#3b82f6,#60a5fa);color:white;border:4px solid rgba(255,255,255,0.9);box-shadow:0 12px 40px rgba(59,130,246,0.25)}
+    .wink-emoji .eye{display:inline-block;transform-origin:center;transition:transform .18s}
+    .wink-emoji.wink .eye.left{transform:translateY(2px)}
+    .wink-emoji.wink .eye.right{transform:scaleY(.12);transform-origin:center}
+    @keyframes winkPulse{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+    .wink-emoji{animation:winkPulse 4s ease-in-out infinite}
 
-    /* service detail panel */
-    .detail{display:none;background:#fff;padding:20px;border-radius:12px;margin-top:18px;border:1px solid #e6eef7}
-    .detail.active{display:block}
+    /* services plus ayudanos */
+    .services-section{margin-top:40px}
+    .services-header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .help-card{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(14,165,233,0.03),#fff)}
+    .help-card select, .help-card textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);font-family:inherit}
+    .help-output{margin-top:10px;padding:12px;border-radius:10px;background:#f1fbff;border:1px solid rgba(14,165,233,0.08);color:var(--accent);font-weight:700}
 
-    /* Formulario de reseñas */
-    #review-form {max-width: 600px; margin: 0 auto; background: var(--card); padding: 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 20px;}
-    #review-form label {display: block; margin-bottom: 5px; font-weight: 600;}
-    #review-form textarea {width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e6eef7; font-size: 1rem; resize: vertical;}
-    #review-form .error {color: #f97316; font-size: 0.9rem; margin-top: 5px;}
+    /* booking/reservation */
+    .booking{margin-top:34px;display:grid;grid-template-columns:1fr 360px;gap:22px}
+    .booking-form{background:var(--card);border-radius:12px;padding:18px;border:1px solid var(--border)}
+    .form-row{display:flex;gap:10px;margin-bottom:12px}
+    .form-row .col{flex:1}
+    input[type="text"],input[type="email"],textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);font-family:inherit}
+    textarea{min-height:110px}
+    .btn-block{display:block;width:100%;padding:12px;border-radius:10px;background:var(--primary);color:white;border:none;font-weight:700;cursor:pointer}
 
-    /* Chat con Abraham */
-    #chat-container{max-width:600px;margin:20px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.1);}
-    #messages{min-height:200px;overflow-y:auto;max-height:400px;}
-    #typing-indicator{color:var(--muted);margin-top:8px;font-style:italic;}
+    /* stars rating UI */
+    .stars{display:flex;gap:6px;font-size:1.3rem;align-items:center}
+    .star{cursor:pointer;color:var(--border);transition:color .12s}
+    .star.active{color:#fbbf24}
+    .rating-value{margin-left:8px;font-weight:700;color:var(--muted)}
 
-    /* Back to top */
-    #back-to-top {position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: #fff; border: none; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; display: none; z-index: 50;}
+    /* reviews grid */
+    .reviews{margin-top:22px}
+    .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
 
-    @media(max-width:900px){.hero{flex-direction:column-reverse;padding:34px 0}.hero-image{width:100%}.form-row{grid-template-columns:1fr}}
-    @supports not (backdrop-filter: blur(6px)) {.header{background:#fff}}
+    /* footer */
+    footer{margin-top:48px;padding:28px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted)}
+
+    /* responsive */
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr;gap:22px;padding:60px 0}
+      .about{grid-template-columns:1fr;gap:18px}
+      .booking{grid-template-columns:1fr;gap:18px}
+    }
   </style>
 </head>
 <body>
-<header class="header" role="banner">
-  <div class="container header-inner">
-    <div class="logo">
-      <img src="https://via.placeholder.com/42x42?text=Logo" alt="Logo IAmpuero" />
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="img/logo.png" alt="IAmpuero logo" onerror="this.style.display='none'">
+        <div>IA<span style="color:var(--primary)">mpuero</span></div>
+      </div>
+      <nav>
+        <a href="#servicios">Servicios</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#resenas">Reseñas</a>
+        <button class="cta" onclick="document.getElementById('bookingName')?.focus()">Reservar</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" id="top">
       <div>
-        <div style="font-weight:800">IAmpuero</div>
-        <div style="font-size:.9rem;color:var(--muted)">Tecnología que trabaja por ti</div>
+        <h1>Tu negocio en <span style="color:var(--primary)">piloto automático</span></h1>
+        <p>Automatizaciones, asistentes virtuales y datos limpios para que tu equipo haga menos y logre más. Servicios modulares, integraciones reales y un asistente IA al servicio de tus clientes.</p>
+
+        <div class="actions hero-actions">
+          <button class="cta" onclick="document.getElementById('bookingForm').scrollIntoView({behavior:'smooth', block:'center'})">Reservar Consulta</button>
+          <button class="btn-secondary" onclick="openChat()">Probar IAutoBot</button>
+        </div>
+
+        <div class="quick" aria-hidden="true">
+          <div class="pill">IA en producción</div>
+          <div class="pill">Integraciones: Google, Outlook</div>
+          <div class="pill">Soporte: email/pro</div>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <img src="img/hero-dashboard.jpg" alt="Dashboard IA (visual)">
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="servicios">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <h2>Servicios</h2>
+        <div style="color:var(--muted)">Elegir la solución correcta = menos errores y más ventas</div>
+      </div>
+
+      <div class="grid" style="margin-top:16px">
+        <div class="card">
+          <h3><i class="fas fa-robot" style="color:var(--primary);width:20px"></i> IAutoBot</h3>
+          <p>Asistente virtual para atención 24/7, generación de leads y agendado automático.</p>
+          <div style="margin-top:10px"><span class="status live" style="padding:6px 12px;border-radius:10px;background:rgba(16,185,129,0.08);color:#10b981;font-weight:700">EN VIVO</span></div>
+        </div>
+
+        <div class="card">
+          <h3><i class="far fa-calendar-alt" style="color:var(--primary);width:20px"></i> IAutoCalendar 3.0</h3>
+          <p>Reserva inteligente: sincronización, .ics, recordatorios y reglas por tipo de cita.</p>
+          <div style="margin-top:10px"><span class="status" style="padding:6px 12px;border-radius:10px;background:rgba(250,204,21,0.06);color:#f59e0b;font-weight:700">PRÓXIMAMENTE</span></div>
+        </div>
+
+        <div class="card">
+          <h3><i class="fas fa-database" style="color:var(--primary);width:20px"></i> IAutoData</h3>
+          <p>Validación en tiempo real: emails, teléfonos y prevención de duplicados antes de llegar al CRM.</p>
+        </div>
+
+        <div class="card">
+          <h3><i class="fas fa-cogs" style="color:var(--primary);width:20px"></i> Integraciones & Custom</h3>
+          <p>Conexiones (Zapier, Make, webhooks) y desarrollos a medida para procesos complejos.</p>
+        </div>
+      </div>
+
+      <!-- AYUDANOS: qué app necesitas -->
+      <div style="margin-top:22px" class="help-card" aria-live="polite">
+        <div style="flex:1">
+          <strong>Ayúdanos — ¿qué app necesitas?</strong>
+          <p style="color:var(--muted);margin:6px 0 12px 0">Selecciona el tipo de negocio y cuéntanos brevemente qué necesitas; te sugiero la solución ideal.</p>
+
+          <label for="help-type" style="font-weight:700">Tipo de negocio</label>
+          <select id="help-type">
+            <option value="">Selecciona...</option>
+            <option value="restaurant">Restaurante / Hostelería</option>
+            <option value="shop">Tienda / E-commerce</option>
+            <option value="services">Servicios (p. ej. taller, peluquería)</option>
+            <option value="consulting">Consultor / Coach</option>
+            <option value="clinic">Clínica / Salud</option>
+            <option value="other">Otro / Necesito consultoría</option>
+          </select>
+
+          <label for="help-need" style="font-weight:700;margin-top:10px;display:block">¿Qué quieres automatizar?</label>
+          <textarea id="help-need" placeholder="Describe el problema o la idea (ej. reducir llamadas, automatizar pedidos, confirmar citas...)" rows="3"></textarea>
+
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <button class="btn-block" style="width:auto;padding:10px 14px" onclick="recommendApp()">Sugerir App</button>
+            <button class="btn" style="width:auto;padding:10px 14px" onclick="saveHelpRequest()">Guardar / Enviar</button>
+          </div>
+
+          <div id="help-output" class="help-output" style="display:none;margin-top:12px"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="sobre-mi">
+      <h2>Sobre mí</h2>
+      <div class="about">
+        <div class="avatar-wrap">
+          <!-- Main avatar block (rectangular) -->
+          <div class="main-avatar" id="mainAvatar">
+            <!-- PRIMARY: attempt to load hero image / CEO photo -->
+            <img id="ceoPhoto" src="img/ceo.png" alt="CEO Abraham Ampuero" onerror="this.style.display='none'">
+            <!-- Fallback circle (small) -->
+            <div class="avatar-circle" id="avatarCircle">
+              <img id="ceoThumb" src="img/ceo-small.png" alt="Abraham" onerror="this.style.display='none'">
+            </div>
+
+            <!-- animated gif (if uploaded as img/ceo-wink.gif) -->
+            <img id="avatarGif" class="avatar-gif" src="img/ceo-wink.gif" alt="CEO winking GIF" style="display:none" />
+
+            <!-- CSS wink overlay used if gif not found -->
+            <div id="winkOverlay" class="wink-emoji" aria-hidden="true" title="Wink">
+              <span class="eye left">•</span><span style="width:6px;display:inline-block"></span><span class="eye right">•</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p style="color:var(--muted);margin-bottom:6px">Abraham Ampuero — Ingeniero en Automatización</p>
+          <h3 style="margin:0 0 12px 0">Diseño sistemas que trabajan por ti</h3>
+          <p style="color:var(--muted);margin-bottom:12px">
+            Soy especialista en automatización, integraciones y productos SaaS para pymes. Me enfoco en resolver los puntos que más tiempo consumen y en crear soluciones que escalan.
+          </p>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="cta" onclick="document.getElementById('bookingForm').scrollIntoView({behavior:'smooth'})">Agendar llamada</button>
+            <button class="btn-secondary" onclick="openChat()">Probar IAutoBot</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING / RESERVATION -->
+    <section id="reservar">
+      <h2>Reserva tu demo</h2>
+      <p class="section-subtitle">30 minutos personalizados — generamos .ics y te enviamos confirmación.</p>
+
+      <div class="booking">
+        <div class="booking-form">
+          <form id="bookingForm">
+            <div class="form-row">
+              <div class="col">
+                <label for="bookingName">Nombre *</label>
+                <input type="text" id="bookingName" name="name" required>
+              </div>
+              <div class="col">
+                <label for="bookingEmail">Email *</label>
+                <input type="email" id="bookingEmail" name="email" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col">
+                <label for="bookingDate">Fecha *</label>
+                <input type="date" id="bookingDate" name="date" required>
+              </div>
+              <div class="col">
+                <label for="bookingTime">Hora *</label>
+                <select id="bookingTime" name="time" required>
+                  <option value="09:00">09:00</option>
+                  <option value="10:30">10:30</option>
+                  <option value="12:00">12:00</option>
+                  <option value="14:00">14:00</option>
+                  <option value="15:30">15:30</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row" style="flex-direction:column">
+              <label for="bookingNotes">¿Qué quieres tratar?</label>
+              <textarea id="bookingNotes" name="notes" placeholder="Cuéntame brevemente..." required></textarea>
+            </div>
+
+            <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+              <button class="btn-block" type="submit">Confirmar y descargar .ics</button>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="font-size:.95rem;color:var(--muted)">Valora esta reserva:</div>
+                <div id="bookingStars" class="stars" aria-label="Rating">
+                  <span class="star" data-value="1">★</span>
+                  <span class="star" data-value="2">★</span>
+                  <span class="star" data-value="3">★</span>
+                  <span class="star" data-value="4">★</span>
+                  <span class="star" data-value="5">★</span>
+                </div>
+                <div id="bookingRatingVal" class="rating-value">0.0</div>
+              </div>
+            </div>
+
+            <div id="bookingMsg" style="margin-top:12px"></div>
+          </form>
+        </div>
+
+        <!-- Right column: quick info & reviews -->
+        <aside style="align-self:start">
+          <div class="card" style="margin-bottom:12px">
+            <h3>Qué incluye</h3>
+            <p style="color:var(--muted)">Demo 30 min, revisión de procesos y propuesta inicial. Envío de .ics y confirmación via email.</p>
+          </div>
+
+          <div class="card">
+            <h3>Reseñas (local)</h3>
+            <div id="avgRating" style="font-size:1.2rem;font-weight:800;color:var(--primary);margin-bottom:8px">0.0</div>
+            <div id="starsPreview" class="stars" aria-hidden="true" style="margin-bottom:8px">
+              <span class="star-preview">★</span><span class="star-preview">★</span><span class="star-preview">★</span><span class="star-preview">★</span><span class="star-preview">★</span>
+            </div>
+            <div style="color:var(--muted);font-size:.95rem">Basado en valoraciones guardadas en este navegador (local)</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="resenas">
+      <h2>Reseñas</h2>
+      <p class="section-subtitle">Tus clientes podrán dejar reseñas y verlas aquí.</p>
+
+      <div class="reviews">
+        <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
+          <div style="flex:1">
+            <input id="reviewName" placeholder="Nombre/Empresa" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border)">
+          </div>
+          <div style="width:140px">
+            <div id="reviewStars" class="stars" style="justify-content:flex-end">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:12px">
+          <textarea id="reviewText" placeholder="Escribe tu reseña..." style="flex:1;padding:10px;border-radius:8px;border:1px solid var(--border)"></textarea>
+          <button class="btn" onclick="submitReview()">Enviar</button>
+        </div>
+
+        <div class="reviews-grid" id="reviewsGrid">
+          <!-- reviews appended here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Chatbot floating (IAutoBot) -->
+  <div style="position:fixed;right:20px;bottom:20px;z-index:80">
+    <div id="chatWindow" style="display:none;width:360px;height:500px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 20px 60px rgba(2,6,23,0.12);overflow:hidden;display:flex;flex-direction:column">
+      <div style="padding:12px;background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;display:flex;gap:10px;align-items:center">
+        <div style="width:44px;height:44px;border-radius:10px;background:#fff;color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:800">IA</div>
+        <div><strong>IAutoBot</strong><div style="font-size:.85rem;opacity:.9">Asistente virtual de IAmpuero</div></div>
+        <div style="margin-left:auto"><button onclick="closeChat()" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer">✕</button></div>
+      </div>
+      <div id="chatMessages" style="flex:1;padding:12px;overflow:auto;background:#fbfdff"></div>
+      <div style="padding:12px;border-top:1px solid var(--border);display:flex;gap:8px">
+        <input id="chatInput" placeholder="Escribe tu mensaje..." style="flex:1;padding:10px;border-radius:8px;border:1px solid var(--border)">
+        <button class="cta" onclick="chatSend()">Enviar</button>
       </div>
     </div>
-    <nav class="nav" role="navigation" aria-label="Menú principal">
-      <a href="#servicios">Servicios</a>
-      <a href="#roi-estimator">ROI</a>
-      <a href="#sobremi">Sobre mí</a>
-      <a href="#resenas">Reseñas</a>
-      <a class="cta-small" href="#contacto">Reservar</a>
-    </nav>
+
+    <button id="chatToggle" onclick="openChat()" title="Abrir chat" style="width:66px;height:66px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));border:none;color:#fff;font-size:18px;box-shadow:0 12px 40px rgba(14,165,233,0.18);cursor:pointer">
+      IA
+    </button>
   </div>
-</header>
 
-<main>
-  <!-- Hero -->
-  <section class="container hero" aria-labelledby="hero-title">
-    <div class="hero-left">
-      <h1 id="hero-title">Tu negocio en <span style="color:var(--primary)">piloto automático</span></h1>
-      <p>Implemento automatizaciones inteligentes para reservas, pedidos, validación de datos y reportes. Soluciones rápidas, escalables y fáciles de integrar con tus herramientas actuales.</p>
-      <div class="hero-actions">
-        <a class="cta-small" href="#contacto">Reservar ahora</a>
-        <a class="small" href="#servicios" style="align-self:center;padding:10px 14px;border-radius:10px;background:#fff;border:1px solid #eef2f7">Ver servicios</a>
+  <footer>
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px">
+        <img src="img/logo.png" alt="logo" style="height:36px" onerror="this.style.display='none'">
+        <div style="font-weight:800">IA<span style="color:var(--primary)">mpuero</span></div>
       </div>
-      <div style="margin-top:16px;color:var(--muted);font-size:.95rem">Hablamos tu idioma en cada paso.</div>
+      <div style="color:var(--muted)">© <span id="year"></span> IAmpuero — Tecnología que trabaja por ti</div>
     </div>
-    <div class="hero-image" aria-hidden="true">
-      <img src="https://via.placeholder.com/420x300?text=Abraham+Puero+-+IAmpuero" alt="Abraham Puero - IAmpuero" loading="lazy">
-    </div>
-  </section>
-
-  <!-- Servicios -->
-  <section class="container" id="servicios" aria-labelledby="servicios-title">
-    <h2 class="section-title" id="servicios-title">Qué puedo hacer por ti</h2>
-    <div class="grid">
-      <div class="card" data-service="reservas" tabindex="0" role="button">
-        <h3>Reservas y Citas</h3>
-        <p style="color:var(--muted)">Sistema de reservas 24/7, recordatorios automáticos y sincronización con calendarios.</p>
-      </div>
-      <div class="card" data-service="pedidos" tabindex="0" role="button">
-        <h3>Pedidos y Logística</h3>
-        <p style="color:var(--muted)">Automatización de pedidos, control de stock y notificaciones de entrega.</p>
-      </div>
-      <div class="card" data-service="datos" tabindex="0" role="button">
-        <h3>Validación y Calidad de Datos</h3>
-        <p style="color:var(--muted)">Verificación automática de emails, teléfonos y prevención de duplicados.</p>
-      </div>
-      <div class="card" data-service="analytics" tabindex="0" role="button">
-        <h3>Informes y Optimización</h3>
-        <p style="color:var(--muted)">Dashboards y recomendaciones para mejorar conversiones y reducir costes.</p>
-      </div>
-    </div>
-    <div id="service-details">
-      <article id="detail-reservas" class="detail">
-        <h3>Reservas y Citas — Qué, Cómo y Por qué</h3>
-        <p><strong>Qué:</strong> Implementación de un sistema de reservas que permite a tus clientes agendar 24/7 sin intervención manual.</p>
-        <p><strong>Cómo:</strong> Integro el calendario (IAutoCalendar), envío recordatorios automáticos, sincronizo con Google Calendar / Outlook y genero confirmaciones .ics.</p>
-        <p><strong>Por qué:</strong> Menos llamadas, menos errores, más clientes y mejor experiencia.</p>
-      </article>
-      <article id="detail-pedidos" class="detail">
-        <h3>Pedidos y Logística — Qué, Cómo y Por qué</h3>
-        <p><strong>Qué:</strong> Flujos automáticos desde la compra hasta la entrega, con control de stock y avisos.</p>
-        <p><strong>Cómo:</strong> Integraciones con tus plataformas de venta, workflows automáticos y gestión de inventario.</p>
-        <p><strong>Por qué:</strong> Reduces tiempos operativos, errores manuales y costes logísticos.</p>
-      </article>
-      <article id="detail-datos" class="detail">
-        <h3>Validación de Datos — Qué, Cómo y Por qué</h3>
-        <p><strong>Qué:</strong> Validación en tiempo real de emails, teléfonos, NIF y detección de duplicados.</p>
-        <p><strong>Cómo:</strong> Integración de APIs de validación y reglas customizadas antes de insertar en tu CRM.</p>
-        <p><strong>Por qué:</strong> Datos limpios significan mejores campañas, menos rechazos y decisiones más acertadas.</p>
-      </article>
-      <article id="detail-analytics" class="detail">
-        <h3>Informes y Optimización — Qué, Cómo y Por qué</h3>
-        <p><strong>Qué:</strong> Dashboards con KPIs, funnel de conversión y recomendaciones accionables.</p>
-        <p><strong>Cómo:</strong> Conexión a tus datos, limpieza, métricas personalizadas y alertas automáticas.</p>
-        <p><strong>Por qué:</strong> Te permite decidir rápido y escalar sin perder control.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ROI -->
-  <section class="container" id="roi-estimator" aria-labelledby="roi-title">
-    <h2 class="section-title" id="roi-title">Calcula tu Ahorro con Automatización 💰</h2>
-    <div class="roi-form-box">
-      <form id="roi-form" novalidate>
-        <div class="form-row single">
-          <label for="roi-time">1. Tiempo de la tarea (en minutos)</label>
-          <input id="roi-time" name="time" class="input" type="number" required placeholder="Ej: 45" min="1" />
-          <div class="error" id="roi-time-error"></div>
-        </div>
-        <div class="form-row">
-          <div>
-            <label for="roi-freq">2. Frecuencia (veces por semana)</label>
-            <input id="roi-freq" name="frequency" class="input" type="number" required placeholder="Ej: 5" min="1" />
-            <div class="error" id="roi-freq-error"></div>
-          </div>
-          <div>
-            <label for="roi-cost">3. Costo laboral por hora (€)</label>
-            <input id="roi-cost" name="hourly-cost" class="input" type="number" required placeholder="Ej: 25" min="5" step="0.01" />
-            <div class="error" id="roi-cost-error"></div>
-          </div>
-        </div>
-        <div style="margin-top:20px; text-align:center;">
-          <button type="submit" class="cta-small" style="background:#4ade80; color:var(--dark); box-shadow:none;">Calcular Ahorro Anual</button>
-        </div>
-      </form>
-      <div id="roi-result" style="margin-top:20px;"></div>
-    </div>
-  </section>
-
-  <!-- Sobre mí -->
-  <section class="container" id="sobremi" aria-labelledby="sobremi-title">
-    <h2 class="section-title" id="sobremi-title">Sobre mí</h2>
-    <div class="card" style="display:flex;gap:18px;align-items:center">
-      <img src="https://via.placeholder.com/120x120?text=Abraham+Puero" alt="Abraham Puero" style="width:120px;height:120px;border-radius:12px;object-fit:cover">
-      <div>
-        <h3>Abraham Puero — Ingeniero en Automatización</h3>
-        <p style="color:var(--muted)">Diseño soluciones que reducen trabajo manual usando herramientas que ya conoces. Trabajo con pymes y proyectos que necesitan crecer sin aumentar plantilla.</p>
-        <p style="color:var(--muted)">Mi enfoque: entender el proceso, automatizar lo repetitivo y crear controles para que todo funcione en piloto automático.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Chat con Abraham -->
-  <section class="container" id="chat" aria-labelledby="chat-title" style="padding:40px 0;">
-    <h2 class="section-title" id="chat-title">Chat con Abraham 🤖</h2>
-    <div id="chat-container">
-      <div id="messages"></div>
-      <div id="typing-indicator"></div>
-      <form id="chat-form" style="display:flex;gap:8px;margin-top:12px;">
-        <input type="text" id="user-input" placeholder="Escribe tu mensaje..." style="flex:1;padding:10px;border-radius:8px;border:1px solid #ccc" required/>
-        <button type="submit" style="padding:10px 16px;border-radius:8px;background:var(--primary);color:#fff;">Enviar</button>
-      </form>
-    </div>
-  </section>
-</main>
-
-<button id="back-to-top" aria-label="Volver arriba">↑</button>
+  </footer>
 
 <script>
-  emailjs.init('TU_USER_ID');
+/* =========================
+   Config: EmailJS & IDs
+   ========================= */
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; // <- pon tu Public Key de EmailJS
+const EMAILJS_SERVICE = "service_8czvpfo"; // ya configurado por ti
+const EMAILJS_TEMPLATE_ADMIN = "template_admin"; // reemplaza por tu template id
+const EMAILJS_TEMPLATE_CLIENT = "template_client"; // reemplaza por tu template id
 
-  // Chat con Abraham
-  const chatForm = document.getElementById('chat-form');
-  const userInput = document.getElementById('user-input');
-  const messages = document.getElementById('messages');
-  const typingIndicator = document.getElementById('typing-indicator');
+if(window.emailjs) emailjs.init(EMAILJS_PUBLIC_KEY);
 
-  async function sendMessageToOpenAI(message) {
-    typingIndicator.textContent = "Abraham está escribiendo…";
-    try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer TU_OPENAI_KEY'
-        },
-        body: JSON.stringify({
-          model: "gpt-4",
-          messages: [{role: "user", content: message}],
-          max_tokens: 500
-        })
-      });
+/* =========================
+   Avatar: try GIF, fallback CSS wink
+   ========================= */
+(function initAvatar(){
+  const gifUrl = 'img/ceo-wink.gif';
+  const gifImg = document.getElementById('avatarGif');
+  const winkOverlay = document.getElementById('winkOverlay');
 
-      const data = await response.json();
-      const reply = data.choices[0].message.content;
+  // Try to load gif; if loads, show it; otherwise show CSS wink overlay
+  const test = new Image();
+  test.onload = () => {
+    // gif exists and loads -> show gif and hide overlay/circle
+    try { gifImg.style.display = 'block'; gifImg.style.objectFit = 'cover'; document.getElementById('avatarCircle').style.display='none'; winkOverlay.style.display='none'; }
+    catch(e){}
+  };
+  test.onerror = () => {
+    // no gif -> keep CSS overlay (already visible)
+    winkOverlay.style.display = 'flex';
+    // animate a quick wink effect periodically
+    setInterval(()=> {
+      winkOverlay.classList.add('wink');
+      setTimeout(()=> winkOverlay.classList.remove('wink'), 420);
+    }, 4200);
+  };
+  test.src = gifUrl;
 
-      const replyElem = document.createElement('div');
-      replyElem.textContent = reply;
-      replyElem.style.margin = "10px 0";
-      replyElem.style.padding = "10px";
-      replyElem.style.background = "#f0f4f8";
-      replyElem.style.borderRadius = "8px";
-      messages.appendChild(replyElem);
+  // Ensure circle thumbnail shows if main photo fails
+  const main = document.getElementById('ceoPhoto');
+  main.onerror = () => {
+    // hide large image if it fails (so gradient remains)
+    main.style.display = 'none';
+    document.getElementById('ceoThumb').style.display = 'block';
+  };
+})();
 
-      messages.scrollTop = messages.scrollHeight;
-    } catch (err) {
-      console.error(err);
-      const errorElem = document.createElement('div');
-      errorElem.textContent = "Error al obtener respuesta.";
-      errorElem.style.color = "#f97316";
-      messages.appendChild(errorElem);
-    } finally {
-      typingIndicator.textContent = "";
-    }
+/* =========================
+   Help request => suggestion logic
+   ========================= */
+function recommendApp(){
+  const type = document.getElementById('help-type').value;
+  const need = (document.getElementById('help-need').value||'').toLowerCase();
+  let suggestion = '';
+  if(!type && !need){ suggestion = "Cuéntame en una frase el problema para sugerirte la mejor app."; showHelpOut(suggestion); return; }
+
+  if(type==='restaurant' || need.includes('mesa') || need.includes('comandas')){
+    suggestion = "Recomendado: IAutoCalendar + integración POS. Reserva mesas + confirmaciones SMS/Email.";
+  } else if(type==='shop' || need.includes('pedido') || need.includes('stock')){
+    suggestion = "Recomendado: Automatización de pedidos + IAutoData para validación de clientes y control de stock.";
+  } else if(type==='services' || need.includes('citas') || need.includes('turno')){
+    suggestion = "Recomendado: IAutoCalendar + IAutoBot para agendar y confirmar citas automáticamente.";
+  } else if(type==='consulting' || need.includes('lead') || need.includes('contacto')){
+    suggestion = "Recomendado: IAutoBot + workflows para captación y clasificación de leads (calificación automática).";
+  } else if(type==='clinic' || need.includes('paciente') || need.includes('historial')){
+    suggestion = "Recomendado: Integración segura con tu gestor y IAutoData para validación y consentimientos.";
+  } else {
+    suggestion = "Sugerencia flexible: IAutoBot para captación + IAutoCalendar para gestión de agendas. Si quieres hablamos y definimos una app a medida.";
   }
 
-  chatForm.addEventListener('submit', e => {
+  showHelpOut(suggestion);
+}
+
+function showHelpOut(text){
+  const el = document.getElementById('help-output');
+  el.style.display='block';
+  el.textContent = text;
+}
+
+function saveHelpRequest(){
+  const type = document.getElementById('help-type').value;
+  const need = document.getElementById('help-need').value;
+  if(!type && !need){ alert('Cuéntame algo para guardar la petición.'); return; }
+  // Save locally and show confirmation (you can extend to POST to your backend)
+  const requests = JSON.parse(localStorage.getItem('helpRequests')||'[]');
+  requests.unshift({type,need,ts:Date.now()});
+  localStorage.setItem('helpRequests', JSON.stringify(requests));
+  showHelpOut('Guardado localmente. Si quieres puedo enviarlo por email si conectas EmailJS.');
+}
+
+/* =========================
+   Booking form: .ics + EmailJS (frontend)
+   ========================= */
+(function initBooking(){
+  // set min date tomorrow
+  const dateEl = document.getElementById('bookingDate');
+  const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate()+1);
+  dateEl.min = tomorrow.toISOString().split('T')[0];
+  dateEl.value = dateEl.min;
+
+  // stars rating for booking
+  const starEls = document.querySelectorAll('#bookingStars .star');
+  let bookingRating = 0;
+  starEls.forEach(s => {
+    s.addEventListener('mouseenter', ()=> highlightStars(s.dataset.value));
+    s.addEventListener('click', ()=> { bookingRating = Number(s.dataset.value); storeTempRating(bookingRating); updateBookingRatingUI(); });
+    s.addEventListener('mouseleave', ()=> resetHighlight());
+  });
+
+  // on submit
+  document.getElementById('bookingForm').addEventListener('submit', async function(e){
     e.preventDefault();
-    const userMsg = userInput.value.trim();
-    if(!userMsg) return;
+    const msgEl = document.getElementById('bookingMsg');
+    msgEl.textContent = ''; msgEl.className='';
 
-    const userElem = document.createElement('div');
-    userElem.textContent = userMsg;
-    userElem.style.margin = "10px 0";
-    userElem.style.padding = "10px";
-    userElem.style.background = "#e0f2fe";
-    userElem.style.borderRadius = "8px";
-    messages.appendChild(userElem);
+    const name = document.getElementById('bookingName').value.trim();
+    const email = document.getElementById('bookingEmail').value.trim();
+    const date = document.getElementById('bookingDate').value;
+    const time = document.getElementById('bookingTime').value;
+    const notes = document.getElementById('bookingNotes').value.trim();
 
-    userInput.value = "";
-    sendMessageToOpenAI(userMsg);
+    if(!name||!email||!date||!time){ msgEl.textContent='Completa todos los campos obligatorios.'; msgEl.className='msg-error'; return; }
+
+    // generate ICS
+    const dtISO = `${date} ${time}`;
+    const uid = 'iaauto-'+Date.now();
+    const ics = makeICS({summary:`IAmpuero - Demo: ${name}`,description:notes||'Demo IAmpuero',dtStartISO:dtISO,durationMinutes:30,uid});
+    downloadICS(`IAmpuero-${date.replace(/-/g,'')}_${time.replace(':','')}.ics`, ics);
+
+    // save local rating + review stub
+    if(bookingRating>0) {
+      // store as quick review
+      addLocalReview({name, rating: bookingRating, text: `Reserva: ${date} ${time} — ${notes||'sin notas'}`, ts:Date.now()});
+      rebuildReviewsUI();
+      computeAvgRating();
+    }
+
+    // Send via EmailJS if configured
+    if(window.emailjs && EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE){
+      try {
+        // admin notification
+        await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE_ADMIN, {
+          name, email, date, time, notes
+        });
+        // client confirmation (optional)
+        try {
+          await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE_CLIENT, { name, email, date, time });
+        } catch(e){ console.warn('client email failed',e); }
+        msgEl.textContent = '✅ Reserva generada y emails enviados (si EmailJS conectado).'; msgEl.className='msg-success';
+      } catch(e){
+        console.warn('emailjs send failed', e);
+        msgEl.textContent = '✅ Reserva generada. (No se pudo enviar email — revisa EmailJS)'; msgEl.className='msg-info';
+      }
+    } else {
+      msgEl.textContent = '✅ Reserva generada. Conecta EmailJS para enviar confirmaciones automáticas.'; msgEl.className='msg-info';
+    }
+
+    // reset small
+    this.reset();
+    bookingRating = 0; updateBookingRatingUI(); computeAvgRating();
   });
+})();
 
-  // Scroll smooth y botón volver arriba
-  const backToTop = document.getElementById('back-to-top');
-  window.addEventListener('scroll', () => {
-    backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-  });
-  backToTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+function highlightStars(n){
+  document.querySelectorAll('#bookingStars .star').forEach(s => { s.classList.toggle('active', Number(s.dataset.value)<=Number(n)); });
+}
+function resetHighlight(){ document.querySelectorAll('#bookingStars .star').forEach(s => s.classList.remove('active')); }
+function storeTempRating(r){ localStorage.setItem('bookingTempRating', r); }
+function updateBookingRatingUI(){ const val = Number(localStorage.getItem('bookingTempRating')||0); document.getElementById('bookingRatingVal').textContent = (val?val+'.0':'0.0'); document.querySelectorAll('#bookingStars .star').forEach(s => s.classList.toggle('active', Number(s.dataset.value)<=val)); }
 
-  // Detalles servicios
-  const cards = document.querySelectorAll('.card[data-service]');
-  const details = document.querySelectorAll('.detail');
-  cards.forEach(card=>{
-    card.addEventListener('click',()=>{
-      details.forEach(d=>d.classList.remove('active'));
-      document.getElementById('detail-'+card.dataset.service).classList.add('active');
-    });
-  });
+/* =========================
+   ICS helpers
+   ========================= */
+function pad(n){return n<10?'0'+n:n}
+function makeICS({summary,description,dtStartISO,durationMinutes=30,uid}){
+  // dtStartISO = "YYYY-MM-DD HH:MM"
+  const [datePart,timePart] = dtStartISO.split(' ');
+  const [Y,Mo,D] = datePart.split('-');
+  const [hh,mm] = timePart.split(':');
+  const dtStart = `${Y}${Mo}${D}T${hh}${mm}00`;
+  const endDate = new Date(Number(Y),Number(Mo)-1,Number(D),Number(hh),Number(mm));
+  endDate.setMinutes(endDate.getMinutes() + durationMinutes);
+  const Y2 = endDate.getFullYear(), M2 = pad(endDate.getMonth()+1), D2 = pad(endDate.getDate()), hh2 = pad(endDate.getHours()), mm2 = pad(endDate.getMinutes());
+  const dtEnd = `${Y2}${M2}${D2}T${hh2}${mm2}00`;
+  const lines = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//IAmpuero//IAutoCalendar//ES',
+    'BEGIN:VEVENT',
+    `UID:${uid}`,
+    `DTSTAMP:${dtStart}Z`,
+    `DTSTART:${dtStart}`,
+    `DTEND:${dtEnd}`,
+    `SUMMARY:${escapeText(summary)}`,
+    `DESCRIPTION:${escapeText(description)}`,
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ];
+  return lines.join('\r\n');
+}
+function escapeText(s){ return (s||'').replace(/\n/g,'\\n').replace(/,/g,'\\,'); }
+function downloadICS(filename, content){
+  const blob = new Blob([content], {type:'text/calendar;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+}
 
-  // ROI Estimator
-  document.getElementById('roi-form').addEventListener('submit', e=>{
-    e.preventDefault();
-    const time = parseFloat(document.getElementById('roi-time').value);
-    const freq = parseFloat(document.getElementById('roi-freq').value);
-    const cost = parseFloat(document.getElementById('roi-cost').value);
-    if(isNaN(time)||isNaN(freq)||isNaN(cost)) return;
-    const ahorro = time/60*freq*52*cost;
-    document.getElementById('roi-result').textContent = `Ahorro anual estimado: €${ahorro.toFixed(2)}`;
+/* =========================
+   Reviews: local storage + UI
+   ========================= */
+function submitReview(){
+  const name = document.getElementById('reviewName').value.trim() || 'Anon';
+  const text = document.getElementById('reviewText').value.trim();
+  const rating = Number(localStorage.getItem('reviewTemp')||0) || 5;
+  if(!text){ alert('Escribe tu reseña antes de enviar'); return; }
+  addLocalReview({name, rating, text, ts:Date.now()});
+  document.getElementById('reviewName').value=''; document.getElementById('reviewText').value='';
+  localStorage.removeItem('reviewTemp');
+  // reset stars
+  document.querySelectorAll('#reviewStars .star').forEach(s=>s.classList.remove('active'));
+  rebuildReviewsUI(); computeAvgRating();
+}
+
+function addLocalReview(obj){
+  const arr = JSON.parse(localStorage.getItem('reviews')||'[]');
+  arr.unshift(obj);
+  localStorage.setItem('reviews', JSON.stringify(arr.slice(0,200)));
+}
+
+function rebuildReviewsUI(){
+  const grid = document.getElementById('reviewsGrid');
+  grid.innerHTML = '';
+  const arr = JSON.parse(localStorage.getItem('reviews')||'[]');
+  if(arr.length===0){
+    grid.innerHTML = `<div class="review-card empty"><i class="fas fa-comment-dots" style="font-size:28px;color:var(--muted)"></i><h3>Sin reseñas aún</h3><p style="color:var(--muted)">Sé el primero</p></div>`;
+    return;
+  }
+  arr.forEach(r=>{
+    const el = document.createElement('div'); el.className='review-card';
+    el.innerHTML = `<strong style="margin-bottom:8px">${escapeHtml(r.name||'Anon')}</strong>
+                    <div class="stars" style="margin:8px 0">${renderStars(r.rating||5)}</div>
+                    <div style="color:var(--muted)">${escapeHtml(r.text||'')}</div>`;
+    grid.appendChild(el);
   });
+}
+
+function renderStars(n){
+  n = Number(n)||0;
+  let s='';
+  for(let i=1;i<=5;i++) s += `<span style="color:${i<=n?'#fbbf24':'#e6eef7'}">★</span>`;
+  return s;
+}
+
+function computeAvgRating(){
+  const arr = JSON.parse(localStorage.getItem('reviews')||'[]');
+  if(arr.length===0){ document.getElementById('avgRating').textContent='0.0'; document.getElementById('starsPreview').style.opacity=0.3; return; }
+  const avg = arr.reduce((a,b)=>a+(b.rating||5),0)/arr.length;
+  document.getElementById('avgRating').textContent = avg.toFixed(1);
+  // color starsPreview
+  const per = Math.round(avg);
+  const preview = document.getElementById('starsPreview');
+  preview.innerHTML = Array.from({length:5},(_,i)=>`<span style="color:${i<per?'#fbbf24':'#e6eef7'}">★</span>`).join('');
+}
+
+/* review stars input logic */
+document.querySelectorAll('#reviewStars .star').forEach(s=>{
+  s.addEventListener('mouseenter', ()=> {
+    const v = Number(s.dataset.value); document.querySelectorAll('#reviewStars .star').forEach(x=>x.classList.toggle('active', Number(x.dataset.value)<=v));
+  });
+  s.addEventListener('click', ()=> {
+    const v = Number(s.dataset.value); localStorage.setItem('reviewTemp', v); document.querySelectorAll('#reviewStars .star').forEach(x=>x.classList.toggle('active', Number(x.dataset.value)<=v));
+  });
+  s.addEventListener('mouseleave', ()=> {
+    const v = Number(localStorage.getItem('reviewTemp')||0); document.querySelectorAll('#reviewStars .star').forEach(x=>x.classList.toggle('active', Number(x.dataset.value)<=v));
+  });
+});
+
+/* =========================
+   Chat UI (simple local bot)
+   ========================= */
+function openChat(){ document.getElementById('chatWindow').style.display='flex'; document.getElementById('chatToggle').style.display='none'; document.getElementById('chatMessages').innerHTML = '<div style="color:var(--muted)">IAutoBot activo — ¿en qué puedo ayudarte?</div>'; }
+function closeChat(){ document.getElementById('chatWindow').style.display='none'; document.getElementById('chatToggle').style.display='block'; }
+function chatSend(){
+  const input = document.getElementById('chatInput'); const msg = input.value.trim(); if(!msg) return;
+  const box = document.createElement('div'); box.className='message user'; box.style.alignSelf='flex-end'; box.style.background='var(--primary)'; box.style.color='white'; box.style.padding='8px 12px'; box.style.borderRadius='10px'; box.style.margin='6px 0'; box.textContent = msg;
+  document.getElementById('chatMessages').appendChild(box); input.value=''; document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+  setTimeout(()=> {
+    const bot = document.createElement('div'); bot.className='message bot'; bot.style.background='#f3fbff'; bot.style.padding='8px 12px'; bot.style.borderRadius='10px'; bot.style.borderLeft='3px solid var(--primary)'; bot.textContent = generateBotReply(msg);
+    document.getElementById('chatMessages').appendChild(bot);
+    document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+  }, 900);
+}
+function generateBotReply(msg){
+  const m = msg.toLowerCase();
+  if(m.includes('hola')||m.includes('buenas')) return '¡Hola! Puedo ayudarte a reservar, ver servicios o solicitar una demo.';
+  if(m.includes('precio')||m.includes('coste')||m.includes('cuesta')) return 'Planes desde €49/mes — puedo enviarte una propuesta por email si me das tu correo.';
+  if(m.includes('demo')||m.includes('reserv')||m.includes('cita')) return 'Dime el día que prefieres y te doy horarios disponibles.';
+  return 'Gracias por tu pregunta. ¿Quieres que agende una llamada con Abraham o prefieres una demo automática?';
+}
+
+/* =========================
+   Misc: init UI and stored reviews
+   ========================= */
+document.getElementById('year').textContent = new Date().getFullYear();
+rebuildReviewsUI();
+computeAvgRating();
+
+/* =========================
+   Utility: escape HTML
+   ========================= */
+function escapeHtml(text){
+  if(!text) return '';
+  return text.replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]); });
+}
 </script>
 </body>
 </html>
